@@ -1664,6 +1664,7 @@ acoustic_material = ExtResource("3_su47n")
 metadata/absorption = 0.42
 metadata/material = "wood"
 metadata/surface = "wood"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/TimberHutsouthLintel" unique_id=1807646718]
 material_override = SubResource("StandardMaterial3D_f4fcw")
@@ -1728,6 +1729,7 @@ acoustic_material = ExtResource("3_su47n")
 metadata/absorption = 0.42
 metadata/material = "wood"
 metadata/surface = "wood"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/TimberHuteastLintel" unique_id=1442901718]
 material_override = SubResource("StandardMaterial3D_2efvr")

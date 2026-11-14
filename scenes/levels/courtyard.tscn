@@ -904,6 +904,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.13
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/BellGatenorthLintel" unique_id=730379016]
 material_override = SubResource("StandardMaterial3D_pdmu4")
@@ -952,6 +953,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.13
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/BellGatesouthLintel" unique_id=12654944]
 material_override = SubResource("StandardMaterial3D_mcut1")
@@ -1144,6 +1146,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.11
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/WestCloisternorthLintel" unique_id=434298032]
 material_override = SubResource("StandardMaterial3D_snuld")
@@ -1192,6 +1195,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.11
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/WestCloistersouthLintel" unique_id=1769305774]
 material_override = SubResource("StandardMaterial3D_ox5jr")
@@ -1256,6 +1260,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.11
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/WestCloistereastLintel" unique_id=408658908]
 material_override = SubResource("StandardMaterial3D_06ld8")
@@ -1416,6 +1421,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.13
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/FountainCourtsouthLintel" unique_id=2128974055]
 material_override = SubResource("StandardMaterial3D_g1g4n")
@@ -1464,6 +1470,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.13
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/FountainCourtwestLintel" unique_id=529055224]
 material_override = SubResource("StandardMaterial3D_mmxnf")
@@ -1512,6 +1519,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.13
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/FountainCourteastLintel" unique_id=1087924382]
 material_override = SubResource("StandardMaterial3D_4y2cn")
@@ -1624,6 +1632,7 @@ acoustic_material = ExtResource("3_n2rxh")
 metadata/absorption = 0.45
 metadata/material = "wood"
 metadata/surface = "wood"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/TimberStablenorthLintel" unique_id=526649801]
 material_override = SubResource("StandardMaterial3D_ctuw1")
@@ -1688,6 +1697,7 @@ acoustic_material = ExtResource("3_n2rxh")
 metadata/absorption = 0.45
 metadata/material = "wood"
 metadata/surface = "wood"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/TimberStablewestLintel" unique_id=196137607]
 material_override = SubResource("StandardMaterial3D_4utj7")
@@ -1848,6 +1858,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.17
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/WindTowersouthLintel" unique_id=1921072045]
 material_override = SubResource("StandardMaterial3D_018iu")
@@ -1896,6 +1907,7 @@ acoustic_material = ExtResource("2_p2dww")
 metadata/absorption = 0.17
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/WindTowerwestLintel" unique_id=1338069196]
 material_override = SubResource("StandardMaterial3D_cesei")

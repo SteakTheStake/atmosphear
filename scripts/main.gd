@@ -7,7 +7,7 @@ const RoomAcoustics = preload("res://scripts/room_acoustics.gd")
 const SoundPalette = preload("res://scripts/sound_palette.gd")
 @export var sound_palette: SoundPalette = preload("res://resources/audio/default_palette.tres")
 const TITLES := {"forest":"Forest & lake", "cistern":"Stone cistern", "freighter":"Deep-space freighter", "courtyard":"Rain courtyard"}
-var settings := {"master":0.75,"ambience":0.8,"footsteps":0.75,"ui":0.35,"sensitivity":1.0,"speed":1.0,"quality":1.0}
+var settings := {"master":0.75,"ambience":0.8,"footsteps":0.75,"ui":0.35,"sensitivity":1.0,"speed":1.0,"quality":1.0,"binaural":1.0}
 var level := "forest"
 var player: CharacterBody3D
 var listener: AudioListener3D
@@ -25,6 +25,8 @@ var stride := 0.5
 var last_event := "ready"
 var acoustic_clock := 0.0
 var report_clock := 0.0
+var spatial_clock := 0.0
+var acoustic_layout := {}
 var room_effect: AudioEffectReverb
 var room_acoustics = RoomAcoustics.new()
 var room_stats := {"enclosure":0.0,"rt60_estimate":0.0,"mean_free_path":0.0,"wet":0.0}
@@ -259,6 +261,7 @@ func play_level(id: String) -> void:
 	acoustic_clock = 0
 	last_event = "entered"
 	_build_map_data()
+	if OS.has_feature("web"): call_deferred("_setup_room_fields",level_generation)
 	debug_view.rebuild(world,sources)
 	debug_view.set_enabled(debug_enabled)
 	game_ui.show_screen("playing")
@@ -380,6 +383,17 @@ func set_debug_enabled(value: bool) -> void:
 
 func _physics_process(delta: float) -> void:
 	report_clock += delta
+	spatial_clock += delta
+	if OS.has_feature("web") and spatial_clock >= 1.0/30.0:
+		spatial_clock = 0.0
+		var data := {"settings":settings,"paused":paused or not started,"level":level,"position":[listener.global_position.x,listener.global_position.y,listener.global_position.z],"forward":[-player.global_basis.z.x,-player.global_basis.z.y,-player.global_basis.z.z],"decay":room_stats.get("decay_bands",[.2,.2,.2]),"wet":room_stats.get("wet",0.0)}
+		var visibility := {}
+		for portal in acoustic_layout.get("portals",[]):
+			var v: Array = portal.position
+			var query := PhysicsRayQueryParameters3D.create(listener.global_position,Vector3(v[0],v[1],v[2]),2)
+			visibility[portal.id] = get_world_3d().direct_space_state.intersect_ray(query).is_empty()
+		data["portal_visibility"] = visibility
+		JavaScriptBridge.eval("if(window.AtmoAcoustics)window.AtmoAcoustics.scene("+JSON.stringify(data)+")")
 	if report_clock > 0.2:
 		report_clock = 0
 		_report()
@@ -567,6 +581,32 @@ func _build_map_data() -> void:
 	for landmark in world.get_node("Landmarks").get_children():
 		landmarks.append({"pos":landmark.global_position,"label":landmark.get_meta("label"),"kind":landmark.get_meta("kind")})
 	map_data = {"bounds":world.get_meta("bounds",bounds),"footprints":footprints,"landmarks":landmarks}
+
+func _setup_room_fields(generation: int) -> void:
+	await get_tree().physics_frame
+	if generation != level_generation or not is_instance_valid(world): return
+	var rooms: Array = []
+	var portals: Array = []
+	for region in world.get_node("Regions").get_children():
+		var rect: Rect2 = region.get_meta("rect",Rect2())
+		var probe = RoomAcoustics.new()
+		probe.probe(get_world_3d(),region.global_position+Vector3.UP*1.6,1)
+		rooms.append({"id":String(region.name),"rect":[rect.position.x,rect.position.y,rect.size.x,rect.size.y],"rt":probe.stats.get("decay_targets",[.2,.2,.2]),"wet":probe.wet_target})
+	for body in world.get_node("Geometry").get_children():
+		if not "lintel" in String(body.name).to_lower(): continue
+		var mesh = body.get_node_or_null("Mesh")
+		if not mesh is MeshInstance3D: continue
+		var box: AABB = mesh.get_aabb()
+		var at: Vector3 = body.global_position
+		at.y = 1.5
+		var room_id := ""
+		var best := INF
+		for region in world.get_node("Regions").get_children():
+			var distance: float = region.global_position.distance_to(at)
+			if distance < best: best=distance;room_id=String(region.name)
+		portals.append({"id":String(body.name),"room":room_id,"position":[at.x,at.y,at.z],"width":maxf(box.size.x,box.size.z),"open":clampf(float(body.get_meta("acoustic_open_fraction",1.0)),0,1)})
+	acoustic_layout = {"rooms":rooms,"portals":portals}
+	JavaScriptBridge.eval("if(window.AtmoAcoustics)window.AtmoAcoustics.layout("+JSON.stringify(acoustic_layout)+")")
 
 func _probe_room() -> void:
 	room_acoustics.probe(get_world_3d(),listener.global_position,int(settings.quality))

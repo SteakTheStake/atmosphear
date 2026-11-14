@@ -30,14 +30,18 @@ def main():
     packed_audio = {value.decode().removeprefix("res://").removesuffix(".import") for value in re.findall(
         rb"(?:res://)?assets/library/[A-Za-z0-9_ ./-]+?\.(?:wav|ogg|mp3|flac|aiff?)\.import", (directory / "index.pck").read_bytes())}
     assert packed_audio == expected_audio, f"PCK audio closure mismatch; missing={sorted(expected_audio-packed_audio)}, extra={sorted(packed_audio-expected_audio)}"
+    staged_audio = {p.name for p in (directory / "sound").iterdir() if p.is_file()}
+    assert staged_audio == {Path(p).name for p in expected_audio}, "Browser audio closure mismatch"
+    for path in expected_audio:
+        assert hashlib.sha256((directory / "sound" / Path(path).name).read_bytes()).digest() == hashlib.sha256((ROOT / path).read_bytes()).digest(), "Staged audio bytes differ: " + path
     fingerprint = hashlib.sha256()
     assets = []
-    for path in sorted(directory.iterdir()):
+    for path in sorted(directory.rglob("*")):
         if not path.is_file() or path == worker or path.name in {".nojekyll", "pages-build.json"}:
             continue
         data = path.read_bytes()
-        fingerprint.update(path.name.encode() + b"\0" + data)
-        assets.append({"file": path.name, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()})
+        fingerprint.update(path.relative_to(directory).as_posix().encode() + b"\0" + data)
+        assets.append({"file": path.relative_to(directory).as_posix(), "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()})
     revision = fingerprint.hexdigest()[:24]
     source = worker.read_text(encoding="utf8")
     source, version_count = re.subn(r"const CACHE_VERSION = .*?;", f"const CACHE_VERSION = 'atmosphear-{revision}';", source, count=1)
@@ -50,7 +54,7 @@ def main():
     cached_match = re.search(r"const CACHED_FILES = (\[.*?\]);", source)
     assert cached_match, "Godot precache format changed"
     cached = json.loads(cached_match.group(1))
-    cached += [asset["file"] for asset in assets if asset["file"].endswith((".png", ".manifest.json")) and asset["file"] not in cached]
+    cached += [asset["file"] for asset in assets if asset["file"].endswith((".png", ".manifest.json", ".wav", ".ogg")) and asset["file"] not in cached]
     source = source[:cached_match.start(1)] + json.dumps(cached, separators=(",", ":")) + source[cached_match.end(1):]
     # Project-root and ?debug navigation must use the same cached HTML offline.
     # Other paths retain the stock worker's normal request handling.

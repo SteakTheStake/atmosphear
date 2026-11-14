@@ -999,6 +999,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.13
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberNWsouthLintel" unique_id=1791243464]
 material_override = SubResource("StandardMaterial3D_4v8ni")
@@ -1063,6 +1064,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.13
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberNWeastLintel" unique_id=904958515]
 material_override = SubResource("StandardMaterial3D_41qsd")
@@ -1143,6 +1145,7 @@ acoustic_material = ExtResource("3_76y5f")
 metadata/absorption = 0.25
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberNEsouthLintel" unique_id=326647345]
 material_override = SubResource("StandardMaterial3D_wbjae")
@@ -1191,6 +1194,7 @@ acoustic_material = ExtResource("3_76y5f")
 metadata/absorption = 0.25
 metadata/material = "stone"
 metadata/surface = "stone"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberNEwestLintel" unique_id=1418847469]
 material_override = SubResource("StandardMaterial3D_josn5")
@@ -1271,6 +1275,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.18
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberWnorthLintel" unique_id=168296775]
 material_override = SubResource("StandardMaterial3D_0kr0o")
@@ -1319,6 +1324,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.18
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberWsouthLintel" unique_id=1083542281]
 material_override = SubResource("StandardMaterial3D_uivj4")
@@ -1383,6 +1389,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.18
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberWeastLintel" unique_id=617111095]
 material_override = SubResource("StandardMaterial3D_j3xx8")
@@ -1447,6 +1454,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.24
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberEnorthLintel" unique_id=1006175662]
 material_override = SubResource("StandardMaterial3D_xjwk0")
@@ -1495,6 +1503,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.24
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberEsouthLintel" unique_id=1786666804]
 material_override = SubResource("StandardMaterial3D_f3kac")
@@ -1543,6 +1552,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.24
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberEwestLintel" unique_id=753849296]
 material_override = SubResource("StandardMaterial3D_oh01l")
@@ -1623,6 +1633,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.3
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberSWnorthLintel" unique_id=1195471635]
 material_override = SubResource("StandardMaterial3D_dm5x6")
@@ -1703,6 +1714,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.3
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberSWeastLintel" unique_id=506901462]
 material_override = SubResource("StandardMaterial3D_4h5y2")
@@ -1767,6 +1779,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.22
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberSEnorthLintel" unique_id=1730162270]
 material_override = SubResource("StandardMaterial3D_7bk37")
@@ -1831,6 +1844,7 @@ acoustic_material = ExtResource("2_fc0m3")
 metadata/absorption = 0.22
 metadata/material = "metal"
 metadata/surface = "metal"
+metadata/acoustic_open_fraction = 1.0
 
 [node name="Mesh" type="MeshInstance3D" parent="Geometry/ChamberSEwestLintel" unique_id=760420041]
 material_override = SubResource("StandardMaterial3D_jwm2y")

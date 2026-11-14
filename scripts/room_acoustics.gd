@@ -86,11 +86,11 @@ func _new_diffusion() -> void:
 	_remove_effects("Diffusion")
 	var effect := AudioEffectDelay.new()
 	effect.dry = 1.0
-	effect.tap1_active = true
+	effect.tap1_active = false
 	effect.tap1_delay_ms = 11.0
 	effect.tap1_level_db = -19.0
 	effect.tap1_pan = -0.45
-	effect.tap2_active = true
+	effect.tap2_active = false
 	effect.tap2_delay_ms = 19.0
 	effect.tap2_level_db = -22.0
 	effect.tap2_pan = 0.45

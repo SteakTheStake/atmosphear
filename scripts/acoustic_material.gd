@@ -5,6 +5,7 @@ class_name AtmoAcousticMaterial
 ## Coefficients are authorable acoustic approximations, not measured samples.
 @export var material_name := "Stone"
 @export var absorption_bands := Vector3(0.03, 0.06, 0.10)
+@export_range(0.01, 2.0) var transmission_reference_thickness_m := 0.3
 @export var transmission_db := Vector3(-20, -32, -48)
 @export_range(0.0, 1.0) var scattering := 0.12
 @export_range(0.0, 1.0) var roughness := 0.25
@@ -18,7 +19,7 @@ static func sample(collider: Object) -> Dictionary:
 		# energy into the diffuse field. Both early paths and room probes use it.
 		var roughness := clampf(profile.roughness, 0.0, 1.0)
 		var diffuse_fraction := 1.0-(1.0-clampf(profile.scattering,0.0,.98))*(1.0-roughness*.25)
-		return {"absorption": _bounded(profile.absorption_bands, 0.001, 0.99), "transmission_db": _bounded(profile.transmission_db, -90.0, -0.1), "scattering": diffuse_fraction, "roughness": roughness, "label": String(profile.material_name)}
+		return {"absorption": _bounded(profile.absorption_bands, 0.001, 0.99), "transmission_db": _bounded(profile.transmission_db, -90.0, -0.1), "reference_thickness":profile.transmission_reference_thickness_m, "scattering": diffuse_fraction, "roughness": roughness, "label": String(profile.material_name)}
 	var label := String(collider.get_meta("material", "stone")) if is_instance_valid(collider) else "stone"
 	var alpha := clampf(float(collider.get_meta("absorption", 0.25)), 0.01, 0.98) if is_instance_valid(collider) else 0.25
 	return {"absorption": Vector3(alpha * 0.65, alpha, minf(alpha * 1.35, 0.99)), "transmission_db": Vector3(-20,-32,-48), "scattering": 0.15, "roughness": 0.3, "label": label}

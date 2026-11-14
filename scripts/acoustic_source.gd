@@ -49,9 +49,17 @@ var _variation_gain_db := 0.0
 var _stereo_strength := 0.95
 var audible_range := 90.0
 var near_distance := 2.5
+var _web_audio := OS.has_feature("web")
+var _web_clock := 0.0
+var _category := "Environment"
+
+func _web_call(method: String, args: Array = []) -> void:
+	if not _web_audio: return
+	JavaScriptBridge.eval("window.AtmoAcoustics && window.AtmoAcoustics."+method+".apply(window.AtmoAcoustics,"+JSON.stringify([str(get_instance_id())]+args)+")")
 
 func configure(stream: AudioStream, db: float, category: String, looped := true, reflection_budget := 2) -> void:
 	assert(not _configured, "Configure each acoustic source only once; use set_stream for pooled footsteps.")
+	_category = category
 	_base_db = db
 	_looped = looped
 	_reflection_budget = clampi(reflection_budget, 0, MAX_REFLECTION_COUNT)
@@ -115,7 +123,7 @@ func configure_late_reverb(category: String) -> void:
 		voice.volume_db = -80.0
 		voice.stream = direct.stream
 		late_players.append(voice)
-		if direct.playing: voice.play(direct.get_playback_position())
+		if direct.playing and not _web_audio: voice.play(direct.get_playback_position())
 	_apply_suspension()
 
 func _make_bus(label: String, category: String) -> int:
@@ -140,6 +148,7 @@ func _make_player(bus: StringName) -> AudioStreamPlayer3D:
 func set_stream(stream: AudioStream) -> void:
 	if not _configured or stream == null:
 		return
+	_web_call("configure",[stream.resource_path,_looped,_category])
 	var owned := stream.duplicate() as AudioStream
 	if owned is AudioStreamOggVorbis or owned is AudioStreamMP3:
 		owned.loop = _looped
@@ -183,21 +192,24 @@ func set_variation(pitch: float, gain_db: float) -> void:
 	_variation_gain_db = clampf(gain_db, -12.0, 6.0)
 	if _configured:
 		direct.max_db = _base_db + _variation_gain_db
-		direct.pitch_scale = _pitch * _variation_pitch
+		direct.pitch_scale = _variation_pitch if _web_audio else _pitch * _variation_pitch
 		direct.volume_db = _base_db + _variation_gain_db + linear_to_db(maxf(_largest(_transmission),0.0001))
 
 func play(from_position := 0.0) -> void:
 	if not _configured:
 		return
 	_query_timer = 0.0
+	_web_call("play",[from_position])
 	direct.play(from_position)
 	# Each voice begins at the same sample offset. Delay buses supply the path delay.
 	for reflection in reflections:
-		reflection.play(from_position)
-	for voice in late_players: voice.play(from_position)
+		if not _web_audio: reflection.play(from_position)
+	for voice in late_players:
+		if not _web_audio: voice.play(from_position)
 	set_suspended(_suspended)
 
 func stop() -> void:
+	_web_call("stop")
 	if not _configured:
 		return
 	direct.stream_paused = false
@@ -217,6 +229,7 @@ func _apply_suspension() -> void:
 	if not _configured:
 		return
 	var silent := _suspended or _virtualized
+	_web_call("suspend",[silent])
 	direct.stream_paused = silent
 	for reflection in reflections:
 		reflection.stream_paused = silent
@@ -225,7 +238,7 @@ func _apply_suspension() -> void:
 	for label in _bus_names:
 		var index := AudioServer.get_bus_index(label)
 		if index >= 0:
-			AudioServer.set_bus_mute(index, silent)
+			AudioServer.set_bus_mute(index, silent or _web_audio)
 
 func tick(listener_pos: Vector3, listener_velocity: Vector3, delta: float, quality: int) -> void:
 	if not _configured or not is_inside_tree() or _suspended or _virtualized:
@@ -241,21 +254,25 @@ func tick(listener_pos: Vector3, listener_velocity: Vector3, delta: float, quali
 	var ratio := (SPEED_OF_SOUND - listener_radial) / (SPEED_OF_SOUND - source_radial)
 	var smoothing := 1.0 - exp(-delta * 7.0)
 	_pitch = lerpf(_pitch, clampf(ratio, 0.85, 1.18), smoothing)
-	direct.pitch_scale = _pitch * _variation_pitch
+	direct.pitch_scale = _variation_pitch if _web_audio else _pitch * _variation_pitch
 	_query_timer -= delta
 	if _query_timer <= 0.0:
 		_query_timer = 0.16 if quality > 0 else 0.32
 		_visibility_queries = 0
 		_sample_obstruction(listener_pos, quality)
 		_paths = _reflection_paths(listener_pos, quality)
+		if _web_audio and _target_obstruction > .9:
+			var edge := _diffraction_path(listener_pos)
+			if not edge.is_empty(): _paths.append(edge)
 	_obstruction = lerpf(_obstruction, _target_obstruction, smoothing)
 	_transmission = _transmission.lerp(_target_transmission,smoothing)
 	# Empirical high-frequency air absorption proxy, separate from wall absorption.
-	var air_cutoff := clampf(20000.0 * exp(-distance * 0.018), 2200.0, 18000.0)
+	var air_cutoff := clampf(20000.0 * exp(-distance * 0.0015), 2200.0, 18000.0)
 	# A broad rear spectral cue supplements stereo panning; this is deliberately
 	# not advertised as personalized HRTF or binaural head-related filtering.
 	var rear_weight := clampf(_listener_forward.dot(direction), 0.0, 1.0)
-	air_cutoff *= lerpf(1.0, 0.62, rear_weight)
+	if not _web_audio: air_cutoff *= lerpf(1.0, 0.62, rear_weight)
+	else: air_cutoff = 20000.0
 	# The EQ retains low-frequency wall leakage. A material-dependent low pass
 	# provides the remaining high-frequency rolloff instead of one universal wall.
 	var wall_cutoff := clampf(18000.0 * pow(_transmission.z / maxf(_transmission.x,0.0001),0.9),450.0,18000.0)
@@ -285,8 +302,16 @@ func tick(listener_pos: Vector3, listener_velocity: Vector3, delta: float, quali
 		var energy: float = _diffuse_energy[i]
 		var gain := sqrt(maxf(energy,0.000001)) * .50 * near_distance/maxf(distance,near_distance)
 		var target_db := _base_db + _variation_gain_db + linear_to_db(maxf(gain,.00001))
-		late_players[i].volume_db = lerpf(late_players[i].volume_db,target_db,smoothing)
+		late_players[i].volume_db = -80.0 if _web_audio else lerpf(late_players[i].volume_db,target_db,smoothing)
 		late_players[i].pitch_scale = _pitch * _variation_pitch
+	_web_clock -= delta
+	if _web_audio and _web_clock <= 0:
+		_web_clock = 1.0/30.0
+		var paths: Array = []
+		for path in _paths:
+			paths.append({"id":path.id,"position":[path.point.x,path.point.y,path.point.z],"length":path.length,"cutoff":path.get("cutoff",clampf(20000.0*exp(-path.length*.0015),6000,20000)),"db":_base_db+_variation_gain_db+linear_to_db(maxf(near_distance/maxf(path.length,near_distance),.001))+linear_to_db(maxf(_largest(path.bands),.001))-3.0})
+		var send_gain := sqrt(maxf(_diffuse_energy.y,.000001))*.35*near_distance/maxf(distance,near_distance)
+		_web_call("update",[{"distance":distance,"position":[global_position.x,global_position.y,global_position.z],"cutoff":_target_cutoff,"db":direct.volume_db+linear_to_db(near_distance/maxf(distance,near_distance)),"pitch":_variation_pitch,"paths":paths,"transmission":_largest(_transmission),"send_db":_base_db+_variation_gain_db+linear_to_db(maxf(send_gain,.00001))}])
 	diagnostics = {"blocked": snappedf(_obstruction, 0.01), "cutoff": int(direct_filter.cutoff_hz), "pitch": snappedf(_pitch, 0.0001), "reflections": _paths.size(), "distance": snappedf(distance, 0.01), "direct_db": snappedf(direct.volume_db, 0.1), "transmission":_transmission, "diffuse_energy":_diffuse_energy,"surface_probes":_probe_count,"visibility_queries":_visibility_queries,"second_order":_paths.filter(func(p):return p.order == 2).size()}
 
 func _largest(value: Vector3) -> float:
@@ -303,13 +328,31 @@ func _apply_band_eq(equalizer: AudioEffectEQ6, bands: Vector3, smoothing: float,
 		equalizer.set_band_gain_db(i,lerpf(equalizer.get_band_gain_db(i),clampf(target,-48,6),smoothing))
 
 func _delay_for_length(length: float, direct_distance: float) -> float:
-	return clampf((length-direct_distance)/SPEED_OF_SOUND*1000.0,3.0,MAX_DELAY_MS)
+	return clampf((length-direct_distance)/SPEED_OF_SOUND*1000.0,0.0,MAX_DELAY_MS)
 
-func _ray(from: Vector3, to: Vector3) -> Dictionary:
+func _diffraction_path(listener_pos: Vector3) -> Dictionary:
+	# Bounded single-edge visibility search, not a full UTD wave solver.
+	var hit := _ray(listener_pos,global_position)
+	if hit.is_empty(): return {}
+	var normal: Vector3 = hit.normal
+	var tangent := normal.cross(Vector3.UP).normalized()
+	if tangent.length_squared() < .1: tangent = Vector3.RIGHT
+	for extent in [.5,1.0,2.0,4.0]:
+		for side in [-1.0,1.0]:
+			var edge: Vector3 = hit.position+tangent*extent*side+normal*.12
+			if not _ray(listener_pos,edge).is_empty() or not _ray(edge,global_position).is_empty(): continue
+			var length := listener_pos.distance_to(edge)+edge.distance_to(global_position)
+			var excess := maxf(.01,length-listener_pos.distance_to(global_position))
+			var pressure := .35/sqrt(1.0+excess*12.0)
+			return {"id":"edge:"+str(hit.collider_id)+":"+str(side),"point":edge,"points":[edge],"order":1,"length":length,"absorption":.8,"strength":pressure/maxf(length,1.0),"bands":Vector3(pressure,pressure*.5,pressure*.1),"energy":Vector3.ONE*pressure*pressure,"materials":["edge diffraction"],"cutoff":clampf(2200.0/sqrt(excess),650,5000)}
+	return {}
+
+func _ray(from: Vector3, to: Vector3, exclude: Array[RID] = []) -> Dictionary:
 	if from.distance_squared_to(to) < 0.0001:
 		return {}
 	_visibility_queries += 1
 	var query := PhysicsRayQueryParameters3D.create(from, to, ACOUSTIC_MASK)
+	query.exclude = exclude
 	query.collide_with_areas = false
 	query.hit_from_inside = true
 	return get_world_3d().direct_space_state.intersect_ray(query)
@@ -330,8 +373,21 @@ func _sample_obstruction(listener_pos: Vector3, quality: int) -> void:
 		_debug_obstruction_samples.append({"from": ray_from, "to": ray_to, "hit": not hit.is_empty(), "point": hit.position if not hit.is_empty() else ray_to, "center": sample == Vector3.ZERO})
 		if not hit.is_empty():
 			blocked += 1.0
-			var material := AcousticProfile.sample(hit.collider)
-			var db: Vector3 = material.transmission_db
+			var db := Vector3.ZERO
+			var excluded: Array[RID] = []
+			var barrier := hit
+			for layer in range(4 if _web_audio else 1):
+				if barrier.is_empty(): break
+				var material := AcousticProfile.sample(barrier.collider)
+				var scale := 1.0
+				var mesh = barrier.collider.get_node_or_null("Mesh")
+				if _web_audio and mesh is MeshInstance3D:
+					var normal: Vector3 = (mesh.global_basis.inverse()*barrier.normal).normalized()
+					var thickness: float = normal.abs().dot(mesh.get_aabb().size)/maxf(.25,absf((ray_to-ray_from).normalized().dot(barrier.normal)))
+					scale = clampf(thickness/maxf(.01,material.get("reference_thickness",.3)),.25,4.0)
+				db += material.transmission_db*scale
+				excluded.append(barrier.rid)
+				barrier = _ray(ray_from,ray_to,excluded) if _web_audio else {}
 			transmission += Vector3(db_to_linear(db.x),db_to_linear(db.y),db_to_linear(db.z))
 		else:
 			transmission += Vector3.ONE
@@ -353,9 +409,9 @@ func get_debug_paths() -> Dictionary:
 			"bands":path.bands,
 			"energy":path.energy,
 			"materials":path.materials.duplicate(),
-			"delay_ms": _delay_for_length(path.length,distance),
-			"applied_delay_ms": reflection_delays[i].tap1_delay_ms,
-			"rendered_point": reflections[i].global_position,
+			"delay_ms": path.length/SPEED_OF_SOUND*1000.0 if _web_audio else _delay_for_length(path.length,distance),
+			"applied_delay_ms": path.length/SPEED_OF_SOUND*1000.0 if _web_audio else reflection_delays[i].tap1_delay_ms,
+			"rendered_point": path.point if _web_audio else reflections[i].global_position,
 		})
 	var center_blocked := not _debug_obstruction_samples.is_empty() and bool(_debug_obstruction_samples[0].hit)
 	return {
@@ -390,7 +446,8 @@ func _reflection_paths(listener_pos: Vector3, quality: int) -> Array[Dictionary]
 		for i in range(mini(pairs.size(),MAX_SECOND_ORDER_CANDIDATES)):
 			var path := _second_order(pairs[i].first,pairs[i].second,listener_pos)
 			if not path.is_empty(): candidates.append(path)
-	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.strength > b.strength)
+	var previous_ids: Array = _paths.map(func(path): return path.get("id",""))
+	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.strength*(1.15 if previous_ids.has(a.id) else 1.0) > b.strength*(1.15 if previous_ids.has(b.id) else 1.0))
 	var count := _reflection_budget if quality > 0 else mini(_reflection_budget, 1)
 	if candidates.size() > count:
 		candidates.resize(count)
@@ -483,9 +540,12 @@ func _build_path(points: Array, planes: Array, listener_pos: Vector3) -> Diction
 	# Coefficients above describe energy; square roots give rendered pressure.
 	var bands := Vector3(sqrt(energy.x)*exp(-length*.00015),sqrt(energy.y)*exp(-length*.0007),sqrt(energy.z)*exp(-length*.0035))
 	var strength := (bands.x*.25+bands.y*.5+bands.z*.25)/maxf(length,1.0)
-	return {"point":points[-1],"points":points,"order":points.size(),"length":length,"absorption":absorption/float(points.size()),"strength":strength,"bands":bands,"energy":energy,"materials":materials}
+	var identity := ""
+	for plane in planes: identity += str(plane.collider_id)+":"+str(plane.normal.snapped(Vector3.ONE*.01))+"/"
+	return {"id":identity,"point":points[-1],"points":points,"order":points.size(),"length":length,"absorption":absorption/float(points.size()),"strength":strength,"bands":bands,"energy":energy,"materials":materials}
 
 func dispose() -> void:
+	_web_call("dispose")
 	stop()
 	if _configured:
 		direct.stream = null
@@ -495,6 +555,7 @@ func dispose() -> void:
 	queue_free()
 
 func _exit_tree() -> void:
+	_web_call("dispose")
 	_remove_buses()
 
 func _remove_buses() -> void:

@@ -21,6 +21,7 @@ def main():
         [sys.executable, "tools/package_used_audio.py", "--check", "--godot", args.godot],
         [sys.executable, "tools/prepare_pages_export.py"],
         [args.godot, "--headless", "--path", str(ROOT), "--export-release", "Web", str(output / "index.html")],
+        [sys.executable, "tools/stage_browser_audio.py", str(output)],
         [sys.executable, "tools/package_pages.py", str(output)],
     ]
     for command in commands:

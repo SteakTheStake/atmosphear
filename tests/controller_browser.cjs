@@ -165,7 +165,8 @@ async function serve(target){
       await sleep(50);
     }
     assert(running&&mean.every(value=>value>1e-6),`${id} must produce actual stereo audio`);
-    report.levels[id]={generation:current.generation,scene:current.scene_source,stereo_rms:mean};
+    const renderer=await evaluate(()=>window.AtmoAcoustics.snapshot());assert.equal(renderer.version,2);assert(renderer.active>0);assert.deepEqual(renderer.errors,[]);assert.equal(renderer.room_fields,6);
+    report.levels[id]={renderer,generation:current.generation,scene:current.scene_source,stereo_rms:mean};
     check(`Controller enters ${id}; held confirm causes no jump; stereo output runs`);
   };
   const pause=async()=>{await tap(9);await screen('pause');};
@@ -205,7 +206,8 @@ async function serve(target){
     await tap(0);assert.equal((await state()).debug_enabled,debug);
     await screenshot('test-results/controller-settings.png');await noOtherInput();
     report.saved_settings={...(await state()).settings};
-    await focus(8);await tap(0);await screen('main');
+    await focus(8);const binaural=(await state()).settings.binaural;await tap(0);assert.notEqual((await state()).settings.binaural,binaural);await until(()=>window.AtmoAcoustics.mode===(window.atmoDebug.settings.binaural>.5?"headphones":"speakers"),null,"renderer switches output mode");await tap(0);
+    report.saved_settings={...(await state()).settings};await focus(9);await tap(0);await screen('main');
     check('All six settings sliders, quality/debug toggles, and Done work using controller focus');
 
     await play(0,'forest');

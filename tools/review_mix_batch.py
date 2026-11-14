@@ -10,7 +10,7 @@ import time
 from review_mix_audio import review
 
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument("phase", choices=["before", "after", "final-bells"])
+parser.add_argument("phase", choices=["before", "after", "final-bells", "propagation-v2", "propagation-final"])
 parser.add_argument("--wait", action="store_true")
 parser.add_argument("--expected", type=int, default=28)
 args = parser.parse_args()

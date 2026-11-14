@@ -54,6 +54,7 @@
         audioContexts.add(context);return context;
       }});
     }
+    /* ATMO_ACOUSTICS */
     window.atmoBoot={phase:'checking',activated:false,audio_state:'uninitialized',controller_input_ready:false};
     function audioRunning(){
       const contexts=[...audioContexts].filter(context=>context.state!=='closed');
@@ -83,10 +84,10 @@
     window.Atmo={
       command(value){commands.push(value);},
       takeCommand(){return commands.shift()||'';},
-      receive(state){
+      async receive(state){
         latest=state;
-        if(debug)window.atmoDebug=state;
-        if(state.ready&&!ready){ready=true;window.atmoBoot.phase='ready';start.disabled=false;start.textContent='Enter Atmosphear';status.textContent='Ready. Press A / × or Menu on your controller.';progress.hidden=true;}
+        if(state.ready&&!ready){if(!window.AtmoAcoustics?.ready){if(window.atmoBoot.phase==='initializing-renderer')return;window.atmoBoot.phase='initializing-renderer';try{await window.AtmoAcoustics.init([...audioContexts][0]);}catch(error){status.textContent='The spatial audio engine could not load. Reload to retry.';window.atmoBoot.phase='failed';console.error(error);return;}}ready=true;window.atmoBoot.phase='ready';start.disabled=false;start.textContent='Enter Atmosphear';status.textContent='Ready. Press A / × or Menu on your controller.';progress.hidden=true;}
+        if(debug){state.renderer=window.AtmoAcoustics?.snapshot();window.atmoDebug=state;}
       }
     };
     start.addEventListener('click',activate);

@@ -68,11 +68,17 @@ See [the mix review](docs/MIX_REVIEW.md) for measured changes, listening limits,
 
 The authored mix softens prominent bird/frog/horse calls, enclosed drips, pump transients, and sustained engine/servo levels. The grove uses two actual goldfinch takes; local leaf and wetland beds provide context between calls. Cistern and courtyard bells use two finite recorded peals with gentle releases and randomized quiet gaps instead of a continuous short loop. The courtyard keeps its muffled balance through the gate geometry. Environmental events have independent clocks, and entering an area no longer restarts all nearby details together. Quiet spaces keep their intended contrast.
 
-Acoustics use inverse-distance attenuation, strong stereo direction, front/back filtering, relative-velocity Doppler, material-dependent transmission, validated first- and second-order geometric reflections, and three independently processed late-reverb frequency bands. Late decay is an Eyring-inspired estimate mapped to Godot's algorithmic reverb controls. This is a bounded browser approximation, not a wave simulation, personalized HRTF, or measured impulse-response convolution.
+The browser renderer uses one AudioBufferSource clock per audible emitter. Direct sound and persistent first/second-order reflections share that signal, with fractional propagation delays, pressure-distance loss, material absorption, and smooth path gains. Travel-delay changes supply Doppler; a second pitch Doppler effect is not applied. Native duplicated reflection/reverb voices are silent in Web builds. Short fixed diffusion taps are disabled.
+
+Headphone mode uses the browser's HRTF panner; **Headphone binaural audio** can be disabled in Settings for speakers. Direct air absorption uses broad-band EQ fitted from ISO 9613-1 coefficients at 20°C, 50% humidity and standard pressure, rather than the previous blanket distance/rear low-pass. Materials have an editable transmission reference thickness; bounded multi-barrier tracing scales transmission by geometry thickness and incidence. A bounded visibility search supplies filtered edge paths.
+
+Six authored regions have separate eight-line frequency-dependent feedback delay networks. Their decay targets come from geometric/material probes. Existing door lintels define openings into the connecting passage field; remote room tails emerge toward these openings and weaken when geometry blocks them. This is a one-hop room/passage approximation. Local room tails retain stereo diffusion; they are not collapsed into a single HRTF point. Forest canopies retain separate recordings/offsets on individual trees, and extended water/rain features retain their authored distributed anchors.
+
+See [the renderer validation](docs/ACOUSTICS_V2.md) for measurements and limitations. This remains a bounded acoustic model, not a full wave solver, personalized HRTF, structural-vibration simulation, or measured room convolution. Desktop Godot playback retains the existing native fallback; the new shared-clock/HRTF/FDN renderer targets the browser build.
 
 ## Publish only used audio
 
-The repository contains **118 referenced audio files, approximately 9.74 MB**. `assets/library/manifest.json` provides source provenance and output hashes; `used_audio.json` lists actual scene/resource references. Audio has separate terms: see [THIRD_PARTY_AUDIO.md](THIRD_PARTY_AUDIO.md). It is excluded from the code's MIT license.
+The repository contains **118 referenced audio files, approximately 9.74 MB**. The Web Audio renderer stages those same used files under the exported `sound/` directory; the Godot pack retains their resource imports for scene compatibility. No extra library recordings are shipped. `assets/library/manifest.json` provides source provenance and output hashes; `used_audio.json` lists actual scene/resource references. Audio has separate terms: see [THIRD_PARTY_AUDIO.md](THIRD_PARTY_AUDIO.md). It is excluded from the code's MIT license.
 
 The original downloads, unused derivatives, render captures, build output, and import caches stay local and are ignored by Git. Audio files are denied by default, with generated exceptions for actual runtime references. Web export uses selected scene, palette, and script roots and their dependencies.
 
@@ -107,6 +113,7 @@ npm ci --prefix tests
 npx --prefix tests playwright install chromium
 node tests/pages_browser.cjs build/web
 node tests/controller_browser.cjs build/web
+node tests/propagation_dsp.cjs
 ```
 
 Additional browser suites cover controllers, menu audio, debug geometry, movement, and long walks. `tests/mix_capture_browser.cjs` records actual output; its region-positioning hooks are enabled only on localhost with `?qa=1`. Captures and reports remain in ignored `test-results/`.

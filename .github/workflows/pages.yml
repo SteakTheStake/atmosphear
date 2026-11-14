@@ -48,6 +48,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify Pages subpath without server isolation headers
         run: node tests/pages_browser.cjs build/pages
+      - name: Measure shared-clock propagation and reverberation decay
+        run: node tests/propagation_dsp.cjs
       - name: Verify controller-only game and menu routing
         run: node tests/controller_browser.cjs build/pages
       - name: Verify blocked audio cannot silently start the game

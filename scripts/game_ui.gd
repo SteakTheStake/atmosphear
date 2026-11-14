@@ -218,6 +218,12 @@ func show_screen(next: String) -> void:
 			debug.toggled.connect(func(value): _sound("accept");game._command("debug:on" if value else "debug:off"))
 			content.add_child(debug)
 			_focus(debug)
+			var binaural := CheckButton.new()
+			binaural.text = "Headphone binaural audio (off for speakers)"
+			binaural.button_pressed = game.settings.get("binaural",1.0) > .5
+			binaural.toggled.connect(func(on): game._command("setting:binaural:"+str(1 if on else 0)); _sound("accept"))
+			content.add_child(binaural)
+			_focus(binaural)
 			_button("Done",go_back)
 	_label("Walk: left stick / WASD     Turn: right stick / arrows     Run: LB / Shift or L3 toggle",15,Color("9eaf8c"))
 	_label("Jump: bottom button / Space     Punch: left button / E / RT     Plan: top button / M     Pause: Menu / Esc",14,Color("9eaf8c"))
