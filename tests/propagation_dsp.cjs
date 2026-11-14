@@ -25,6 +25,19 @@ report.propagation=await page.evaluate(async()=>{
  }
  return results;
 });
+report.motion=await page.evaluate(async()=>{
+ const result=[];
+ for(const speed of [0,1.715]){
+ const c=new OfflineAudioContext(2,24000,48000),r=AtmoAcoustics;r.context=c;r.output=c.createGain();r.output.connect(c.destination);r.roomInput=c.createGain();r.ready=true;r.mode='speakers';r.isolation='direct';r.emitters.clear();r.cache.clear();
+ const b=c.createBuffer(1,24000,48000),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=Math.sin(2*Math.PI*1000*i/48000)*.1;
+ r.cache.set('tone',Promise.resolve(b));r.configure('tone','tone',false,'Environment');r.update('tone',{distance:3.43,position:[0,0,-3.43],cutoff:20000,db:0,pitch:1,send_db:-120,paths:[]});r.play('tone');await Promise.resolve();await Promise.resolve();
+ const e=r.emitters.get('tone');e.delay.delayTime.cancelScheduledValues(0);e.delay.delayTime.setValueAtTime(.01,0);e.delay.delayTime.linearRampToValueAtTime(.01+speed/343*.5,.5);
+ const playbackRate=e.source.playbackRate.value;const out=(await c.startRendering()).getChannelData(0),crossings=[];
+ for(let i=4800;i<19200;i++)if(out[i]<=0&&out[i+1]>0)crossings.push(i-out[i]/(out[i+1]-out[i]));
+ result.push({speed_m_s:speed,source_rate:playbackRate,frequency_hz:(crossings.length-1)*48000/(crossings.at(-1)-crossings[0]),expected_hz:1000*(1-speed/343)});
+ }return result;
+});
+for(const motion of report.motion){assert(Math.abs(motion.frequency_hz-motion.expected_hz)<1,'Moving propagation must produce one physical Doppler shift');assert.equal(motion.source_rate,1,'Doppler must not also pitch the playback clock');}
 for(const item of report.propagation){const times=item.regions.map(r=>r.ms);if(item.isolation!=='early')assert(times.some(t=>Math.abs(t-90)<=1),'Direct arrival must be distance/c');if(item.isolation!=='direct')assert(times.some(t=>Math.abs(t-100)<=1),'Reflection must be total length/c');assert(times.every(t=>Math.abs(t-90)<=1||Math.abs(t-100)<=1),'No arbitrary 3/11/19 ms copies');}
 console.log(JSON.stringify(report,null,2));fs.mkdirSync('test-results',{recursive:true});fs.writeFileSync('test-results/propagation-dsp.json',JSON.stringify(report,null,2));
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});

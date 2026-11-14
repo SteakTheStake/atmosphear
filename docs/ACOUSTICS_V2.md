@@ -18,7 +18,7 @@ Each region owns an eight-line orthogonal Hadamard feedback network, with fixed 
 
 `tests/propagation_dsp.cjs` measures the actual renderer graph in Chromium OfflineAudioContext and runs the exact worklet processor against an impulse. A diagnostic impulse at 80 ms arrives at 90 ms for a 3.43 m direct path and 100 ms for a 6.86 m reflection. Direct-only has one arrival, early-only one reflection, and the combined render exactly those two arrivals. No fixed 3/11/19 ms copies appear.
 
-Measured broadband T30 estimates, extrapolated to RT60: target 0.3 s -> 0.30175 s; target 1 s -> 1.00858 s; target 2 s -> 2.00667 s. These establish equal-band decay calibration at 48 kHz, not universal accuracy of every geometry estimate or mixed-band setting.
+Measured broadband T30 estimates, extrapolated to RT60: target 0.3 s -> 0.30175 s; target 1 s -> 1.00858 s; target 2 s -> 2.00667 s. A 1 kHz test tone measured 1000.000 Hz at rest and 995.000 Hz with a receding path rate of 1.715 m/s (995 Hz predicted). The source playback rate stayed 1: the motion shift is applied once through propagation. These establish equal-band decay calibration at 48 kHz, not universal accuracy of every geometry estimate or mixed-band setting.
 
 Browser integration checks exercise real stereo output, six region fields, zero renderer errors, every controller action/menu/setting, reconnects, all four levels and saved preferences. Header-free subpath tests cover Chromium and Firefox, service-worker isolation, offline reload and bounded failure messages. Audio-model capture reviews are fallible observations, not a human headphone audition. Earlier prototype captures are distinguished from final captures in ignored test-results. Raw diagnostics and review audio are not published.
 
