@@ -13,6 +13,8 @@ for asset in inventory['files']:
     shutil.copyfile(root/asset['file'],sound/Path(asset['file']).name)
 html=out/'index.html'
 s=html.read_text(encoding='utf8')
+if '--mobile' in sys.argv:
+    s=s.replace('const ATMO_MOBILE_BUILD=false;', 'const ATMO_MOBILE_BUILD=true;')
 assert '/* ATMO_ACOUSTICS */' in s
 s=s.replace('/* ATMO_ACOUSTICS */',(root/'web/acoustics.js').read_text(encoding='utf8'))
 html.write_text(s,encoding='utf8')

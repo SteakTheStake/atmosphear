@@ -39,7 +39,8 @@ class EnvironmentPlan extends Control:
 		draw_string(font,area.position+Vector2(25,36),title,HORIZONTAL_ALIGNMENT_LEFT,-1,28,Color("e0e8d8"))
 		draw_string(font,area.position+Vector2(25,60),"ENVIRONMENT PLAN",HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("93a486"))
 		var bounds: Rect2 = data.get("bounds",Rect2(-20,-20,40,40))
-		var map_area := Rect2(area.position+Vector2(25,90),Vector2(area.size.x*0.64,area.size.y-145))
+		var narrow := area.size.x < 650
+		var map_area := Rect2(area.position+Vector2(25,90),Vector2(area.size.x-50,area.size.y*.48) if narrow else Vector2(area.size.x*0.64,area.size.y-145))
 		var scale_factor := minf(map_area.size.x/maxf(bounds.size.x,1),map_area.size.y/maxf(bounds.size.y,1))
 		var drawn_size := bounds.size*scale_factor
 		var origin := map_area.position+(map_area.size-drawn_size)*0.5
@@ -49,8 +50,8 @@ class EnvironmentPlan extends Control:
 			var shape: Rect2 = footprint
 			draw_rect(Rect2(origin+(shape.position-bounds.position)*scale_factor,shape.size*scale_factor),Color("4b5941"))
 		draw_rect(Rect2(origin,drawn_size),Color("7c8d6c"),false,1)
-		var legend_x := area.position.x+area.size.x*0.71
-		var legend_y := area.position.y+117
+		var legend_x := area.position.x+25 if narrow else area.position.x+area.size.x*0.71
+		var legend_y := map_area.end.y+55 if narrow else area.position.y+117
 		draw_string(font,Vector2(legend_x,legend_y-24),"LANDMARKS",HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("93a486"))
 		var index := 0
 		for landmark in data.get("landmarks",[]):
@@ -154,6 +155,7 @@ func _focus(control: Control) -> void:
 func _button(text: String, action: Callable) -> Button:
 	var button := Button.new()
 	button.text = text
+	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	button.custom_minimum_size.y = 43
 	button.pressed.connect(func():
@@ -207,18 +209,21 @@ func show_screen(next: String) -> void:
 			for entry in [["master","Master volume",0.0,1.0,.05],["ambience","Environment volume",0.0,1.0,.05],["footsteps","Footstep volume",0.0,1.0,.05],["ui","Menu feedback volume",0.0,1.0,.05],["sensitivity","Turning sensitivity",.5,2.0,.1],["speed","Walking pace",.5,1.5,.1]]:
 				_slider(entry)
 			var quality := CheckButton.new()
+			quality.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			quality.text = "Full acoustic detail"
 			quality.button_pressed = game.settings.quality > 0
 			quality.toggled.connect(func(value): _sound("move");game._command("setting:quality:"+("1" if value else "0")))
 			content.add_child(quality)
 			_focus(quality)
 			var debug := CheckButton.new()
+			debug.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			debug.text = "Developer acoustic geometry (F3 / right-stick click)"
 			debug.button_pressed = game.debug_enabled
 			debug.toggled.connect(func(value): _sound("accept");game._command("debug:on" if value else "debug:off"))
 			content.add_child(debug)
 			_focus(debug)
 			var binaural := CheckButton.new()
+			binaural.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			binaural.text = "Headphone binaural audio (off for speakers)"
 			binaural.button_pressed = game.settings.get("binaural",1.0) > .5
 			binaural.toggled.connect(func(on): game._command("setting:binaural:"+str(1 if on else 0)); _sound("accept"))
@@ -393,6 +398,10 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if screen == "playing":
+		if event is InputEventJoypadButton and event.pressed and event.button_index == JOY_BUTTON_B:
+			game.set_paused(true)
+			get_viewport().set_input_as_handled()
+			return
 		var toggle: bool = (event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_M) or (event is InputEventJoypadButton and event.pressed and event.button_index == JOY_BUTTON_Y)
 		if toggle:
 			map_visible = not map_visible

@@ -29,7 +29,7 @@ The optional map is a fixed plan of objects and landmarks. It never shows the pl
 | Jump | Space | A / bottom face button |
 | Punch / brush a surface | E | X / left face button, or RT |
 | Map | M | Y / top face button |
-| Pause | Escape | Start / Menu |
+| Pause | Escape | Start / Menu, or B / right face button |
 | Acoustic debug | F3 | Right-stick click |
 | Navigate menus | Arrows, Enter; Escape goes back | D-pad or left stick, A; B goes back |
 
@@ -39,6 +39,18 @@ The browser launch screen polls connected controllers and resumes the actual aud
 
 Keep the browser tab visible and focused. Current Chromium browsers grant audio activation for a real controller button press; Firefox added that behavior in version 155. Older browsers or restrictive audio permissions may still require allowing sound or one click / Enter. The launch screen detects a suspended audio engine and explains this instead of entering a silent game. Browser policies cannot be overridden by the game. See the [Chromium gamepad implementation](https://chromium.googlesource.com/chromium/src/+/main/third_party/blink/renderer/modules/gamepad/navigator_gamepad.cc) and [Firefox implementation issue](https://bugzilla.mozilla.org/show_bug.cgi?id=1679817).
 
+## Phones and controllers
+
+The main URL automatically selects the dedicated [mobile build](https://steakthestake.github.io/atmosphear/mobile/) on Android, iPhone and iPad. Pair a standard dual-stick Bluetooth/USB controller in device settings, then open the game in the system browser. Press the bottom face button to begin. Some browsers require one tap on the launch button to allow audio; menus, settings, level selection and gameplay then use the controller. The right face button also pauses during gameplay if the phone reserves Menu/Start.
+
+For an iPhone with an Xbox-style 8BitDo controller, use its iOS-supported pairing mode and check that it appears connected in iPhone Bluetooth settings. Open the link directly in Chrome; if Chrome does not expose the controller, compare the same link in Safari. Exact pairing combinations depend on the 8BitDo model. The game uses the browser's standard mapping rather than assuming an 8BitDo-specific button numbering scheme.
+
+The mobile export uses single-threaded Godot and retains the separate AudioWorklet spatial renderer. It needs WebGL 2 and AudioWorklet but does not require SharedArrayBuffer or cross-origin isolation. Its cache is scoped separately from the desktop build. Phone-sized menus scroll to keep controller focus visible, support both orientations, and account for safe areas. Canvas resolution is capped at CSS pixels to limit rendering cost.
+
+If a call, screen lock or app switch interrupts audio, the game pauses and shows Resume sound. Press the bottom face button, release it, then resume the walk. A tap may be required again by the browser. The game does not request fullscreen, which can interfere with controller buttons on some iPad browser versions.
+
+Automated phone profiles test the actual single-thread export with simulated standard controllers, real stereo output, portrait/landscape rotation, all menus/settings/levels, reconnects and suspended-audio recovery. Device emulation runs desktop Chromium: it does not establish physical Bluetooth/USB behavior or Chrome/Safari on actual iOS hardware. Physical phone/controller validation remains necessary. Godot documents the [mobile and single-thread export considerations](https://docs.godotengine.org/en/4.6/tutorials/export/exporting_for_web.html).
+
 ## Run and edit locally
 
 Open `project.godot` in Godot **4.6.2** and run the main scene. All playable worlds are saved scenes under `scenes/levels/`; they are not reconstructed by runtime geometry generators.
@@ -47,6 +59,7 @@ For a browser build, install matching Web export templates and run:
 
 ```powershell
 python tools/build_pages.py --output build/web
+python tools/build_pages.py --mobile --output build/web/mobile
 python tools/serve.py
 ```
 
@@ -70,7 +83,7 @@ The authored mix softens prominent bird/frog/horse calls, enclosed drips, pump t
 
 The browser renderer uses one AudioBufferSource clock per audible emitter. Direct sound and persistent first/second-order reflections share that signal, with fractional propagation delays, pressure-distance loss, material absorption, and smooth path gains. Travel-delay changes supply Doppler; a second pitch Doppler effect is not applied. Native duplicated reflection/reverb voices are silent in Web builds. Short fixed diffusion taps are disabled.
 
-Headphone mode uses the browser's HRTF panner; **Headphone binaural audio** can be disabled in Settings for speakers. Direct air absorption uses broad-band EQ fitted from ISO 9613-1 coefficients at 20°C, 50% humidity and standard pressure, rather than the previous blanket distance/rear low-pass. Materials have an editable transmission reference thickness; bounded multi-barrier tracing scales transmission by geometry thickness and incidence. A bounded visibility search supplies filtered edge paths.
+Headphone mode uses the browser's HRTF panner; **Headphone binaural audio** can be disabled in Settings for speakers. Direct air absorption uses broad-band EQ fitted from ISO 9613-1 coefficients at 20Â°C, 50% humidity and standard pressure, rather than the previous blanket distance/rear low-pass. Materials have an editable transmission reference thickness; bounded multi-barrier tracing scales transmission by geometry thickness and incidence. A bounded visibility search supplies filtered edge paths.
 
 Six authored regions have separate eight-line frequency-dependent feedback delay networks. Their decay targets come from geometric/material probes. Existing door lintels define openings into the connecting passage field; remote room tails emerge toward these openings and weaken when geometry blocks them. This is a one-hop room/passage approximation. Local room tails retain stereo diffusion; they are not collapsed into a single HRTF point. Forest canopies retain separate recordings/offsets on individual trees, and extended water/rain features retain their authored distributed anchors.
 
@@ -96,7 +109,7 @@ The full preparation catalog is retained locally in ignored `assets/library/mani
 
 Pushes to `main` run [the Pages workflow](.github/workflows/pages.yml). It installs official Godot 4.6.2 with pinned SHA-512 checks, imports resources, verifies the used-audio inventory, exports the game, checks a project subpath on a plain server, and tests controller menus, navigation, and blocked-audio handling before deployment. Generated WebAssembly and build output are deployment artifacts, not committed source files.
 
-The threaded audio engine needs cross-origin isolation. Godot's PWA service worker supplies the necessary headers on GitHub Pages, where custom response headers are unavailable. First use may reload once to activate it. Caches are scoped to this project and versioned by build content. If service workers are blocked, the launch screen explains how to retry; it does not reload indefinitely. Chromium and Firefox were tested with actual audio on a header-free server. Real macOS Safari was not available for playback verification. The game itself uses no external API, account, or microphone.
+The desktop threaded audio engine needs cross-origin isolation; the mobile export does not. Godot's PWA service worker supplies the necessary headers on GitHub Pages, where custom response headers are unavailable. First use may reload once to activate it. Caches are scoped to this project and versioned by build content. If service workers are blocked, the launch screen explains how to retry; it does not reload indefinitely. Chromium and Firefox were tested with actual audio on a header-free server. Real macOS Safari was not available for playback verification. The game itself uses no external API, account, or microphone.
 
 ## Checks
 
@@ -114,6 +127,7 @@ npx --prefix tests playwright install chromium
 node tests/pages_browser.cjs build/web
 node tests/controller_browser.cjs build/web
 node tests/propagation_dsp.cjs
+$env:ATMO_DEVICE="iPhone 13"; node tests/controller_browser.cjs build/web
 ```
 
 Additional browser suites cover controllers, menu audio, debug geometry, movement, and long walks. `tests/mix_capture_browser.cjs` records actual output; its region-positioning hooks are enabled only on localhost with `?qa=1`. Captures and reports remain in ignored `test-results/`.

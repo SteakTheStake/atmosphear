@@ -4,7 +4,7 @@
  * default-policy launch test checks that blocked audio cannot start silently.
  * Usage: node tests/controller_browser.cjs [build/pages | https://host/game/]
  */
-const {chromium}=require('playwright');
+const {chromium,devices}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
@@ -20,7 +20,8 @@ async function serve(target){
     const pathname=new URL(request.url,'http://localhost').pathname;
     if(pathname==='/favicon.ico'){response.writeHead(204);response.end();return;}
     if(!pathname.startsWith(prefix)){response.writeHead(404);response.end();return;}
-    const filename=path.resolve(directory,decodeURIComponent(pathname.slice(prefix.length))||'index.html');
+    let relative=decodeURIComponent(pathname.slice(prefix.length));if(!relative||relative.endsWith('/'))relative+='index.html';
+    const filename=path.resolve(directory,relative);
     if(!filename.startsWith(directory+path.sep)||!fs.existsSync(filename)||!fs.statSync(filename).isFile()){
       response.writeHead(404);response.end();return;
     }
@@ -34,11 +35,12 @@ async function serve(target){
 (async()=>{
   const host=await serve(process.argv[2]||process.env.CONTROLLER_URL||'build/pages');
   const browser=await chromium.launch({headless:true,args:['--autoplay-policy=no-user-gesture-required']});
-  const context=await browser.newContext({viewport:{width:1280,height:900}});
+  const mobile=process.env.ATMO_DEVICE;
+  const context=await browser.newContext(mobile?{...devices[mobile]}:{viewport:{width:1280,height:900}});
   const page=await context.newPage();
   const cdp=await context.newCDPSession(page);
   const errors=[],checks=[];
-  const report={url:host.base,controller:'simulated standard Gamepad API',audio_policy:'Chromium autoplay override for input routing only',real_browser_user_activation_tested:false,evaluation_user_gesture:false,checks,levels:{}};
+  const report={url:host.base,mobile_emulation:mobile||null,browser_engine:'Chromium (device emulation does not test Android/iOS hardware or Safari)',controller:'simulated standard Gamepad API',audio_policy:'Chromium autoplay override for input routing only',real_browser_user_activation_tested:false,evaluation_user_gesture:false,checks,levels:{}};
   fs.mkdirSync('test-results',{recursive:true});
   page.on('pageerror',error=>errors.push(error.message));
   page.on('console',message=>{
@@ -144,6 +146,7 @@ async function serve(target){
     assert.equal(current.game.host_input_ready,false,'Held launch input remains gated');
     await button(index,false);
     await until(()=>window.atmoBoot?.controller_input_ready&&window.atmoDebug?.host_input_ready&&window.atmoDebug.ui_focus_index===0,null,'release arms controller and native focus');
+    if(mobile){assert((await evaluate(()=>location.pathname)).includes('/mobile/'),'Phone must select the mobile build');assert.equal(await evaluate(()=>crossOriginIsolated),false,'Mobile export must work without cross-origin isolation');}
     await noOtherInput();
   };
   const play=async(index,id)=>{
@@ -226,6 +229,21 @@ async function serve(target){
     const map=(await state()).map_visible;await tap(3);assert.equal((await state()).map_visible,!map);await tap(3);assert.equal((await state()).map_visible,map);
     await tap(11);assert.equal((await state()).debug_enabled,true);await tap(11);assert.equal((await state()).debug_enabled,false);
     check('Controller walk, turn, LB/L3 run, edge-triggered jump, X/RT punch, plan, and R3 debug');
+    await tap(1);await screen('pause');await tap(1);await screen('playing');
+    check('Right face button pauses and resumes without an OS-reserved Menu button');
+    if(mobile){
+      await page.setViewportSize({width:844,height:390});await sleep(450);
+      await tap(1);await focus(1);await tap(0);await screen('settings');await focus(9);
+      await screenshot('test-results/mobile-landscape-settings.png');await noOtherInput();
+      await tap(1);await screen('pause');await tap(1);await screen('playing');
+      await page.setViewportSize({width:393,height:851});await sleep(450);
+      await evaluate(()=>window.__controllerTest.meters[0].context.suspend());
+      await until(()=>window.atmoBoot.phase==='audio-blocked'&&window.atmoDebug.paused&&!window.atmoDebug.host_input_ready,null,'audio interruption safely gates input');
+      await tap(0);await until(()=>window.atmoBoot.activated&&window.atmoDebug.host_input_ready,null,'controller restores interrupted audio');
+      await screen('pause');await tap(1);await screen('playing');
+      check('Phone rotation, scrolled settings, audio interruption and controller-only recovery');
+    }
+
 
     await button(9,true);await screen('pause');await sleep(850);assert.equal((await state()).paused,true,'Held Start must pause only once');
     await button(9,false);await sleep(300);await tap(9);await screen('playing');

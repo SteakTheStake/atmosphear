@@ -50,7 +50,7 @@ def main():
             else:
                 for member in archive.namelist():
                     filename = Path(member).name
-                    if filename in {"web_release.zip", "web_debug.zip", "version.txt"}:
+                    if filename in {"web_release.zip", "web_debug.zip", "web_nothreads_release.zip", "web_nothreads_debug.zip", "version.txt"}:
                         with archive.open(member) as source, (templates / filename).open("wb") as output:
                             shutil.copyfileobj(source, output)
         archive_path.unlink()

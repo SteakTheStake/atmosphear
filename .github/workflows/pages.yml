@@ -31,14 +31,16 @@ jobs:
           path: |
             ${{ runner.temp }}/godot
             ~/.local/share/godot/export_templates/4.6.2.stable
-          key: godot-4.6.2-linux-x86_64-web-sha512-v1
+          key: godot-4.6.2-linux-x86_64-web-sha512-v2
       - name: Install official Godot 4.6.2 with pinned SHA-512 checks
         if: steps.godot-cache.outputs.cache-hit != 'true'
         run: python3 tools/install_ci_godot.py --destination "$RUNNER_TEMP/godot"
       - name: Add Godot to PATH
         run: echo "$RUNNER_TEMP/godot" >> "$GITHUB_PATH"
       - name: Import, verify used audio, and export release game
-        run: python3 tools/build_pages.py --godot godot
+        run: |
+          python3 tools/build_pages.py --godot godot
+          python3 tools/build_pages.py --godot godot --mobile --output build/pages/mobile
       - name: Verify native controller menu behavior
         run: godot --headless --path . --script tests/controller_ui.gd
       - name: Install browser test tools
@@ -52,6 +54,10 @@ jobs:
         run: node tests/propagation_dsp.cjs
       - name: Verify controller-only game and menu routing
         run: node tests/controller_browser.cjs build/pages
+      - name: Verify phone controller navigation and audio recovery
+        run: node tests/controller_browser.cjs build/pages
+        env:
+          ATMO_DEVICE: iPhone 13
       - name: Verify blocked audio cannot silently start the game
         run: |
           python3 -m http.server 8060 --bind 127.0.0.1 --directory build/pages > "$RUNNER_TEMP/controller-http.log" 2>&1 &
@@ -64,6 +70,7 @@ jobs:
             sleep 0.2
           done
           node tests/controller_audio_policy.cjs
+          ATMO_DEVICE="iPhone 13" ATMO_BASE_URL="http://127.0.0.1:8060/mobile/" node tests/controller_audio_policy.cjs
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:

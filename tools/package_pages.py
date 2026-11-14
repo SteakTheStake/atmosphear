@@ -19,7 +19,8 @@ def main():
     directory = args.directory.resolve()
     html = (directory / "index.html").read_text(encoding="utf8")
     assert "$GODOT_" not in html, "Unexpanded HTML export placeholder"
-    assert re.search(r'"ensureCrossOriginIsolationHeaders"\s*:\s*true', html), "PWA cross-origin isolation must stay enabled"
+    mobile = 'const ATMO_MOBILE_BUILD=true;' in html
+    assert re.search(r'"ensureCrossOriginIsolationHeaders"\s*:\s*' + ('false' if mobile else 'true'), html), "Isolation setting disagrees with build variant"
     assert "prepareAudioHost" in html, "Custom shell must install the worker before the threaded engine"
     workers = list(directory.glob("*.service.worker.js"))
     assert len(workers) == 1, "Expected Godot's generated service worker"
@@ -37,7 +38,7 @@ def main():
     fingerprint = hashlib.sha256()
     assets = []
     for path in sorted(directory.rglob("*")):
-        if not path.is_file() or path == worker or path.name in {".nojekyll", "pages-build.json"}:
+        if path.relative_to(directory).parts[0] == "mobile" or not path.is_file() or path == worker or path.name in {".nojekyll", "pages-build.json"}:
             continue
         data = path.read_bytes()
         fingerprint.update(path.relative_to(directory).as_posix().encode() + b"\0" + data)
@@ -47,7 +48,7 @@ def main():
     source, version_count = re.subn(r"const CACHE_VERSION = .*?;", f"const CACHE_VERSION = 'atmosphear-{revision}';", source, count=1)
     source, prefix_count = re.subn(r"const CACHE_PREFIX = .*?;", "const CACHE_PREFIX = 'atmosphear-' + new URL(self.registration.scope).pathname + '-cache-';", source, count=1)
     assert version_count == 1 and prefix_count == 1, "Godot service-worker format changed; review cache patch"
-    assert "ENSURE_CROSSORIGIN_ISOLATION_HEADERS = true" in source
+    assert "ENSURE_CROSSORIGIN_ISOLATION_HEADERS = " + ("false" if mobile else "true") in source
     # Firefox can expose an empty stream for204/205/304. Fetch forbids attaching
     # any body to those statuses when reconstructing a response with headers.
     source = source.replace("new Response(response.body, {", "new Response([204, 205, 304].includes(response.status) ? null : response.body, {")

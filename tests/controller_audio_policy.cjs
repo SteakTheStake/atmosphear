@@ -6,9 +6,9 @@
  * Playwright page.evaluate sends userGesture:true and would invalidate this test:
  * https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright-core/src/server/chromium/crExecutionContext.ts
  * Every page expression therefore uses CDP Runtime.evaluate/userGesture:false.
- * Only the explicitly labelled fallback sends a trusted browser keyboard event.
+ * Only the explicitly labelled fallback sends a trusted browser tap/key event.
  */
-const {chromium}=require('playwright');
+const {chromium,devices}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const base=process.env.ATMO_BASE_URL||'http://127.0.0.1:8060/';
@@ -16,7 +16,8 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 
 async function runCase(name,args){
   const browser=await chromium.launch({headless:true,args});
-  const context=await browser.newContext();
+  const phone=process.env.ATMO_DEVICE;
+  const context=await browser.newContext(phone?{...devices[phone]}:{});
   const page=await context.newPage();
   const errors=[];
   page.on('pageerror',error=>errors.push(error.message));
@@ -86,7 +87,7 @@ async function runCase(name,args){
     }
     throw new Error(label+' timed out. Last state: '+JSON.stringify(last));
   };
-  const result={name,browser:browser.version(),autoplay_flags:args};
+  const result={name,phone_emulation:phone||null,browser:browser.version(),autoplay_flags:args};
   try{
     const url=new URL(base);url.searchParams.set('debug','1');
     await page.goto(url.href,{waitUntil:'domcontentloaded',timeout:90000});
@@ -115,14 +116,19 @@ async function runCase(name,args){
     assert.equal(result.held.resume_calls.length,attempts,'Holding A must not flood repeated resume attempts');
     assert.equal(result.held.state.started,false);
 
-    // Deliberate real browser keyboard fallback. Nothing before this point may
+    // Deliberate trusted browser tap/keyboard fallback. Nothing before this point may
     // call page.evaluate, page.keyboard, locator.click, or CDP userGesture:true.
-    await cdp.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13});
-    await delay(90);
-    await cdp.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13});
+    if(phone){
+      const point=await evaluate("(()=>{const r=document.getElementById('start').getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};})()");
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});await delay(90);
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    }else{
+      await cdp.send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13});await delay(90);
+      await cdp.send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13});
+    }
     result.unlocked_while_held=await until(s=>s.boot?.phase==='active'&&s.boot?.audio_state==='running','trusted fallback enables audio');
-    assert(result.unlocked_while_held.activation.ever,'Explicit keyboard fallback must create activation');
-    assert(result.unlocked_while_held.trusted_keys.some(event=>event.key==='Enter'&&event.trusted));
+    assert(result.unlocked_while_held.activation.ever,'Explicit tap/keyboard fallback must create activation');
+    if(!phone)assert(result.unlocked_while_held.trusted_keys.some(event=>event.key==='Enter'&&event.trusted));
     assert(result.unlocked_while_held.contexts.filter(value=>value!=='closed').every(value=>value==='running'));
     assert.equal(result.unlocked_while_held.launch_visible,false);
     assert.equal(result.unlocked_while_held.boot.controller_input_ready,false,'Held launcher A must not reach the native menu');
@@ -137,7 +143,7 @@ async function runCase(name,args){
     await evaluate('policyPadButton(0,false); null');
     result.playing=await until(s=>s.state?.started&&!s.state.paused&&s.audio_peak_rms>0.000001,'fresh controller press selects a world with real audio');
     assert.deepEqual(errors,[]);
-    result.result='PASS: untrusted controller stays audio-blocked; explicit keyboard unlocks; held A is consumed; fresh A enters audible gameplay';
+    result.result='PASS: untrusted controller stays audio-blocked; explicit tap/keyboard unlocks; held A is consumed; fresh A enters audible gameplay';
     return result;
   }catch(error){
     result.failure=String(error.stack||error);result.last=await snapshot().catch(()=>null);result.errors=errors;

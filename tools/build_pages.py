@@ -13,6 +13,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--godot", default=os.environ.get("GODOT_BIN") or shutil.which("godot_console") or shutil.which("godot") or "godot")
     parser.add_argument("--output", type=Path, default=ROOT / "build/pages")
+    parser.add_argument("--mobile", action="store_true", help="Export the single-thread mobile build")
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -20,8 +21,8 @@ def main():
         [args.godot, "--headless", "--editor", "--path", str(ROOT), "--import"],
         [sys.executable, "tools/package_used_audio.py", "--check", "--godot", args.godot],
         [sys.executable, "tools/prepare_pages_export.py"],
-        [args.godot, "--headless", "--path", str(ROOT), "--export-release", "Web", str(output / "index.html")],
-        [sys.executable, "tools/stage_browser_audio.py", str(output)],
+        [args.godot, "--headless", "--path", str(ROOT), "--export-release", "Web Mobile" if args.mobile else "Web", str(output / "index.html")],
+        [sys.executable, "tools/stage_browser_audio.py", str(output)] + (["--mobile"] if args.mobile else []),
         [sys.executable, "tools/package_pages.py", str(output)],
     ]
     for command in commands:

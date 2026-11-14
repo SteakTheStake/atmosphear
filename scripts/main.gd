@@ -62,6 +62,8 @@ var qa_region := -1
 var host_input_ready := not OS.has_feature("web")
 
 func _ready() -> void:
+	if OS.has_feature("web") and bool(JavaScriptBridge.eval("typeof ATMO_MOBILE_BUILD !== 'undefined' && ATMO_MOBILE_BUILD")):
+		get_window().content_scale_size = Vector2i(480,480)
 	_load_settings()
 	_setup_input()
 	_setup_buses()
@@ -633,7 +635,12 @@ func set_paused(value: bool) -> void:
 	_report()
 
 func _command(command: String) -> void:
-	if command == "host:ready":
+	if command == "host:waiting":
+		host_input_ready = false
+		if started: set_paused(true)
+		game_ui.reset_controller_navigation()
+		_report()
+	elif command == "host:ready":
 		host_input_ready = true
 		action_grace = 0.2
 		game_ui.reset_controller_navigation()

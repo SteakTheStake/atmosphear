@@ -20,8 +20,8 @@ def main():
     preset = ROOT / "export_presets.cfg"
     text = preset.read_text(encoding="utf8")
     line = "export_files=PackedStringArray(" + ", ".join(json.dumps(resource) for resource in sorted(selected)) + ")"
-    updated, count = re.subn(r"^export_files=PackedStringArray\(.*\)$", lambda _: line, text, count=1, flags=re.MULTILINE)
-    assert count == 1, "Expected one selected-resource Web preset"
+    updated, count = re.subn(r"^export_files=PackedStringArray\(.*\)$", lambda _: line, text, flags=re.MULTILINE)
+    assert count == 2, "Expected desktop and mobile Web presets"
     preset.write_text(updated, encoding="utf8", newline="\n")
     print(f"Explicit Web selection: {len(selected)} resources, {len(inventory['files'])} used recordings")
 
