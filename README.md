@@ -59,6 +59,8 @@ All game recordings come from the supplied local audio library. Sixteen local fo
 
 The mix pass captures actual browser output in all 24 areas, with walking/turning examples and longer repetition checks. It combines sample/true-peak and loudness measurements with an audio-input model's observations. Model descriptions are fallible: uncertain identities and unsupported timestamps are not measurements or grounds for changes on their own. This is automated audio review, not a human headphone audition or a guarantee for every playback device.
 
+See [the mix review](docs/MIX_REVIEW.md) for measured changes, listening limits, and the final bell-repetition checks.
+
 The authored mix softens prominent bird/frog/horse calls, enclosed drips, pump transients, and sustained engine/servo levels. The grove uses two actual goldfinch takes; local leaf and wetland beds provide context between calls. Cistern and courtyard bells use two finite recorded peals with gentle releases and randomized quiet gaps instead of a continuous short loop. The courtyard keeps its muffled balance through the gate geometry. Environmental events have independent clocks, and entering an area no longer restarts all nearby details together. Quiet spaces keep their intended contrast.
 
 Acoustics use inverse-distance attenuation, strong stereo direction, front/back filtering, relative-velocity Doppler, material-dependent transmission, validated first- and second-order geometric reflections, and three independently processed late-reverb frequency bands. Late decay is an Eyring-inspired estimate mapped to Godot's algorithmic reverb controls. This is a bounded browser approximation, not a wave simulation, personalized HRTF, or measured impulse-response convolution.

@@ -25,11 +25,14 @@ def analyze(item):
     repeat=None
     if len(env)>2200:
         centered=env-env.mean();best=(-1,0)
+        correlations={}
         for lag in range(4*50,min(35*50,len(env)//2)):
             a,b=centered[:-lag],centered[lag:]
             corr=float(np.dot(a,b)/max(np.linalg.norm(a)*np.linalg.norm(b),1e-15))
+            correlations[lag]=corr
             if corr>best[0]:best=(corr,lag/50)
-        repeat={'envelope_correlation':round(best[0],4),'lag_seconds':best[1],'interpretation':'Strong positive correlation can expose repeated timing/envelopes; it is not itself a perceptual defect.'}
+        around_old_bell=[(value,lag/50) for lag,value in correlations.items() if 19.0<=lag/50<=20.5]
+        repeat={'envelope_correlation':round(best[0],4),'lag_seconds':best[1],'correlation_at_19_6_seconds':round(correlations[980],4),'max_correlation_19_to_20_5_seconds':round(max(around_old_bell)[0],4),'max_lag_19_to_20_5_seconds':max(around_old_bell)[1],'interpretation':'Strong positive correlation can expose repeated timing/envelopes; it is not itself a perceptual defect.'}
     seconds=item['audio_seconds']
     events=[{**e,'events_per_minute':round(60*e['events']/seconds,2)} for e in item.get('events',[]) if e['events'] is not None]
     return {'level':item['level'],'label':item.get('label','Walk and turn'),'capture':item['raw_capture'],'preview':item['preview'],

@@ -26,6 +26,8 @@ The long bird-grove capture contained 17 regional bird events. Combined inter-ev
 
 The cistern's original continuous bell bed repeated with an envelope correlation of 0.996 at its exact 19.6-second asset period. This matched the audio review's concern about an intrusive repeated peal. Both bell landmarks now use two distinct 12-second passages of the original church-bell recording, with gentle releases and randomized 20–45-second rests after each peal. The courtyard's active level remains comparable to its previous quiet, geometry-muffled bell.
 
+Targeted short and long browser captures verified both revised bell landmarks. Correlation near the old period fell to −0.156 in the cistern and −0.048 in the courtyard; the old repeating envelope is absent. Both recorded phrases were selected across the tests. Each approximately 66-second long capture contains only one new peal onset, so these recordings do not establish an inter-event-gap distribution. The final long peaks were −17.38 and −31.88 dBFS, with no clipping; the audio review described clear bell tones without overpowering the ambience.
+
 The servo's pulsing motor is also periodic, as expected for that mechanism. Its longer audio review did not identify an objectionable loop boundary or harsh transient after the level reduction, so its mechanical character was preserved.
 
 ## Reproduce
@@ -33,3 +35,5 @@ The servo's pulsing motor is also periodic, as expected for that mechanism. Its 
 Build and serve the project, then run `tests/mix_capture_browser.cjs`. It uses localhost-only QA positioning, captures actual output as PCM WAV plus an Ogg preview, and records source event timelines. `ATMO_MIX_PHASE`, `ATMO_LEVELS`, `ATMO_REGION_MATCH`, and `ATMO_LONG_LOOPS=1` select comparison sets. `tools/analyze_mix_captures.py` measures the captures. The optional `tools/review_mix_batch.py` performs audio-model review using an environment API key.
 
 Captures, raw model responses, and detailed measurements remain in ignored `test-results/`. They are not distributed as extra audio in the repository or game. Publication and export verify the exact live audio-resource inventory independently.
+
+Final verification: 24 selected region results, including the two final bell revisions, have a highest sample peak of −6.38 dBFS and zero clipping. Final browser export SHA-256: `051122cf9d6f1bc8de747fde38a3c35cf2c7f000e1b9924d491faf7fbc15ac1b`. Pages build revision: `7612745553e7fb295af27f07`.

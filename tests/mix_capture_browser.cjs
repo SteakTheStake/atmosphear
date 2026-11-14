@@ -119,7 +119,8 @@ const save=()=>fs.writeFileSync(path.resolve('test-results','mix-audit-'+phase+'
     result.preview=path.relative(process.cwd(),preview).replaceAll('\\','/');
     result.raw_capture=path.relative(process.cwd(),wav).replaceAll('\\','/');
     result.position=before.position;result.end_position=snapshot.position;
-    result.active_sources=active.map(s=>({anchor:s.anchor,clip:s.clip,landmark:s.landmark,...s.acoustics}));
+    result.source_activity_start=before.diagnostics.sources.filter(s=>!s.virtualized).map(s=>({anchor:s.anchor,clip:s.clip,active_clip:s.active_clip,playing:s.playing,event_count:s.event_count}));
+    result.active_sources=active.map(s=>({anchor:s.anchor,clip:s.clip,active_clip:s.active_clip,playing:s.playing,event_count:s.event_count,landmark:s.landmark,...s.acoustics}));
     result.events=events;result.room=snapshot.diagnostics.room;
     result.pause_samples=states.filter(s=>s.paused).length;
     assert.equal(result.pause_samples,0,'Captures must remain unpaused');
