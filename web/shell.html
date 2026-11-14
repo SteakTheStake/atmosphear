@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>Atmosphear — Walk into sound</title>
+  <style>
+    :root{color-scheme:dark;background:#000;color:#e6eddd;font-family:Arial,sans-serif}*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;overflow:hidden}
+    #canvas{position:fixed;inset:0;display:block;width:100%;height:100%;background:#000;outline:0}
+    #launch{position:fixed;inset:0;background:#10150e;display:grid;place-items:center;padding:28px;overflow:auto}.content{width:min(620px,100%)}
+    .eyebrow{font-size:10px;letter-spacing:2.5px;color:#9eaf8c;text-transform:uppercase}h1{font:400 clamp(52px,9vw,86px)/1.03 Georgia,serif;letter-spacing:-3px;margin:24px 0}p{font:21px/1.6 Georgia,serif;color:#b9c6ab;margin:0 0 32px}
+    button{font:14px Arial,sans-serif;background:#cddbb6;color:#17210e;padding:16px 28px;border:1px solid #cddbb6;border-radius:2px;cursor:pointer;min-height:48px}button:disabled{opacity:.45;cursor:wait}button:focus-visible{outline:2px solid #edffd3;outline-offset:5px}
+    .meta{font:12px/1.8 Arial,sans-serif;color:#99aa88;margin:24px 0 0}.rule{height:1px;background:#35432b;margin:32px 0}#status{font:12px/1.7 Arial,sans-serif;color:#adbd9b;margin:18px 0 0;min-height:20px}progress{accent-color:#cddbb6;width:100%;height:3px;margin-top:14px}
+  </style>
+  $GODOT_HEAD_INCLUDE
+</head>
+<body>
+  <canvas id="canvas" tabindex="0" aria-label="Atmosphear. Use a controller or keyboard to explore native game menus."></canvas>
+  <section id="launch" aria-labelledby="title">
+    <div class="content">
+      <div class="eyebrow">An exploration in listening</div>
+      <h1 id="title">Atmosphear</h1>
+      <p>Four places to wander.<br>Walk into a world shaped by sound.</p>
+      <button id="start" disabled>Preparing the soundscapes…</button>
+      <div id="status" role="status" aria-live="polite">Loading…</div>
+      <progress id="progress" aria-label="Loading game"></progress>
+      <div class="rule"></div>
+      <div class="meta">Headphones recommended. Click once or press Enter to enable audio.<br>Then use the controller or keyboard for every game menu.</div>
+      <div class="meta">Walk: left stick / WASD · Turn: right stick / arrows · Run: LB / Shift<br>Jump: bottom face button / Space · Punch: left face button / E / RT<br>Plan: top face button / M · Pause: Menu / Esc · Acoustic debug: R3 / F3</div>
+    </div>
+  </section>
+  <noscript>This game requires JavaScript.</noscript>
+  <script src="$GODOT_URL"></script>
+  <script>
+    const GODOT_CONFIG=$GODOT_CONFIG;
+    const GODOT_THREADS_ENABLED=$GODOT_THREADS_ENABLED;
+    const engine=new Engine(GODOT_CONFIG);
+    const canvas=document.getElementById('canvas');
+    const launch=document.getElementById('launch');
+    const start=document.getElementById('start');
+    const status=document.getElementById('status');
+    const progress=document.getElementById('progress');
+    const commands=[];
+    const debug=new URLSearchParams(location.search).has('debug');
+    let latest=null,ready=false,activated=false,retry=false;
+    window.atmoBoot={phase:'checking'};
+    function activate(){
+      if(retry){const url=new URL(location.href);url.searchParams.delete('_atmo_boot');location.replace(url);return;}
+      if(!ready||activated)return;
+      activated=true;launch.hidden=true;canvas.focus();
+    }
+    window.Atmo={
+      command(value){commands.push(value);},
+      takeCommand(){return commands.shift()||'';},
+      receive(state){
+        latest=state;
+        if(debug)window.atmoDebug=state;
+        if(state.ready&&!ready){ready=true;window.atmoBoot.phase='ready';start.disabled=false;start.textContent='Enter Atmosphear';status.textContent='Ready. Headphones on.';progress.hidden=true;}
+      }
+    };
+    start.addEventListener('click',activate);
+    document.addEventListener('keydown',event=>{
+      if(event.key==='F3'){
+        event.preventDefault();event.stopImmediatePropagation();
+        if(!event.repeat&&activated)commands.push('debug:toggle');
+        return;
+      }
+      if(!activated&&event.key==='Enter'&&ready){event.preventDefault();event.stopImmediatePropagation();activate();}
+    },{capture:true});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden&&latest?.started&&!latest.paused)commands.push('pause');});
+    function deadline(promise,ms,message){
+      let timer;
+      return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(message)),ms);})]).finally(()=>clearTimeout(timer));
+    }
+    function activateWorker(worker){
+      return new Promise((resolve,reject)=>{
+        function changed(){
+          if(worker.state==='activated'){worker.removeEventListener('statechange',changed);resolve();}
+          else if(worker.state==='redundant'){worker.removeEventListener('statechange',changed);reject(new Error('The offline audio helper could not be installed.'));}
+          else if(worker.state==='installed')worker.postMessage('claim');
+        }
+        worker.addEventListener('statechange',changed);changed();
+      });
+    }
+    async function prepareAudioHost(){
+      if(!GODOT_THREADS_ENABLED)return true;
+      const previous=navigator.serviceWorker?.controller;
+      if(!GODOT_CONFIG.serviceWorker||!navigator.serviceWorker){
+        if(crossOriginIsolated)return true;
+        throw new Error('This browser blocks the audio helper. Open this HTTPS page in a current Chrome, Edge or Firefox window with site storage allowed.');
+      }
+      window.atmoBoot.phase='installing';
+      status.textContent='Preparing the audio engine for this browser…';
+      let registration;
+      try{
+        registration=await deadline(navigator.serviceWorker.register(GODOT_CONFIG.serviceWorker,{updateViaCache:'none'}),15000,'The audio helper took too long to install. Check your connection and allow site storage.');
+        // Request the current deployment, rather than waiting for the browser's
+        // periodic update check. A loaded offline copy remains playable.
+        await deadline(registration.update(),5000,'Update check timed out.').catch(()=>{});
+        const worker=registration.installing||registration.waiting||registration.active;
+        if(!worker)throw new Error('No audio helper became available.');
+        await deadline(activateWorker(worker),15000,'The audio helper could not activate. Allow site storage, then try again.');
+        worker.postMessage('claim');
+        await deadline(new Promise(resolve=>{
+          function controlled(){if(navigator.serviceWorker.controller===worker){navigator.serviceWorker.removeEventListener('controllerchange',controlled);resolve();}}
+          navigator.serviceWorker.addEventListener('controllerchange',controlled);controlled();
+        }),5000,'The audio helper could not take control of this page.');
+      }catch(error){
+        if(crossOriginIsolated)return true;
+        throw new Error('This browser could not prepare the audio engine. Allow site storage and service workers, or try a current Chrome, Edge or Firefox window.',{cause:error});
+      }
+      if(!crossOriginIsolated||(previous&&previous!==navigator.serviceWorker.controller)){
+        const url=new URL(location.href);
+        if(url.searchParams.has('_atmo_boot'))throw new Error('This browser could not enable the audio engine. Try a current Chrome, Edge or Firefox window with site storage allowed.');
+        // One bounded reload is needed for worker-supplied COOP/COEP to apply
+        // to the document. The URL marker also works when sessionStorage is denied.
+        url.searchParams.set('_atmo_boot','1');window.atmoBoot.phase='reloading';
+        location.replace(url);return false;
+      }
+      return true;
+    }
+    async function boot(){
+      const baseMissing=Engine.getMissingFeatures({threads:false});
+      if(baseMissing.length)throw new Error(baseMissing.join('; ')+'. Use a current desktop browser over HTTPS.');
+      if(!Engine.isAudioWorkletAvailable())throw new Error('This browser does not support the required audio engine. Try a current Chrome, Edge or Firefox window.');
+      if(!await prepareAudioHost())return;
+      const missing=Engine.getMissingFeatures({threads:GODOT_THREADS_ENABLED});
+      if(missing.length)throw new Error('This browser cannot run the audio engine: '+missing.join('; '));
+      const url=new URL(location.href);url.searchParams.delete('_atmo_boot');history.replaceState(null,'',url);
+      window.atmoBoot.phase='loading';status.textContent='Loading the soundscapes…';
+      await engine.startGame({onProgress(current,total){if(total){progress.value=current;progress.max=total;}}});
+    }
+    boot().catch(error=>{
+      console.warn('Atmosphear startup:',error);
+      window.atmoBoot={phase:'failed',message:error.message};retry=true;
+      status.textContent=error.message;start.disabled=false;start.textContent='Try loading again';progress.hidden=true;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AtmoAcousticMaterial" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/acoustic_material.gd" id="1"]
+[resource]
+script = ExtResource("1")
+material_name = "Gravel"
+absorption_bands = Vector3(0.16, 0.46, 0.78)
+transmission_db = Vector3(-20, -34, -50)
+scattering = 0.72
+roughness = 0.90

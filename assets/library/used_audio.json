@@ -1,0 +1,1197 @@
+{
+  "schema_version": 1,
+  "export_roots": [
+    "res://resources/audio/default_palette.tres",
+    "res://scenes/levels/cistern.tscn",
+    "res://scenes/levels/courtyard.tscn",
+    "res://scenes/levels/forest.tscn",
+    "res://scenes/levels/freighter.tscn",
+    "res://scenes/main.tscn",
+    "res://scripts/acoustic_debug.gd",
+    "res://scripts/acoustic_map.gd",
+    "res://scripts/acoustic_source.gd",
+    "res://scripts/game_ui.gd",
+    "res://scripts/room_acoustics.gd"
+  ],
+  "asset_count": 118,
+  "total_bytes": 9742682,
+  "files": [
+    {
+      "file": "assets/library/bell_phrase0.ogg",
+      "bytes": 93609,
+      "sha256": "5e0e5264365202c9ef47ef62d8f3dcfdbca3e2b3c61b1169c36396840aac211f",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/Bell vault.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/BellGateBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/bell_phrase1.ogg",
+      "bytes": 90873,
+      "sha256": "4130669157b2d24e5d89204ce3cc1ba195a4c0510e4876a6c4f41afd80cd3bbd",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/Bell vault.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/BellGateBeacon.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/bird0.wav",
+      "bytes": 34888,
+      "sha256": "616116e34d8bc588848f7820b09e079249bf8a00a10e0de41bf834a57696f8f2",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/FountainBird.sound"
+      ]
+    },
+    {
+      "file": "assets/library/bird1.wav",
+      "bytes": 21208,
+      "sha256": "98ba5d70576e2434f69d4e7472d9cf7e61237da17f2d7e42fdbd28d0818352d3",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/GroveBirdEast.sound"
+      ]
+    },
+    {
+      "file": "assets/library/bird2.wav",
+      "bytes": 41448,
+      "sha256": "9a99d6836094cb4152782b9c1752a929d892eb74418fb649aaedad663b7595bf",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/GroveBirdWest.sound"
+      ]
+    },
+    {
+      "file": "assets/library/bird3.wav",
+      "bytes": 38886,
+      "sha256": "60c4168d3de8660a0b40fc1c79e58b5a1977a5c90678f9780cfd2f8abe9fe0cd",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/GroveBirdBeacon.sound",
+        "res://scenes/levels/forest.tscn:Sources/GroveBirdNorth.sound",
+        "res://scenes/levels/forest.tscn:Sources/HutOutsideBird.sound"
+      ]
+    },
+    {
+      "file": "assets/library/bird4.wav",
+      "bytes": 45408,
+      "sha256": "665675de1e69fd4220e53b9e9e89ff8cee214e5c10afcb0db6eb94925257cef3",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/TowerBird.sound",
+        "res://scenes/levels/forest.tscn:Sources/ClearingBird.sound"
+      ]
+    },
+    {
+      "file": "assets/library/bird5.wav",
+      "bytes": 36784,
+      "sha256": "59301d3ee6ba479a4e120faa161e57b571b7dec25fe3048b2a546a5238e8df13",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/TowerBird.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/ClearingBird.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/bird6.wav",
+      "bytes": 40922,
+      "sha256": "1e685fefbc70373ff203050bdf0f419a7081d097ba25854c37d0378b97407446",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/GroveBirdBeacon.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/GroveBirdNorth.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/HutOutsideBird.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/bird7.wav",
+      "bytes": 9260,
+      "sha256": "36f529fc8e024cb8b783e731147d9aa9225a6515688576d4d9a70536122c9f49",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/CoveBird.sound",
+        "res://scenes/levels/forest.tscn:Sources/WetlandBird.sound"
+      ]
+    },
+    {
+      "file": "assets/library/bird8.wav",
+      "bytes": 9310,
+      "sha256": "3ea01d52771ec3253c0bf1cfbb8fc296e0353e4042c0754a0df5984f921ab855",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/CoveBird.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/WetlandBird.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/canopy0.ogg",
+      "bytes": 172834,
+      "sha256": "45abfb4d7ba4ce6d63e32d67a1c01c290717845e4e8ee5d35d83fc5c0158165c",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/ClearingLeaves.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle00.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle12.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle24.sound"
+      ]
+    },
+    {
+      "file": "assets/library/canopy1.ogg",
+      "bytes": 172637,
+      "sha256": "9c5df88120655eacc1f39be280f1fbcfe309090f5b4fe46befbb5208fe2e7ed9",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/ClearingOak.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle03.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle15.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle27.sound"
+      ]
+    },
+    {
+      "file": "assets/library/canopy2.ogg",
+      "bytes": 171019,
+      "sha256": "a7480d4f813a3eec41e36d219e10f5b75588fe78bc2b182040689744424dc3b3",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/GroveCanopy.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle06.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle18.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle30.sound"
+      ]
+    },
+    {
+      "file": "assets/library/canopy3.ogg",
+      "bytes": 171774,
+      "sha256": "0e0937428c5aecb374cc70aeafafd86d6ee6bf0462e5a9ae7fae078b77129dc0",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle09.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle21.sound",
+        "res://scenes/levels/forest.tscn:Sources/TreeRustle33.sound",
+        "res://scenes/levels/forest.tscn:Sources/WetlandTree.sound"
+      ]
+    },
+    {
+      "file": "assets/library/cistern_drips.ogg",
+      "bytes": 288146,
+      "sha256": "9a244a8906193aed58833459ea761227db8361df4ebc19342245872a4c98c39d",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/Drip gallery.sound"
+      ]
+    },
+    {
+      "file": "assets/library/cistern_water.ogg",
+      "bytes": 166986,
+      "sha256": "2bdd13eb07ec321c9f7a059a0863b0b07cb2998fba5923ccb5435d628c37d390",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirFeed.sound"
+      ]
+    },
+    {
+      "file": "assets/library/courtyard_drain.ogg",
+      "bytes": 237760,
+      "sha256": "dfbc693ccdeeecaf82b992338cfb25b0d789e3c2a2cc02d6f1d369a0761e5e9a",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/Overflow drain.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareDrainBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/courtyard_rain.ogg",
+      "bytes": 219893,
+      "sha256": "ce852edaa39dee8ddde67a37d79154391500973686a0492053881c2719193ecd",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterOutsideRain.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/GateExteriorRain.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareRainBeacon.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareRainEast.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerRainSlot.sound"
+      ]
+    },
+    {
+      "file": "assets/library/drip0.wav",
+      "bytes": 22528,
+      "sha256": "3f4d19d72f1787fd22841b64d7b5271fa1b6e38274596ed9448aff86243be838",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellRoofDrop.sound",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropA.sound",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropB.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterEndDrip.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareDrip.sound",
+        "res://scenes/levels/forest.tscn:Sources/HutLeakBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/drip1.wav",
+      "bytes": 30186,
+      "sha256": "b97a6084c73675e06374d081a0753c221a96b5603aee45be48fec4660be13416",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropB.sound",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirDrip.sound",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftDrip.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/FountainDrainDrip.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerStoneDrip.sound",
+        "res://scenes/levels/forest.tscn:Sources/CliffDrip.sound"
+      ]
+    },
+    {
+      "file": "assets/library/drip2.wav",
+      "bytes": 47168,
+      "sha256": "c1fb32015cd44195d7a1b869fcbd0341d5227c4f9dc463ac6278d0053b98c132",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropC.sound",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropA.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterLeakBeacon.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/StableEaveDrip.sound"
+      ]
+    },
+    {
+      "file": "assets/library/drip3.wav",
+      "bytes": 60928,
+      "sha256": "a432f464395cb55131a3db40e6af603f866fb6d4a6515de264563d5d143a5691",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellRoofDrop.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropA.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropB.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropC.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropA.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropB.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirDrip.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftDrip.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterEndDrip.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterLeakBeacon.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/FountainDrainDrip.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareDrip.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableEaveDrip.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerStoneDrip.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/CliffDrip.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/HutLeakBeacon.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/drip4.wav",
+      "bytes": 62258,
+      "sha256": "0323e768ca56dfb040b436676610157d11275f2bd75d421eaf1218b73501fed7",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellRoofDrop.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropA.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropB.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropC.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropA.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropB.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirDrip.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftDrip.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterEndDrip.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterLeakBeacon.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/FountainDrainDrip.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareDrip.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableEaveDrip.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerStoneDrip.sound_variants[1]",
+        "res://scenes/levels/forest.tscn:Sources/CliffDrip.sound_variants[1]",
+        "res://scenes/levels/forest.tscn:Sources/HutLeakBeacon.sound_variants[1]"
+      ]
+    },
+    {
+      "file": "assets/library/drip5.wav",
+      "bytes": 62258,
+      "sha256": "87eb75cfeeab9ec2fd7fb5ba2a005f6017f5c46682c3ac5e48a3fdd10ee8585a",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellRoofDrop.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropA.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropB.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropC.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropA.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropB.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirDrip.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftDrip.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterEndDrip.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterLeakBeacon.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/FountainDrainDrip.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareDrip.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableEaveDrip.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerStoneDrip.sound_variants[2]",
+        "res://scenes/levels/forest.tscn:Sources/CliffDrip.sound_variants[2]",
+        "res://scenes/levels/forest.tscn:Sources/HutLeakBeacon.sound_variants[2]"
+      ]
+    },
+    {
+      "file": "assets/library/drip6.wav",
+      "bytes": 62258,
+      "sha256": "f552025c46e1742e3e89a166019bcb385791200885e51b207d24e68b13dcc7e8",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellRoofDrop.sound_variants[3]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropA.sound_variants[3]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropB.sound_variants[3]",
+        "res://scenes/levels/cistern.tscn:Sources/GalleryDropC.sound_variants[3]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropA.sound_variants[3]",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowDropB.sound_variants[3]",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirDrip.sound_variants[3]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftDrip.sound_variants[3]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterEndDrip.sound_variants[3]",
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterLeakBeacon.sound_variants[3]",
+        "res://scenes/levels/courtyard.tscn:Sources/FountainDrainDrip.sound_variants[3]",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareDrip.sound_variants[3]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableEaveDrip.sound_variants[3]",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerStoneDrip.sound_variants[3]",
+        "res://scenes/levels/forest.tscn:Sources/CliffDrip.sound_variants[3]",
+        "res://scenes/levels/forest.tscn:Sources/HutLeakBeacon.sound_variants[3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_stream.ogg",
+      "bytes": 214725,
+      "sha256": "7c205a520caa15ebabcef674e256d511016b026dead30afe4167e671495bf784",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/CoveOutlet.sound"
+      ]
+    },
+    {
+      "file": "assets/library/forest_wind.ogg",
+      "bytes": 205155,
+      "sha256": "c1893c2072dd610969ff5d6f3f933232361e602b05eb53624d8205208d322a8f",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/ClearingWindBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/freighter_electronics.ogg",
+      "bytes": 31773,
+      "sha256": "21bbb0522fa75ec9d23fb9a0fb56cb3410b5f83c9b86e8d586980bbb6b4e7fd9",
+      "references": [
+        "res://scenes/levels/freighter.tscn:Sources/CargoServiceDrone.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricPanel.sound"
+      ]
+    },
+    {
+      "file": "assets/library/freighter_engine.ogg",
+      "bytes": 212817,
+      "sha256": "c8d658666c4e2f2304527f006f89185b833470200ae98219ad03791ab09f5863",
+      "references": [
+        "res://scenes/levels/freighter.tscn:Sources/Engine hall.sound"
+      ]
+    },
+    {
+      "file": "assets/library/freighter_vent.ogg",
+      "bytes": 200662,
+      "sha256": "bb5d6956acc653a3e998bae6b71a50b6f5b30399b70b9a0072d76ff9d3de73c8",
+      "references": [
+        "res://scenes/levels/freighter.tscn:Sources/AirlockVent.sound",
+        "res://scenes/levels/freighter.tscn:Sources/CargoVent.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricVent.sound",
+        "res://scenes/levels/freighter.tscn:Sources/EngineCooling.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ServoAir.sound",
+        "res://scenes/levels/freighter.tscn:Sources/Ventilation gallery.sound"
+      ]
+    },
+    {
+      "file": "assets/library/gravel0.wav",
+      "bytes": 24466,
+      "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[0]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel1.wav",
+      "bytes": 26928,
+      "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[1]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel10.wav",
+      "bytes": 37760,
+      "sha256": "09f18d4ba47e89e291ee3e59c7dba9de2305628b90b306e0195ecda85e46839e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[10]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel11.wav",
+      "bytes": 32386,
+      "sha256": "e4c17afab9bd2ac507ec8cb068e839c619d292539381cad4330a1e67e224bbc3",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[11]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel2.wav",
+      "bytes": 19888,
+      "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[2]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel3.wav",
+      "bytes": 29568,
+      "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[3]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel4.wav",
+      "bytes": 25346,
+      "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[4]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel5.wav",
+      "bytes": 45942,
+      "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[5]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel6.wav",
+      "bytes": 12146,
+      "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[6]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel7.wav",
+      "bytes": 29746,
+      "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[7]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel8.wav",
+      "bytes": 34848,
+      "sha256": "86b75bb6ab083ebbe0590d22c787d829f3950484ce3a4b585d84cd64ca530bcb",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[8]"
+      ]
+    },
+    {
+      "file": "assets/library/gravel9.wav",
+      "bytes": 37320,
+      "sha256": "be4c086300988bc9fd0df6a9101c5dd732c8f5525740c63a9a06516ad73b1c44",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/gravel_footsteps[9]"
+      ]
+    },
+    {
+      "file": "assets/library/insects.ogg",
+      "bytes": 202727,
+      "sha256": "8315f752b78b56c22c3389c6dafac1f57ab86f7113fa0426f2d45eeb38df5055",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/SpurReeds.sound",
+        "res://scenes/levels/forest.tscn:Sources/WetlandInsectBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/jump_takeoff.wav",
+      "bytes": 48588,
+      "sha256": "fb39d70d1d7d8626f9634cfbc6a86b9e6e98b1361ee3c5f667cb9885fb39f6fd",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/jump_takeoff"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_air.ogg",
+      "bytes": 91639,
+      "sha256": "1b06d590fecc0332294d7607e0afe497e66f4c8fbc49ac7dffd291266b7166b4",
+      "references": [
+        "res://scenes/levels/freighter.tscn:Sources/Airlock arrivals.sound",
+        "res://scenes/levels/freighter.tscn:Sources/VentSecondary.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_cargo.wav",
+      "bytes": 485178,
+      "sha256": "4ffb8707377474117ca3c8e2dcd53be6b36002c9b214a05dc3b9b7daf8d88eda",
+      "references": [
+        "res://scenes/levels/freighter.tscn:Sources/AirlockCargo.sound",
+        "res://scenes/levels/freighter.tscn:Sources/Cargo hold.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_chain.wav",
+      "bytes": 374286,
+      "sha256": "ea862ed79916c057c5624b48f0f62bcba1c6432066abd1755b9580a0780069d1",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellChain.sound",
+        "res://scenes/levels/cistern.tscn:Sources/PumpChain.sound",
+        "res://scenes/levels/freighter.tscn:Sources/CargoTieDown.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_electric.ogg",
+      "bytes": 176709,
+      "sha256": "0087f429cd0a3d630b4954079730ec9eaf3f196c2aff2c6c42d8f9243f98afa5",
+      "references": [
+        "res://scenes/levels/freighter.tscn:Sources/Electrical gallery.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_fountain.ogg",
+      "bytes": 129572,
+      "sha256": "559d901ed4beb02f59f1ba66f0920a4cad94eff00c6c30975373bf18d66cd880",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/FountainBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_frog.wav",
+      "bytes": 122842,
+      "sha256": "71a675a55bd8de4eb2b79f1d0b0916017dabc0bf7d3f106006f36cd08578825d",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/WetlandFrogBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_horse.wav",
+      "bytes": 67104,
+      "sha256": "29f64fffadd97e6a593c5779d507baa9e20b748e43fe22406d071814939c8026",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/StableHorseBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_pump.ogg",
+      "bytes": 166925,
+      "sha256": "a3f0a5f1af29864b7b399128ddd86ff66559806846fae7072644b776305c8009",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/Timber pump room.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_servo.ogg",
+      "bytes": 89947,
+      "sha256": "ac62c8430c4646fb01f0a665340a3bd4e68bad9cba6bc1892cb70187dd1366de",
+      "references": [
+        "res://scenes/levels/freighter.tscn:Sources/Servo workshop.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_water_resonance.ogg",
+      "bytes": 139949,
+      "sha256": "4df7794811c6ad49dfdcc2a9ee55c0f4a2a252b8b18d04698797013a2e4dff1b",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/Resonant reservoir.sound"
+      ]
+    },
+    {
+      "file": "assets/library/landmark_waterfall.ogg",
+      "bytes": 210781,
+      "sha256": "418b53ccbc074329def98cbe7bb617bbd3d83b3ec28c31611c96808a4b71cdb3",
+      "references": [
+        "res://scenes/levels/forest.tscn:Sources/WaterfallBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/metal0.wav",
+      "bytes": 58920,
+      "sha256": "1f603f429d202352c8272d9d21f95901158f356bbf8d00b93056f3e4a2ea08c8",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[0]"
+      ]
+    },
+    {
+      "file": "assets/library/metal1.wav",
+      "bytes": 57600,
+      "sha256": "7b48127ad325c8ae8ecd76b375939e70b0642573ee6cb665f1526417e6f666cb",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[1]"
+      ]
+    },
+    {
+      "file": "assets/library/metal10.wav",
+      "bytes": 53506,
+      "sha256": "28f007e46457f66f79e67489b71a766123ae6720a83c1fc7014722a488edbf36",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[10]"
+      ]
+    },
+    {
+      "file": "assets/library/metal11.wav",
+      "bytes": 46466,
+      "sha256": "72420c208340a88c7f97d8fa2b6efa1ba0ede177cdd901db1794b7316010f2b0",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[11]"
+      ]
+    },
+    {
+      "file": "assets/library/metal2.wav",
+      "bytes": 56720,
+      "sha256": "94c716a3e003736215a76ab7cae904cd39ebf09582e714fbc44f57a3aa407ce4",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[2]"
+      ]
+    },
+    {
+      "file": "assets/library/metal3.wav",
+      "bytes": 56280,
+      "sha256": "9bfa9b18fcf041a55a5671bc2ec08ebb756de4f4a6339b75046e61bf417194f0",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[3]"
+      ]
+    },
+    {
+      "file": "assets/library/metal4.wav",
+      "bytes": 63582,
+      "sha256": "0da0993c8c486c92d48b058811faa1a7d4bce7e0214939042f4d87462209c8c3",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[4]"
+      ]
+    },
+    {
+      "file": "assets/library/metal5.wav",
+      "bytes": 54520,
+      "sha256": "19bf0378ac6109d190b0dfab8ed08715f0d09cceb7bd2cb8821749f627c5e059",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[5]"
+      ]
+    },
+    {
+      "file": "assets/library/metal6.wav",
+      "bytes": 56280,
+      "sha256": "97be94c2a574bb3ea6cc78fab0122fc0ee57617b4fea8435ca617746b46b1efd",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[6]"
+      ]
+    },
+    {
+      "file": "assets/library/metal7.wav",
+      "bytes": 57026,
+      "sha256": "d90405789562d78882f1eb8dc3e3491af4a2f7284399b45dad662fd52c0d0054",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[7]"
+      ]
+    },
+    {
+      "file": "assets/library/metal8.wav",
+      "bytes": 54520,
+      "sha256": "2549baafd6e9d5d5cd2081742622f3b4dce60cfa45c3b60a3a47f44f9f05e784",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[8]"
+      ]
+    },
+    {
+      "file": "assets/library/metal9.wav",
+      "bytes": 49986,
+      "sha256": "cde37279425f7d688f538868e96b16cf3bbf556983e2b111a7ff2e002d5f6cc2",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/metal_footsteps[9]"
+      ]
+    },
+    {
+      "file": "assets/library/metal_creak0.wav",
+      "bytes": 127962,
+      "sha256": "daa8dcb25e83518b295d4725578a43249b4b94fccad617c91a7cf27af5ca4551",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellGrate.sound",
+        "res://scenes/levels/cistern.tscn:Sources/PumpCreak.sound",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftGrate.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/GateIronCreak.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/StableHinge.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerIronBeacon.sound",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockLatch.sound",
+        "res://scenes/levels/freighter.tscn:Sources/CargoHull.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRackCreak.sound",
+        "res://scenes/levels/freighter.tscn:Sources/EngineHull.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ServoFrame.sound",
+        "res://scenes/levels/freighter.tscn:Sources/VentDuctStress.sound"
+      ]
+    },
+    {
+      "file": "assets/library/metal_creak1.wav",
+      "bytes": 261554,
+      "sha256": "e41d531160eaf5440dfe08aa4902e6efb89487ef5ea58d89192248f2dd5f4baa",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellGrate.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/PumpCreak.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftGrate.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/GateIronCreak.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableHinge.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerIronBeacon.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockLatch.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/CargoHull.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRackCreak.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/EngineHull.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoFrame.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/VentDuctStress.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/metal_creak2.wav",
+      "bytes": 182126,
+      "sha256": "d9a08b5753b7b8afd31b11a9065ee0c8f16603a18f97e9d2ddc6497ba5318d36",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellGrate.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/PumpCreak.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftGrate.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/GateIronCreak.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableHinge.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerIronBeacon.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockLatch.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/CargoHull.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRackCreak.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/EngineHull.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoFrame.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/VentDuctStress.sound_variants[1]"
+      ]
+    },
+    {
+      "file": "assets/library/metal_creak3.wav",
+      "bytes": 137014,
+      "sha256": "08344c2f59d04a9671a7d9364df1f9091d47fb66464ebd6c7c62ece1a64e01f3",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellGrate.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/PumpCreak.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftGrate.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/GateIronCreak.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableHinge.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerIronBeacon.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockLatch.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/CargoHull.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRackCreak.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/EngineHull.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoFrame.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/VentDuctStress.sound_variants[2]"
+      ]
+    },
+    {
+      "file": "assets/library/pipe_ring0.wav",
+      "bytes": 110328,
+      "sha256": "e64f35b9b8e09bb8e53ba62b3c994215f27176c7eced6fb6c7cc93d6404c4a08",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/GalleryPipe.sound",
+        "res://scenes/levels/cistern.tscn:Sources/PumpTick.sound",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirPipe.sound",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftPipe.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareGrateTick.sound",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockValve.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRelay.sound",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeA.sound",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeB.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ServoPipe.sound",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeA.sound",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeB.sound"
+      ]
+    },
+    {
+      "file": "assets/library/pipe_ring1.wav",
+      "bytes": 110328,
+      "sha256": "1a8329b1e520db43e85b38548d4d3149a2d8a416622487018cc97c268901397d",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/GalleryPipe.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/PumpTick.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirPipe.sound_variants[0]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftPipe.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareGrateTick.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockValve.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRelay.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeA.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeB.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoPipe.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeA.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeB.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/pipe_ring2.wav",
+      "bytes": 110328,
+      "sha256": "f96efa84d50c4c3c38b34c31dd4779e355e2734004a6f7cb7aad8b254ee069c8",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/GalleryPipe.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/PumpTick.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirPipe.sound_variants[1]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftPipe.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareGrateTick.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockValve.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRelay.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeA.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeB.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoPipe.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeA.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeB.sound_variants[1]"
+      ]
+    },
+    {
+      "file": "assets/library/pipe_ring3.wav",
+      "bytes": 110328,
+      "sha256": "4f8ad4d259002fd6519a3ab8f637206c7696434109a26609f52831f906e9b699",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/GalleryPipe.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/PumpTick.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirPipe.sound_variants[2]",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftPipe.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/SquareGrateTick.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/AirlockValve.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/ElectricRelay.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeA.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/EnginePipeB.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoPipe.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeA.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/VentPipeB.sound_variants[2]"
+      ]
+    },
+    {
+      "file": "assets/library/punch_metal.wav",
+      "bytes": 52008,
+      "sha256": "61ba6300b5743fc9a86c65b68da9b24826261b8abaefe4dde71c04badd292b25",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/punch_metal"
+      ]
+    },
+    {
+      "file": "assets/library/punch_stone.wav",
+      "bytes": 8008,
+      "sha256": "d523ff3d82bacf268deaf58e0a3d916ac036527a979e400158ff94588d344cea",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/punch_stone"
+      ]
+    },
+    {
+      "file": "assets/library/punch_swing.wav",
+      "bytes": 44178,
+      "sha256": "2f6d878680f27474a49b14be135c1e21ba60d2cca07a2fa57419c4549d4d9345",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/punch_swing"
+      ]
+    },
+    {
+      "file": "assets/library/punch_wood.wav",
+      "bytes": 57408,
+      "sha256": "9ae67443077a938ccef773e94e522a518f7c2c8c3451e35353ad1a2a30425f5f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/punch_wood"
+      ]
+    },
+    {
+      "file": "assets/library/stone0.wav",
+      "bytes": 13026,
+      "sha256": "f5e7b32b4323ddb917560cd9bfca817482776e9e23db0ba1fb1d94599e0bed6f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[0]"
+      ]
+    },
+    {
+      "file": "assets/library/stone1.wav",
+      "bytes": 19008,
+      "sha256": "141c020f42dacbf2a0ea973e962833cd419c7485973eda7c97f67d694d860fec",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[1]"
+      ]
+    },
+    {
+      "file": "assets/library/stone10.wav",
+      "bytes": 18568,
+      "sha256": "e27410dea022462da7e61d4820006a71ff64ba609b3439be7894cf503470b66f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[10]"
+      ]
+    },
+    {
+      "file": "assets/library/stone11.wav",
+      "bytes": 19008,
+      "sha256": "cba45dae14d33c2540002d9e7015f382d9f7fb485c4081e229237bdf795b1893",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[11]"
+      ]
+    },
+    {
+      "file": "assets/library/stone2.wav",
+      "bytes": 35906,
+      "sha256": "269c03f1e8e34d753cad9a2463c6593e5e42f2f329222979476e1f8c28ed67b1",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[2]"
+      ]
+    },
+    {
+      "file": "assets/library/stone3.wav",
+      "bytes": 19888,
+      "sha256": "ed5b90af2c748e912495de6cf1f4ea02f263ec7eabdde46be8109a5bacf64296",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[3]"
+      ]
+    },
+    {
+      "file": "assets/library/stone4.wav",
+      "bytes": 20328,
+      "sha256": "e6c1de09ca769190385fe3a2b2aa236e33c2c6427367df45680fd76f4d8b368e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[4]"
+      ]
+    },
+    {
+      "file": "assets/library/stone5.wav",
+      "bytes": 37760,
+      "sha256": "14bfd701b451b4c7f36c3f453ecde91694a050fe4d3e222f03bba1e2e6b43ae8",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[5]"
+      ]
+    },
+    {
+      "file": "assets/library/stone6.wav",
+      "bytes": 24466,
+      "sha256": "d6d85eb45e4078a4410e4315442db41d7cf0ed834c5cb0b6965758d6174562b3",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[6]"
+      ]
+    },
+    {
+      "file": "assets/library/stone7.wav",
+      "bytes": 37666,
+      "sha256": "8cf12bfe976fca2a35b10fa759978c4e712dae527ad4ca0cbad686d924fa5ebb",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[7]"
+      ]
+    },
+    {
+      "file": "assets/library/stone8.wav",
+      "bytes": 36346,
+      "sha256": "c431d7e264d5978b3bab6dbc83a0129dd2ad21290aa2412146ce17d4e20db849",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[8]"
+      ]
+    },
+    {
+      "file": "assets/library/stone9.wav",
+      "bytes": 18568,
+      "sha256": "0ffec8ec980c4177b1f345be61dc28b828ee5944956037ee78ba88878f2aafa3",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/stone_footsteps[9]"
+      ]
+    },
+    {
+      "file": "assets/library/ui_soft_accept.wav",
+      "bytes": 6042,
+      "sha256": "75012e36200ddce8b2a25d5b42f5b43722c61fdcd287eb55cdf2a05c5fea2b62",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/ui_accept"
+      ]
+    },
+    {
+      "file": "assets/library/ui_soft_back.wav",
+      "bytes": 4102,
+      "sha256": "d4448fd03125ec5e9c7a711d4e3f83aa083a2f2a3b9d3772072a67b6a09ba19a",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/ui_back"
+      ]
+    },
+    {
+      "file": "assets/library/ui_soft_move0.wav",
+      "bytes": 4630,
+      "sha256": "ea661887aebdacdb79e0fd1166e95b9cb265ac812fc21a0c7e044895e119e6a3",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/ui_move"
+      ]
+    },
+    {
+      "file": "assets/library/ui_soft_move1.wav",
+      "bytes": 4630,
+      "sha256": "6109dbdce0cdbe5f739990180a5faa77382de48b83b905f16d5ccded6126274c",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/ui_move_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/ui_soft_move2.wav",
+      "bytes": 3924,
+      "sha256": "4c49410b82acaf2cee30984c9482cef829989b5492640f337683d8b858fc25b0",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/ui_move_variants[1]"
+      ]
+    },
+    {
+      "file": "assets/library/water_lap.ogg",
+      "bytes": 215947,
+      "sha256": "f08b808b41af74561ac31c77b011dad932baf176989d211e5cd62cfdf045aaa9",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/OverflowLap.sound",
+        "res://scenes/levels/cistern.tscn:Sources/PumpTrickle.sound",
+        "res://scenes/levels/cistern.tscn:Sources/ReservoirLap.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/FountainPoolLap.sound",
+        "res://scenes/levels/forest.tscn:Sources/BoardwalkWater.sound",
+        "res://scenes/levels/forest.tscn:Sources/CoveLapping.sound",
+        "res://scenes/levels/forest.tscn:Sources/WetlandPool.sound"
+      ]
+    },
+    {
+      "file": "assets/library/wind_open0.ogg",
+      "bytes": 193927,
+      "sha256": "14999d4000d69213658182e435cde2cbdd92e25adb936fc3e8834a6874720ba0",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/GateSlotWind.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/TowerGustBeacon.sound"
+      ]
+    },
+    {
+      "file": "assets/library/wind_open1.ogg",
+      "bytes": 189545,
+      "sha256": "78045d195185780f2482e9173143d3af0ea0652c4cd41241b87502b99702b5e0",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/StableRoofWind.sound",
+        "res://scenes/levels/forest.tscn:Sources/HutRoofWind.sound"
+      ]
+    },
+    {
+      "file": "assets/library/wind_shaft0.ogg",
+      "bytes": 164051,
+      "sha256": "495155813b4228a0d630406eee1cc582034c849d1b2061382cd7af87834a10db",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/BellAir.sound",
+        "res://scenes/levels/cistern.tscn:Sources/ShaftWind.sound"
+      ]
+    },
+    {
+      "file": "assets/library/wind_shaft1.ogg",
+      "bytes": 187902,
+      "sha256": "e550d225f715bf03fb9c818710457b079b7c7c26b573989e32fc072ac6fe6335",
+      "references": [
+        "res://scenes/levels/cistern.tscn:Sources/Airshaft landing.sound",
+        "res://scenes/levels/cistern.tscn:Sources/OverflowAir.sound"
+      ]
+    },
+    {
+      "file": "assets/library/wood0.wav",
+      "bytes": 22706,
+      "sha256": "70ec39215fa72ac099b026f75ea3dd3d03c0408ae39faacce00ca81dfd40ec48",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[0]"
+      ]
+    },
+    {
+      "file": "assets/library/wood1.wav",
+      "bytes": 27546,
+      "sha256": "4a4cf202f28799b11e086daeec768c6137c0dc6c3f76ec59973c6af5d786eab1",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[1]"
+      ]
+    },
+    {
+      "file": "assets/library/wood10.wav",
+      "bytes": 30186,
+      "sha256": "381e0154eff4f5d3f8c4f6bdaa59431a0c79ac70ac592239b5cdc2ca1d9b6c15",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[10]"
+      ]
+    },
+    {
+      "file": "assets/library/wood11.wav",
+      "bytes": 27986,
+      "sha256": "428d59199fbfe20ce93b0bdc3e35def61c4787b06803d1bd1df3d6827da65a9d",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[11]"
+      ]
+    },
+    {
+      "file": "assets/library/wood2.wav",
+      "bytes": 24906,
+      "sha256": "2103df39899b1253b71e38fd90f4cd5184855d8d8d2bccd88084f7d032515e24",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[2]"
+      ]
+    },
+    {
+      "file": "assets/library/wood3.wav",
+      "bytes": 21826,
+      "sha256": "ef0fb694d19c4afb98eccdd2ffbb60617670d3bdc878ec0d8ca3eaa454ca7c43",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[3]"
+      ]
+    },
+    {
+      "file": "assets/library/wood4.wav",
+      "bytes": 28426,
+      "sha256": "e919f9bbd1c74555db7808e32811fd79a29928041e48185308831ffec073d128",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[4]"
+      ]
+    },
+    {
+      "file": "assets/library/wood5.wav",
+      "bytes": 25786,
+      "sha256": "927e855b1fa14c7a5a80f360f3d7e2d92e9324b53304c05beaaa192e45d2e3aa",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[5]"
+      ]
+    },
+    {
+      "file": "assets/library/wood6.wav",
+      "bytes": 29746,
+      "sha256": "d8d87869c74aabb4dec48dcac6c962e5dca354e2bc47e1b1afd6cbc0000b79b9",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[6]"
+      ]
+    },
+    {
+      "file": "assets/library/wood7.wav",
+      "bytes": 20946,
+      "sha256": "bce6fee00e59ed741e843d97199f10020f43b4ce50443a388fb0c71cd8f29ef0",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[7]"
+      ]
+    },
+    {
+      "file": "assets/library/wood8.wav",
+      "bytes": 26226,
+      "sha256": "71682466178d90ca57b2ac6742fbcbf0cb84e5c18ee3fe2aaf255058a6b0a381",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[8]"
+      ]
+    },
+    {
+      "file": "assets/library/wood9.wav",
+      "bytes": 28866,
+      "sha256": "833fa82a9c9608d11760c46c7aeaa1aba1017d31fdc677f0a4b0c357cce73605",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/wood_footsteps[9]"
+      ]
+    },
+    {
+      "file": "assets/library/wood_creak0.wav",
+      "bytes": 93800,
+      "sha256": "87632da332c103a40d139da641a1582c1a50032762257a795f8a43d0958d2fcb",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterBenchCreak.sound",
+        "res://scenes/levels/courtyard.tscn:Sources/StableBeam.sound",
+        "res://scenes/levels/forest.tscn:Sources/BoardwalkCreakBeacon.sound",
+        "res://scenes/levels/forest.tscn:Sources/HutRafterCreak.sound",
+        "res://scenes/levels/forest.tscn:Sources/SpurBeam.sound",
+        "res://scenes/levels/freighter.tscn:Sources/CargoCrate.sound",
+        "res://scenes/levels/freighter.tscn:Sources/ServoWorktable.sound"
+      ]
+    },
+    {
+      "file": "assets/library/wood_creak1.wav",
+      "bytes": 38738,
+      "sha256": "385dfef62b2dd73c4d0e621760452f6ff65932208a21f49563ea8de012086974",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterBenchCreak.sound_variants[0]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableBeam.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/BoardwalkCreakBeacon.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/HutRafterCreak.sound_variants[0]",
+        "res://scenes/levels/forest.tscn:Sources/SpurBeam.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/CargoCrate.sound_variants[0]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoWorktable.sound_variants[0]"
+      ]
+    },
+    {
+      "file": "assets/library/wood_creak2.wav",
+      "bytes": 54536,
+      "sha256": "bda1c37fe559a7a0f5be337e07b6379ce07abc014a4478a4f620498bf7733035",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterBenchCreak.sound_variants[1]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableBeam.sound_variants[1]",
+        "res://scenes/levels/forest.tscn:Sources/BoardwalkCreakBeacon.sound_variants[1]",
+        "res://scenes/levels/forest.tscn:Sources/HutRafterCreak.sound_variants[1]",
+        "res://scenes/levels/forest.tscn:Sources/SpurBeam.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/CargoCrate.sound_variants[1]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoWorktable.sound_variants[1]"
+      ]
+    },
+    {
+      "file": "assets/library/wood_creak3.wav",
+      "bytes": 49290,
+      "sha256": "6815e4764734e21daad5af68362d557f93d1f1a5b2ae53d8bd26c8085cc6a90e",
+      "references": [
+        "res://scenes/levels/courtyard.tscn:Sources/CloisterBenchCreak.sound_variants[2]",
+        "res://scenes/levels/courtyard.tscn:Sources/StableBeam.sound_variants[2]",
+        "res://scenes/levels/forest.tscn:Sources/BoardwalkCreakBeacon.sound_variants[2]",
+        "res://scenes/levels/forest.tscn:Sources/HutRafterCreak.sound_variants[2]",
+        "res://scenes/levels/forest.tscn:Sources/SpurBeam.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/CargoCrate.sound_variants[2]",
+        "res://scenes/levels/freighter.tscn:Sources/ServoWorktable.sound_variants[2]"
+      ]
+    }
+  ]
+}

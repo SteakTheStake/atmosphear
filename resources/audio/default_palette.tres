@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="AtmoSoundPalette" format=3]
+
+[ext_resource type="AudioStream" path="res://assets/library/gravel0.wav" id="1_sbk6h"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel1.wav" id="2_koh3q"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel2.wav" id="3_7eknn"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel3.wav" id="4_r4hic"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel4.wav" id="5_727x3"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel5.wav" id="6_sko12"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel6.wav" id="7_s4unp"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel7.wav" id="8_5184b"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel8.wav" id="9_fjd6g"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel9.wav" id="10_u7m2y"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel10.wav" id="11_ru5kn"]
+[ext_resource type="AudioStream" path="res://assets/library/gravel11.wav" id="12_im00d"]
+[ext_resource type="AudioStream" path="res://assets/library/jump_takeoff.wav" id="13_oia3u"]
+[ext_resource type="AudioStream" path="res://assets/library/metal0.wav" id="14_xs0g4"]
+[ext_resource type="AudioStream" path="res://assets/library/metal1.wav" id="15_iej4j"]
+[ext_resource type="AudioStream" path="res://assets/library/metal2.wav" id="16_tf34v"]
+[ext_resource type="AudioStream" path="res://assets/library/metal3.wav" id="17_yfta3"]
+[ext_resource type="AudioStream" path="res://assets/library/metal4.wav" id="18_tu7bb"]
+[ext_resource type="AudioStream" path="res://assets/library/metal5.wav" id="19_n76ih"]
+[ext_resource type="AudioStream" path="res://assets/library/metal6.wav" id="20_x2gco"]
+[ext_resource type="AudioStream" path="res://assets/library/metal7.wav" id="21_d7kch"]
+[ext_resource type="AudioStream" path="res://assets/library/metal8.wav" id="22_dl00k"]
+[ext_resource type="AudioStream" path="res://assets/library/metal9.wav" id="23_chgub"]
+[ext_resource type="AudioStream" path="res://assets/library/metal10.wav" id="24_3rsbk"]
+[ext_resource type="AudioStream" path="res://assets/library/metal11.wav" id="25_0aeaw"]
+[ext_resource type="AudioStream" path="res://assets/library/punch_metal.wav" id="26_7owy8"]
+[ext_resource type="AudioStream" path="res://assets/library/punch_stone.wav" id="27_8fn1w"]
+[ext_resource type="AudioStream" path="res://assets/library/punch_swing.wav" id="28_dgemj"]
+[ext_resource type="AudioStream" path="res://assets/library/punch_wood.wav" id="29_4ce0x"]
+[ext_resource type="Script" path="res://scripts/sound_palette.gd" id="30_pqq2o"]
+[ext_resource type="AudioStream" path="res://assets/library/stone0.wav" id="31_6xke2"]
+[ext_resource type="AudioStream" path="res://assets/library/stone1.wav" id="32_pawpd"]
+[ext_resource type="AudioStream" path="res://assets/library/stone2.wav" id="33_kuvb4"]
+[ext_resource type="AudioStream" path="res://assets/library/stone3.wav" id="34_lbywe"]
+[ext_resource type="AudioStream" path="res://assets/library/stone4.wav" id="35_5p50g"]
+[ext_resource type="AudioStream" path="res://assets/library/stone5.wav" id="36_jbee7"]
+[ext_resource type="AudioStream" path="res://assets/library/stone6.wav" id="37_hdeja"]
+[ext_resource type="AudioStream" path="res://assets/library/stone7.wav" id="38_vqb52"]
+[ext_resource type="AudioStream" path="res://assets/library/stone8.wav" id="39_17x88"]
+[ext_resource type="AudioStream" path="res://assets/library/stone9.wav" id="40_f640i"]
+[ext_resource type="AudioStream" path="res://assets/library/stone10.wav" id="41_2ajo0"]
+[ext_resource type="AudioStream" path="res://assets/library/stone11.wav" id="42_pg25r"]
+[ext_resource type="AudioStream" path="res://assets/library/ui_soft_accept.wav" id="43_7eknn"]
+[ext_resource type="AudioStream" path="res://assets/library/ui_soft_move0.wav" id="43_mdmnv"]
+[ext_resource type="AudioStream" path="res://assets/library/ui_soft_back.wav" id="44_r4hic"]
+[ext_resource type="AudioStream" path="res://assets/library/ui_soft_move1.wav" id="44_sbk6h"]
+[ext_resource type="AudioStream" path="res://assets/library/wood0.wav" id="46_4pp6d"]
+[ext_resource type="AudioStream" path="res://assets/library/ui_soft_move2.wav" id="47_727x3"]
+[ext_resource type="AudioStream" path="res://assets/library/wood1.wav" id="47_ddis3"]
+[ext_resource type="AudioStream" path="res://assets/library/wood2.wav" id="48_w1jf3"]
+[ext_resource type="AudioStream" path="res://assets/library/wood3.wav" id="49_0xdi1"]
+[ext_resource type="AudioStream" path="res://assets/library/wood4.wav" id="50_48xtp"]
+[ext_resource type="AudioStream" path="res://assets/library/wood5.wav" id="51_mhl3n"]
+[ext_resource type="AudioStream" path="res://assets/library/wood6.wav" id="52_urx8v"]
+[ext_resource type="AudioStream" path="res://assets/library/wood7.wav" id="53_lpttp"]
+[ext_resource type="AudioStream" path="res://assets/library/wood8.wav" id="54_5ydvf"]
+[ext_resource type="AudioStream" path="res://assets/library/wood9.wav" id="55_gjdil"]
+[ext_resource type="AudioStream" path="res://assets/library/wood10.wav" id="56_q5gv1"]
+[ext_resource type="AudioStream" path="res://assets/library/wood11.wav" id="57_wpm5d"]
+
+[resource]
+script = ExtResource("30_pqq2o")
+gravel_footsteps = Array[AudioStream]([ExtResource("1_sbk6h"), ExtResource("2_koh3q"), ExtResource("3_7eknn"), ExtResource("4_r4hic"), ExtResource("5_727x3"), ExtResource("6_sko12"), ExtResource("7_s4unp"), ExtResource("8_5184b"), ExtResource("9_fjd6g"), ExtResource("10_u7m2y"), ExtResource("11_ru5kn"), ExtResource("12_im00d")])
+stone_footsteps = Array[AudioStream]([ExtResource("31_6xke2"), ExtResource("32_pawpd"), ExtResource("33_kuvb4"), ExtResource("34_lbywe"), ExtResource("35_5p50g"), ExtResource("36_jbee7"), ExtResource("37_hdeja"), ExtResource("38_vqb52"), ExtResource("39_17x88"), ExtResource("40_f640i"), ExtResource("41_2ajo0"), ExtResource("42_pg25r")])
+wood_footsteps = Array[AudioStream]([ExtResource("46_4pp6d"), ExtResource("47_ddis3"), ExtResource("48_w1jf3"), ExtResource("49_0xdi1"), ExtResource("50_48xtp"), ExtResource("51_mhl3n"), ExtResource("52_urx8v"), ExtResource("53_lpttp"), ExtResource("54_5ydvf"), ExtResource("55_gjdil"), ExtResource("56_q5gv1"), ExtResource("57_wpm5d")])
+metal_footsteps = Array[AudioStream]([ExtResource("14_xs0g4"), ExtResource("15_iej4j"), ExtResource("16_tf34v"), ExtResource("17_yfta3"), ExtResource("18_tu7bb"), ExtResource("19_n76ih"), ExtResource("20_x2gco"), ExtResource("21_d7kch"), ExtResource("22_dl00k"), ExtResource("23_chgub"), ExtResource("24_3rsbk"), ExtResource("25_0aeaw")])
+punch_swing = ExtResource("28_dgemj")
+punch_stone = ExtResource("27_8fn1w")
+punch_wood = ExtResource("29_4ce0x")
+punch_metal = ExtResource("26_7owy8")
+jump_takeoff = ExtResource("13_oia3u")
+ui_move = ExtResource("43_mdmnv")
+ui_accept = ExtResource("43_7eknn")
+ui_back = ExtResource("44_r4hic")
+ui_move_variants = Array[AudioStream]([ExtResource("44_sbk6h"), ExtResource("47_727x3")])
