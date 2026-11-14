@@ -39,6 +39,8 @@ jobs:
         run: echo "$RUNNER_TEMP/godot" >> "$GITHUB_PATH"
       - name: Import, verify used audio, and export release game
         run: python3 tools/build_pages.py --godot godot
+      - name: Verify native controller menu behavior
+        run: godot --headless --path . --script tests/controller_ui.gd
       - name: Install browser test tools
         working-directory: tests
         run: |
@@ -46,6 +48,20 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify Pages subpath without server isolation headers
         run: node tests/pages_browser.cjs build/pages
+      - name: Verify controller-only game and menu routing
+        run: node tests/controller_browser.cjs build/pages
+      - name: Verify blocked audio cannot silently start the game
+        run: |
+          python3 -m http.server 8060 --bind 127.0.0.1 --directory build/pages > "$RUNNER_TEMP/controller-http.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:8060/ > /dev/null; then
+              break
+            fi
+            sleep 0.2
+          done
+          node tests/controller_audio_policy.cjs
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:

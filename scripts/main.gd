@@ -57,6 +57,7 @@ var debug_enabled := false
 var debug_view: Node3D
 var qa_enabled := false
 var qa_region := -1
+var host_input_ready := not OS.has_feature("web")
 
 func _ready() -> void:
 	_load_settings()
@@ -103,6 +104,7 @@ func _setup_input() -> void:
 	_button("jump",KEY_SPACE,JOY_BUTTON_A)
 	_button("punch",KEY_E,JOY_BUTTON_X)
 	var trigger := InputEventJoypadMotion.new()
+	trigger.device = -1
 	trigger.axis = JOY_AXIS_TRIGGER_RIGHT
 	trigger.axis_value = 1
 	InputMap.action_add_event("punch",trigger)
@@ -111,6 +113,7 @@ func _setup_input() -> void:
 	key.physical_keycode = KEY_ESCAPE
 	InputMap.action_add_event("pause", key)
 	var button := InputEventJoypadButton.new()
+	button.device = -1
 	button.button_index = JOY_BUTTON_START
 	InputMap.action_add_event("pause", button)
 	InputMap.add_action("debug_toggle")
@@ -118,11 +121,14 @@ func _setup_input() -> void:
 	debug_key.physical_keycode = KEY_F3
 	InputMap.action_add_event("debug_toggle",debug_key)
 	var debug_button := InputEventJoypadButton.new()
+	debug_button.device = -1
 	debug_button.button_index = JOY_BUTTON_RIGHT_STICK
 	InputMap.action_add_event("debug_toggle",debug_button)
-	Input.joy_connection_changed.connect(func(_id, connected):
-		if not connected and started: set_paused(true)
-	)
+	Input.joy_connection_changed.connect(_controller_connection_changed)
+
+func _controller_connection_changed(_id: int, connected: bool) -> void:
+	if not connected and started and not paused: set_paused(true)
+	if game_ui: game_ui.reset_controller_navigation()
 
 func _axis(action: String, code: int, axis: int, value: float) -> void:
 	InputMap.add_action(action, 0.18)
@@ -130,6 +136,7 @@ func _axis(action: String, code: int, axis: int, value: float) -> void:
 	key.physical_keycode = code
 	InputMap.action_add_event(action, key)
 	var motion := InputEventJoypadMotion.new()
+	motion.device = -1
 	motion.axis = axis
 	motion.axis_value = value
 	InputMap.action_add_event(action, motion)
@@ -140,6 +147,7 @@ func _button(action: String, keycode: int, button_index: int) -> void:
 	key.physical_keycode = keycode
 	InputMap.action_add_event(action,key)
 	var button := InputEventJoypadButton.new()
+	button.device = -1
 	button.button_index = button_index
 	InputMap.action_add_event(action,button)
 
@@ -345,12 +353,23 @@ func _process(_delta: float) -> void:
 	if OS.has_feature("web"):
 		var command = JavaScriptBridge.eval("window.Atmo ? window.Atmo.takeCommand() : ''")
 		if command is String and not command.is_empty(): _command(command)
-	if Input.is_action_just_pressed("pause"):
-		if game_ui.screen == "settings" or (game_ui.screen == "main" and started): game_ui.go_back()
-		elif started: set_paused(not paused)
+	if not host_input_ready: return
 	if Input.is_action_just_pressed("debug_toggle"): set_debug_enabled(not debug_enabled)
 	if debug_enabled and started and not paused:
 		debug_view.update_view(sources,listener.global_position,player.rotation.y,elapsed)
+
+func _input(event: InputEvent) -> void:
+	if not host_input_ready:
+		get_viewport().set_input_as_handled()
+		return
+	if not event.is_action_pressed("pause") or event.is_echo(): return
+	get_viewport().set_input_as_handled()
+	if event is InputEventJoypadButton:
+		# Start always toggles the current walk, even from a settings submenu.
+		if started: set_paused(not paused)
+	elif game_ui.screen == "settings" or (game_ui.screen == "main" and started):
+		game_ui.go_back()
+	elif started: set_paused(not paused)
 
 func set_debug_enabled(value: bool) -> void:
 	debug_enabled = value
@@ -364,7 +383,7 @@ func _physics_process(delta: float) -> void:
 	if report_clock > 0.2:
 		report_clock = 0
 		_report()
-	if not started or paused: return
+	if not host_input_ready or not started or paused: return
 	elapsed += delta
 	punch_cooldown = maxf(0,punch_cooldown-delta)
 	action_grace = maxf(0,action_grace-delta)
@@ -574,7 +593,12 @@ func set_paused(value: bool) -> void:
 	_report()
 
 func _command(command: String) -> void:
-	if command.begins_with("qa:region:") and qa_enabled and is_instance_valid(world):
+	if command == "host:ready":
+		host_input_ready = true
+		action_grace = 0.2
+		game_ui.reset_controller_navigation()
+		_report()
+	elif command.begins_with("qa:region:") and qa_enabled and is_instance_valid(world):
 		var index := command.trim_prefix("qa:region:").to_int()
 		var regions := world.get_node("Regions").get_children()
 		if index>=0 and index<regions.size():
@@ -613,7 +637,11 @@ func _command(command: String) -> void:
 			_report()
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and started: set_paused(true)
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		if started and not paused: set_paused(true)
+		if game_ui: game_ui.reset_controller_navigation()
+	elif what == NOTIFICATION_APPLICATION_FOCUS_IN and game_ui:
+		game_ui.call_deferred("ensure_focus")
 
 func _report() -> void:
 	if not OS.has_feature("web") or player == null: return
@@ -621,6 +649,11 @@ func _report() -> void:
 	for sound in sources: source_data.append({"clip":sound.get_meta("clip"),"active_clip":sound.get_meta("active_clip",""),"event_count":sound.get_meta("event_count",0),"playing":sound.direct.playing,"anchor":sound.get_meta("anchor"),"landmark":sound.get_meta("landmark"),"virtualized":sound._virtualized,"acoustics":sound.diagnostics})
 	var state := {"ready":true,"started":started,"paused":paused,"level":level,"title":TITLES[level],"steps":steps,"surface":surface_at(player.position),"position":[snappedf(player.position.x,0.01),snappedf(player.position.z,0.01)],"yaw":snappedf(player.rotation.y,0.01),"controllers":Input.get_connected_joypads().size(),"settings":settings,"event":last_event,"generation":level_generation,"diagnostics":{"room":room_stats,"sources":source_data,"bus_count":AudioServer.bus_count}}
 	state.ui_screen = game_ui.screen if game_ui else "main"
+	state.host_input_ready = host_input_ready
+	var focus: Dictionary = game_ui.focus_state() if game_ui else {}
+	state.ui_focus_index = focus.get("index",-1)
+	state.ui_focus_text = focus.get("text","")
+	state.ui_control_count = focus.get("count",0)
 	state.map_visible = game_ui.map_visible if game_ui else true
 	state.map_signature = hash(map_data)
 	state.player_y = snappedf(player.position.y,0.001)

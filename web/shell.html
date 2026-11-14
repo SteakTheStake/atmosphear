@@ -26,7 +26,7 @@
       <div id="status" role="status" aria-live="polite">Loading…</div>
       <progress id="progress" aria-label="Loading game"></progress>
       <div class="rule"></div>
-      <div class="meta">Headphones recommended. Click once or press Enter to enable audio.<br>Then use the controller or keyboard for every game menu.</div>
+      <div class="meta">Headphones recommended. Press A / × (bottom face button) or Menu to begin.<br>Use the D-pad or left stick to browse, A / × to choose, and B / ○ to go back.<br>A click or Enter also works.</div>
       <div class="meta">Walk: left stick / WASD · Turn: right stick / arrows · Run: LB / Shift<br>Jump: bottom face button / Space · Punch: left face button / E / RT<br>Plan: top face button / M · Pause: Menu / Esc · Acoustic debug: R3 / F3</div>
     </div>
   </section>
@@ -43,12 +43,42 @@
     const progress=document.getElementById('progress');
     const commands=[];
     const debug=new URLSearchParams(location.search).has('debug');
-    let latest=null,ready=false,activated=false,retry=false;
-    window.atmoBoot={phase:'checking'};
-    function activate(){
+    let latest=null,ready=false,activated=false,retry=false,activating=false,releasePending=false;
+    const audioContexts=new Set();
+    // Godot resumes Web Audio for keyboard/pointer events, but not gamepads.
+    // Track the real context without relying on private engine internals.
+    for(const name of ['AudioContext','webkitAudioContext']){
+      const Native=window[name];
+      if(Native)window[name]=new Proxy(Native,{construct(Target,args,newTarget){
+        const context=Reflect.construct(Target,args,newTarget);
+        audioContexts.add(context);return context;
+      }});
+    }
+    window.atmoBoot={phase:'checking',activated:false,audio_state:'uninitialized',controller_input_ready:false};
+    function audioRunning(){
+      const contexts=[...audioContexts].filter(context=>context.state!=='closed');
+      return contexts.length>0&&contexts.every(context=>context.state==='running');
+    }
+    async function activate(){
       if(retry){const url=new URL(location.href);url.searchParams.delete('_atmo_boot');location.replace(url);return;}
-      if(!ready||activated)return;
-      activated=true;launch.hidden=true;canvas.focus();
+      if(!ready||activated||activating)return;
+      activating=true;window.atmoBoot.phase='enabling-audio';
+      status.textContent='Enabling sound…';
+      // Native getGamepads() can grant browser user activation on a real button
+      // press. A synthetic DOM click cannot, so request resume directly here.
+      for(const context of audioContexts){
+        if(context.state!=='closed')context.resume().catch(()=>{});
+      }
+      const until=performance.now()+1800;
+      while(!audioRunning()&&performance.now()<until)await new Promise(resolve=>setTimeout(resolve,30));
+      activating=false;
+      if(!audioRunning()){
+        window.atmoBoot.phase='audio-blocked';window.atmoBoot.audio_state='suspended';
+        status.textContent='Sound is waiting for browser permission. Press A / × or Menu again. If sound stays blocked, allow audio for this site in your browser, or click / press Enter once.';
+        start.textContent='Enable sound';return;
+      }
+      activated=true;releasePending=true;launch.hidden=true;canvas.focus();
+      Object.assign(window.atmoBoot,{phase:'active',activated:true,audio_state:'running'});
     }
     window.Atmo={
       command(value){commands.push(value);},
@@ -56,7 +86,7 @@
       receive(state){
         latest=state;
         if(debug)window.atmoDebug=state;
-        if(state.ready&&!ready){ready=true;window.atmoBoot.phase='ready';start.disabled=false;start.textContent='Enter Atmosphear';status.textContent='Ready. Headphones on.';progress.hidden=true;}
+        if(state.ready&&!ready){ready=true;window.atmoBoot.phase='ready';start.disabled=false;start.textContent='Enter Atmosphear';status.textContent='Ready. Press A / × or Menu on your controller.';progress.hidden=true;}
       }
     };
     start.addEventListener('click',activate);
@@ -69,6 +99,36 @@
       if(!activated&&event.key==='Enter'&&ready){event.preventDefault();event.stopImmediatePropagation();activate();}
     },{capture:true});
     document.addEventListener('visibilitychange',()=>{if(document.hidden&&latest?.started&&!latest.paused)commands.push('pause');});
+    const padButtons=new Map();
+    function pollControllers(){
+      // Poll the native API even before Godot is ready: browsers expose an
+      // already-connected pad only after it is used on the focused page.
+      let pads=[];
+      try{pads=[...(navigator.getGamepads?.()||[])].filter(pad=>pad?.connected);}catch{}
+      let neutral=true;
+      const connected=new Set();
+      for(const pad of pads){
+        connected.add(pad.index);
+        const down=pad.buttons.map(button=>button.pressed||button.value>.9);
+        const previous=padButtons.get(pad.index)||[];
+        if(down.some(Boolean)||pad.axes.some(value=>Math.abs(value)>.3))neutral=false;
+        const fresh=down.some((pressed,index)=>pressed&&!previous[index]);
+        if(!document.hidden&&document.hasFocus()){
+          if(!activated&&((down[0]&&!previous[0])||(down[9]&&!previous[9])))activate();
+          else if(activated&&fresh){
+            canvas.focus();
+            for(const context of audioContexts)if(context.state==='suspended')context.resume().catch(()=>{});
+          }
+        }
+        padButtons.set(pad.index,down);
+      }
+      for(const index of padButtons.keys())if(!connected.has(index))padButtons.delete(index);
+      if(releasePending&&neutral){
+        releasePending=false;commands.push('host:ready');window.atmoBoot.controller_input_ready=true;
+      }
+      requestAnimationFrame(pollControllers);
+    }
+    requestAnimationFrame(pollControllers);
     function deadline(promise,ms,message){
       let timer;
       return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(message)),ms);})]).finally(()=>clearTimeout(timer));

@@ -5,6 +5,7 @@ var screen := "main"
 var root: Control
 var background: ColorRect
 var panel: PanelContainer
+var scroll: ScrollContainer
 var content: VBoxContainer
 var map_view: Control
 var map_visible := true
@@ -12,6 +13,17 @@ var back_screen := "main"
 var focus_items: Array[Control] = []
 var suppress_focus_sound := false
 var setting_labels: Array[Label] = []
+var last_focus_index := 0
+var controller_device := -1
+var controller_stick := Vector2.ZERO
+var controller_dpad := Vector2i.ZERO
+var controller_direction := Vector2i.ZERO
+var controller_repeat := 0.0
+var controller_wait_neutral := false
+const MENU_PRESS_THRESHOLD := 0.55
+const MENU_RELEASE_THRESHOLD := 0.35
+const MENU_REPEAT_DELAY := 0.4
+const MENU_REPEAT_INTERVAL := 0.13
 
 class EnvironmentPlan extends Control:
 	var data: Dictionary = {}
@@ -96,9 +108,15 @@ func configure(owner_game) -> void:
 	var transparent := StyleBoxEmpty.new()
 	panel.add_theme_stylebox_override("panel",transparent)
 	root.add_child(panel)
+	scroll = ScrollContainer.new()
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
+	scroll.focus_mode = Control.FOCUS_NONE
+	panel.add_child(scroll)
 	content = VBoxContainer.new()
+	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",9)
-	panel.add_child(content)
+	scroll.add_child(content)
 	map_view = EnvironmentPlan.new()
 	map_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	root.add_child(map_view)
@@ -129,6 +147,7 @@ func _sound(kind: String) -> void:
 func _focus(control: Control) -> void:
 	focus_items.append(control)
 	control.focus_entered.connect(func():
+		last_focus_index = focus_items.find(control)
 		if not suppress_focus_sound: _sound("move")
 	)
 
@@ -147,6 +166,11 @@ func _button(text: String, action: Callable) -> Button:
 
 func show_screen(next: String) -> void:
 	screen = next
+	last_focus_index = 0
+	# A held navigation direction must not carry into the next menu.
+	controller_wait_neutral = controller_stick.length() > MENU_RELEASE_THRESHOLD or controller_dpad != Vector2i.ZERO
+	controller_direction = Vector2i.ZERO
+	controller_repeat = 0.0
 	background.visible = next != "playing"
 	panel.visible = next != "playing"
 	refresh_map_visibility()
@@ -197,13 +221,16 @@ func show_screen(next: String) -> void:
 			_button("Done",go_back)
 	_label("Walk: left stick / WASD     Turn: right stick / arrows     Run: LB / Shift or L3 toggle",15,Color("9eaf8c"))
 	_label("Jump: bottom button / Space     Punch: left button / E / RT     Plan: top button / M     Pause: Menu / Esc",14,Color("9eaf8c"))
-	_label("Menus: D-pad / arrows to choose, bottom face button / Enter to select, right face button to go back.",14,Color("879c76"))
+	_label("Menus: left stick / D-pad to choose; left / right to adjust. Bottom button: select. Right button: back.",14,Color("879c76"))
 	for i in range(focus_items.size()):
 		var item := focus_items[i]
 		item.focus_neighbor_top = item.get_path_to(focus_items[wrapi(i-1,0,focus_items.size())])
 		item.focus_neighbor_bottom = item.get_path_to(focus_items[(i+1)%focus_items.size()])
 		item.focus_previous = item.focus_neighbor_top
 		item.focus_next = item.focus_neighbor_bottom
+		# Horizontal input belongs to the focused slider or toggle, never another row.
+		item.focus_neighbor_left = NodePath(".")
+		item.focus_neighbor_right = NodePath(".")
 	call_deferred("_initial_focus")
 
 func refresh_map_visibility() -> void:
@@ -211,10 +238,22 @@ func refresh_map_visibility() -> void:
 		map_view.visible = screen == "playing" and map_visible and not bool(game.debug_enabled)
 
 func _initial_focus() -> void:
-	if screen == "playing" or focus_items.is_empty(): return
+	ensure_focus()
+
+func ensure_focus() -> void:
+	if screen == "playing" or focus_items.is_empty() or not game.host_input_ready: return
+	if focus_items.has(get_viewport().gui_get_focus_owner()): return
 	suppress_focus_sound = true
-	focus_items[0].grab_focus()
+	focus_items[clampi(last_focus_index,0,focus_items.size()-1)].grab_focus()
 	suppress_focus_sound = false
+
+func focus_state() -> Dictionary:
+	var current := get_viewport().gui_get_focus_owner()
+	var index := focus_items.find(current)
+	var text := ""
+	if current is BaseButton: text = current.text
+	elif current is Range: text = str(current.get_meta("setting_key",""))
+	return {"index":index,"text":text,"count":focus_items.size() if screen != "playing" else 0}
 
 func _slider(entry: Array) -> void:
 	var row := HBoxContainer.new()
@@ -238,6 +277,7 @@ func _slider(entry: Array) -> void:
 	value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	row.add_child(value_label)
 	var key: String = entry[0]
+	slider.set_meta("setting_key",key)
 	var format_value := func(value):
 		value_label.text = ("%.1fx" % value) if key in ["sensitivity","speed"] else ("%d%%" % roundi(value*100))
 	format_value.call(slider.value)
@@ -251,36 +291,99 @@ func _slider(entry: Array) -> void:
 func go_back() -> void:
 	_sound("back")
 	if screen == "settings": show_screen(back_screen)
+	elif screen == "main" and game.started: show_screen("pause")
 	elif game.started: game._command("resume")
 	else: show_screen("main")
 
 func _input(event: InputEvent) -> void:
-	# Handle standard-pad menu events before GUI dispatch. Browser gamepad events
-	# can reach gameplay actions without activating BaseButton's ui_accept path.
-	# Focus remains a native Godot Control; keyboard navigation stays built-in.
-	if screen == "playing" or not event is InputEventJoypadButton: return
+	# The browser owns the launch gesture until audio is running and it is released.
+	if not game.host_input_ready:
+		get_viewport().set_input_as_handled()
+		return
+	if screen == "playing": return
+	if event is InputEventJoypadMotion:
+		if event.axis not in [JOY_AXIS_LEFT_X,JOY_AXIS_LEFT_Y]: return
+		get_viewport().set_input_as_handled()
+		_use_controller(event.device)
+		if event.axis == JOY_AXIS_LEFT_X: controller_stick.x = event.axis_value
+		else: controller_stick.y = event.axis_value
+		_update_controller_direction()
+		return
+	if not event is InputEventJoypadButton: return
 	if not event.button_index in [JOY_BUTTON_A,JOY_BUTTON_B,JOY_BUTTON_DPAD_UP,JOY_BUTTON_DPAD_DOWN,JOY_BUTTON_DPAD_LEFT,JOY_BUTTON_DPAD_RIGHT]: return
 	get_viewport().set_input_as_handled()
-	if not event.pressed or focus_items.is_empty(): return
-	var current := get_viewport().gui_get_focus_owner()
-	var index := focus_items.find(current)
+	_use_controller(event.device)
 	match event.button_index:
 		JOY_BUTTON_DPAD_UP, JOY_BUTTON_DPAD_DOWN:
 			var direction := -1 if event.button_index == JOY_BUTTON_DPAD_UP else 1
-			var next_index := wrapi(index+direction,0,focus_items.size()) if index >= 0 else 0
-			focus_items[next_index].grab_focus()
+			if event.pressed: controller_dpad.y = direction
+			elif controller_dpad.y == direction: controller_dpad.y = 0
+			_update_controller_direction()
 		JOY_BUTTON_DPAD_LEFT, JOY_BUTTON_DPAD_RIGHT:
-			if current is Range:
-				current.value += current.step*(-1 if event.button_index == JOY_BUTTON_DPAD_LEFT else 1)
+			var direction := -1 if event.button_index == JOY_BUTTON_DPAD_LEFT else 1
+			if event.pressed: controller_dpad.x = direction
+			elif controller_dpad.x == direction: controller_dpad.x = 0
+			_update_controller_direction()
 		JOY_BUTTON_A:
-			if index < 0:
-				current = focus_items[0]
-				current.grab_focus()
-			if current is BaseButton:
-				if current.toggle_mode: current.button_pressed = not current.button_pressed
-				current.pressed.emit()
+			if event.pressed:
+				ensure_focus()
+				var current := get_viewport().gui_get_focus_owner()
+				if current is BaseButton and not current.disabled:
+					if current.toggle_mode: current.button_pressed = not current.button_pressed
+					current.pressed.emit()
 		JOY_BUTTON_B:
-			go_back()
+			if event.pressed: go_back()
+
+func _use_controller(device: int) -> void:
+	if controller_device == device: return
+	reset_controller_navigation()
+	controller_device = device
+
+func reset_controller_navigation() -> void:
+	controller_device = -1
+	controller_stick = Vector2.ZERO
+	controller_dpad = Vector2i.ZERO
+	controller_direction = Vector2i.ZERO
+	controller_repeat = 0.0
+	controller_wait_neutral = false
+	call_deferred("ensure_focus")
+
+func _update_controller_direction() -> void:
+	var raw := Vector2(controller_dpad) if controller_dpad != Vector2i.ZERO else controller_stick
+	if controller_wait_neutral:
+		if raw.length() <= MENU_RELEASE_THRESHOLD: controller_wait_neutral = false
+		return
+	var threshold := MENU_RELEASE_THRESHOLD if controller_direction != Vector2i.ZERO else MENU_PRESS_THRESHOLD
+	var next := Vector2i.ZERO
+	if maxf(absf(raw.x),absf(raw.y)) >= threshold:
+		# Dominant-axis navigation avoids double steps when the stick is diagonal.
+		if absf(raw.y) >= absf(raw.x): next.y = 1 if raw.y > 0 else -1
+		else: next.x = 1 if raw.x > 0 else -1
+	if next == controller_direction: return
+	controller_direction = next
+	controller_repeat = MENU_REPEAT_DELAY
+	if next != Vector2i.ZERO: _navigate(next)
+
+func _navigate(direction: Vector2i) -> void:
+	ensure_focus()
+	if focus_items.is_empty(): return
+	var current := get_viewport().gui_get_focus_owner()
+	var index := focus_items.find(current)
+	if direction.y != 0:
+		focus_items[wrapi(index+direction.y,0,focus_items.size())].grab_focus()
+	elif current is Range:
+		current.value += current.step*direction.x
+	elif current is BaseButton and current.toggle_mode:
+		current.button_pressed = direction.x > 0
+
+func _process(delta: float) -> void:
+	if not is_instance_valid(game) or not game.host_input_ready or screen == "playing": return
+	ensure_focus()
+	if controller_direction == Vector2i.ZERO or controller_wait_neutral: return
+	controller_repeat -= delta
+	if controller_repeat <= 0:
+		controller_repeat = MENU_REPEAT_INTERVAL
+		_navigate(controller_direction)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if screen == "playing":
