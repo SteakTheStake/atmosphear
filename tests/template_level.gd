@@ -17,10 +17,10 @@ func examine() -> void:
 	game.main_level=load("res://scenes/levels/template.tscn")
 	game.play_level("template")
 	for i in range(60): await physics_frame
-	check(game.player.is_on_floor() and game.player.position.y>0,"template spawn lands safely on collision geometry")
-	check(game.sources.size()==2 and game.world.get_node("Geometry").get_child_count()>8,"template has simple editable geometry and two example emitters")
-	check(game.surface_at(Vector3(0,1,16))=="gravel" and game.surface_at(Vector3(-11,1,-10))=="wood","template floor materials control footstep surfaces")
-	check(game.map_data.landmarks.size()==2,"template static plan uses its authored landmarks")
+	check(game.player.is_on_floor(),"template spawn lands safely on collision geometry")
+	check(["Geometry","Sources","SurfaceAreas","Landmarks","Regions","Spawn"].all(func(name):return game.world.has_node(name)),"editable main scene retains the runtime node contract")
+	check(game.surface_at(Vector3(10000,1,10000))==String(game.world.get_meta("default_surface","stone")),"main scene metadata controls fallback footsteps")
+	check(not game.map_data.has("player") and not game.map_data.has("heading"),"main scene plan contains no player-location fields")
 	var custom = game.main_level.instantiate()
 	custom.get_node("Spawn").rotation.y=.7
 	var packed := PackedScene.new()
