@@ -1,11 +1,25 @@
 # atmosphear
 Puzzle game based on an original concept Take 5 from Chuck Sutton
 
-The current prototype is a speech-free, sound-led walking simulator made in Godot 4.6.2. Explore four low-poly environments using a controller or keyboard. There are no spoken directions or objectives. Geometry, distance, surface materials, footsteps, and fixed sound landmarks provide orientation.
+The current prototype is a speech-free, sound-led walking simulator made in Godot 4.6.2. Start in your editable main level, or explore four legacy environments using a controller or keyboard. There are no spoken directions or objectives. Geometry, distance, surface materials, footsteps, and fixed sound landmarks provide orientation.
 
 **[Play in your browser](https://SteakTheStake.github.io/atmosphear/)** · Headphones recommended.
 
-## Environments
+## Build your own main level
+
+Open **`scenes/levels/template.tscn`** in Godot. This is the default **My world** menu choice. It contains a gravel floor and boundaries, a small wooden shelter, a stone water marker, two example sound emitters, map landmarks, regions, and a spawn point. Everything is saved as normal editor nodes; no runtime geometry generator rewrites your edits.
+
+Move or duplicate bodies under **Geometry**. Keep each body's Mesh and MeshCollision aligned; scaling/moving the parent moves both. Assign its Acoustic Material in the Inspector. Change the recordings/ranges under **Sources**, the material rectangles under **SurfaceAreas**, and object labels under **Landmarks**. Move **Spawn** and rotate it around Y to choose the starting position and facing. Keep spawn positions above a walkable collider. Update the level root Metadata **bounds** when resizing the world, and **default_surface** for the fallback footstep material. Update **Regions** rectangles/waypoints as you change room layout; they drive room fields and local QA positions.
+
+Press **F5** and choose **My world** to test through the full game. F3/right-stick click reveals acoustic geometry. Running the level scene alone with F6 does not create the player/audio runtime.
+
+To keep the starter untouched, use **Save Scene As** to create your own `.tscn`. Open **`scenes/main.tscn`**, select its **Atmosphear** root, and set **Main Level → Main Level** to your scene and **Main Level Title** to its name. Save the scene. The first menu choice uses that reference; no path table needs editing. Keep the standard Geometry, Sources, SurfaceAreas, Landmarks, Regions, and Spawn nodes in your level.
+
+The original four scenes now live in **`scenes/levels/legacy/`** and remain available through **Legacy environments**. Their authoring/curation utilities target that folder and do not overwrite your main level. `tools/create_template_level.gd` only creates a missing starter; it refuses to overwrite an existing template.
+
+After changing audio references, refresh the used-audio publication set with the commands below before exporting. The scanner follows the Inspector-selected main scene as well as all legacy scenes.
+
+## Legacy environments
 
 Each environment has six connected areas, routes that loop back, and local sound details:
 
@@ -122,6 +136,7 @@ godot_console --headless --path . --script tests/room_acoustics.gd
 godot_console --headless --path . --script tests/expanded_worlds.gd
 godot_console --headless --path . --script tests/locomotion.gd
 godot_console --headless --path . --script tests/controller_ui.gd
+godot_console --headless --path . --script tests/template_level.gd
 npm ci --prefix tests
 npx --prefix tests playwright install chromium
 node tests/pages_browser.cjs build/web

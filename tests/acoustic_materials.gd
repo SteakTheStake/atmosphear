@@ -52,7 +52,7 @@ func run() -> void:
 	var foliage := load("res://assets/acoustics/foliage.tres")
 	var wood := load("res://assets/acoustics/wood.tres")
 	for id in ["forest","cistern","freighter","courtyard"]:
-		var scene = load("res://scenes/levels/%s.tscn" % id).instantiate()
+		var scene = load("res://scenes/levels/legacy/%s.tscn" % id).instantiate()
 		var all_exported := true
 		for body in scene.get_node("Geometry").get_children():
 			all_exported = all_exported and body.has_method("get_acoustic_profile") and body.get_acoustic_profile() is Resource

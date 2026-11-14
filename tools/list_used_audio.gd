@@ -11,8 +11,7 @@ func _initialize() -> void:
 	var main = load(main_path).instantiate()
 	export_roots.append(main_path)
 	_visit_node(main,main_path,main)
-	for id in main.TITLES:
-		var path: String = "res://scenes/levels/"+id+".tscn"
+	for path: String in main.level_scenes().values():
 		export_roots.append(path)
 		var level: Node = load(path).instantiate()
 		_visit_node(level,path,level)

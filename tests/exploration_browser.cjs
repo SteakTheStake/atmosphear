@@ -89,7 +89,7 @@ const fs=require('node:fs');
     await page.goto('http://127.0.0.1:8060/?debug=1');
     await until(()=>window.atmoDebug?.ready);
     await page.locator('#start').click();
-    await page.keyboard.press('Enter',{delay:80});
+    await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter',{delay:80});await until(()=>window.atmoDebug.ui_screen==='legacy');await page.keyboard.press('Enter',{delay:80});
     await until(()=>window.atmoDebug.started&&window.atmoDebug.level==='forest');
     await hidePlan();await page.waitForTimeout(500);
     const entry=await state();

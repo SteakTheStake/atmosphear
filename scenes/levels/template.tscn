@@ -1,0 +1,462 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/acoustic_surface.gd" id="1_bwkgl"]
+[ext_resource type="Resource" path="res://assets/acoustics/gravel.tres" id="2_x3f8h"]
+[ext_resource type="Resource" path="res://assets/acoustics/wood.tres" id="3_6qh8r"]
+[ext_resource type="Resource" path="res://assets/acoustics/stone.tres" id="4_pkh0q"]
+[ext_resource type="Script" path="res://scripts/sound_emitter.gd" id="5_6vcqa"]
+[ext_resource type="AudioStream" path="res://assets/library/wind_open0.ogg" id="6_mla37"]
+[ext_resource type="AudioStream" path="res://assets/library/water_lap.ogg" id="7_q2cre"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfykg"]
+shading_mode = 0
+albedo_color = Color(0.25, 0.29, 0.21, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sce6r"]
+size = Vector3(48, 0.5, 48)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tg8cx"]
+data = PackedVector3Array(-24, 0.25, 24, 24, 0.25, 24, -24, -0.25, 24, 24, 0.25, 24, 24, -0.25, 24, -24, -0.25, 24, 24, 0.25, -24, -24, 0.25, -24, 24, -0.25, -24, -24, 0.25, -24, -24, -0.25, -24, 24, -0.25, -24, 24, 0.25, 24, 24, 0.25, -24, 24, -0.25, 24, 24, 0.25, -24, 24, -0.25, -24, 24, -0.25, 24, -24, 0.25, -24, -24, 0.25, 24, -24, -0.25, -24, -24, 0.25, 24, -24, -0.25, 24, -24, -0.25, -24, 24, 0.25, 24, -24, 0.25, 24, 24, 0.25, -24, -24, 0.25, 24, -24, 0.25, -24, 24, 0.25, -24, -24, -0.25, 24, 24, -0.25, 24, -24, -0.25, -24, 24, -0.25, 24, 24, -0.25, -24, -24, -0.25, -24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7tsa"]
+shading_mode = 0
+albedo_color = Color(0.25, 0.29, 0.21, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oarag"]
+size = Vector3(0.6, 7, 48)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_64lpu"]
+data = PackedVector3Array(-0.29999998, 3.5, 24, 0.29999998, 3.5, 24, -0.29999998, -3.5, 24, 0.29999998, 3.5, 24, 0.29999998, -3.5, 24, -0.29999998, -3.5, 24, 0.29999998, 3.5, -24, -0.29999998, 3.5, -24, 0.29999998, -3.5, -24, -0.29999998, 3.5, -24, -0.29999998, -3.5, -24, 0.29999998, -3.5, -24, 0.29999998, 3.5, 24, 0.29999998, 3.5, -24, 0.29999998, -3.5, 24, 0.29999998, 3.5, -24, 0.29999998, -3.5, -24, 0.29999998, -3.5, 24, -0.29999998, 3.5, -24, -0.29999998, 3.5, 24, -0.29999998, -3.5, -24, -0.29999998, 3.5, 24, -0.29999998, -3.5, 24, -0.29999998, -3.5, -24, 0.29999998, 3.5, 24, -0.29999998, 3.5, 24, 0.29999998, 3.5, -24, -0.29999998, 3.5, 24, -0.29999998, 3.5, -24, 0.29999998, 3.5, -24, -0.29999998, -3.5, 24, 0.29999998, -3.5, 24, -0.29999998, -3.5, -24, 0.29999998, -3.5, 24, 0.29999998, -3.5, -24, -0.29999998, -3.5, -24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqfcg"]
+shading_mode = 0
+albedo_color = Color(0.25, 0.29, 0.21, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j4hja"]
+size = Vector3(0.6, 7, 48)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gonu1"]
+data = PackedVector3Array(-0.29999998, 3.5, 24, 0.29999998, 3.5, 24, -0.29999998, -3.5, 24, 0.29999998, 3.5, 24, 0.29999998, -3.5, 24, -0.29999998, -3.5, 24, 0.29999998, 3.5, -24, -0.29999998, 3.5, -24, 0.29999998, -3.5, -24, -0.29999998, 3.5, -24, -0.29999998, -3.5, -24, 0.29999998, -3.5, -24, 0.29999998, 3.5, 24, 0.29999998, 3.5, -24, 0.29999998, -3.5, 24, 0.29999998, 3.5, -24, 0.29999998, -3.5, -24, 0.29999998, -3.5, 24, -0.29999998, 3.5, -24, -0.29999998, 3.5, 24, -0.29999998, -3.5, -24, -0.29999998, 3.5, 24, -0.29999998, -3.5, 24, -0.29999998, -3.5, -24, 0.29999998, 3.5, 24, -0.29999998, 3.5, 24, 0.29999998, 3.5, -24, -0.29999998, 3.5, 24, -0.29999998, 3.5, -24, 0.29999998, 3.5, -24, -0.29999998, -3.5, 24, 0.29999998, -3.5, 24, -0.29999998, -3.5, -24, 0.29999998, -3.5, 24, 0.29999998, -3.5, -24, -0.29999998, -3.5, -24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmedj"]
+shading_mode = 0
+albedo_color = Color(0.25, 0.29, 0.21, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3sdhk"]
+size = Vector3(48, 7, 0.6)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i3k3m"]
+data = PackedVector3Array(-24, 3.5, 0.29999998, 24, 3.5, 0.29999998, -24, -3.5, 0.29999998, 24, 3.5, 0.29999998, 24, -3.5, 0.29999998, -24, -3.5, 0.29999998, 24, 3.5, -0.29999998, -24, 3.5, -0.29999998, 24, -3.5, -0.29999998, -24, 3.5, -0.29999998, -24, -3.5, -0.29999998, 24, -3.5, -0.29999998, 24, 3.5, 0.29999998, 24, 3.5, -0.29999998, 24, -3.5, 0.29999998, 24, 3.5, -0.29999998, 24, -3.5, -0.29999998, 24, -3.5, 0.29999998, -24, 3.5, -0.29999998, -24, 3.5, 0.29999998, -24, -3.5, -0.29999998, -24, 3.5, 0.29999998, -24, -3.5, 0.29999998, -24, -3.5, -0.29999998, 24, 3.5, 0.29999998, -24, 3.5, 0.29999998, 24, 3.5, -0.29999998, -24, 3.5, 0.29999998, -24, 3.5, -0.29999998, 24, 3.5, -0.29999998, -24, -3.5, 0.29999998, 24, -3.5, 0.29999998, -24, -3.5, -0.29999998, 24, -3.5, 0.29999998, 24, -3.5, -0.29999998, -24, -3.5, -0.29999998)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q340j"]
+shading_mode = 0
+albedo_color = Color(0.25, 0.29, 0.21, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j0p5s"]
+size = Vector3(48, 7, 0.6)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6gd8o"]
+data = PackedVector3Array(-24, 3.5, 0.29999998, 24, 3.5, 0.29999998, -24, -3.5, 0.29999998, 24, 3.5, 0.29999998, 24, -3.5, 0.29999998, -24, -3.5, 0.29999998, 24, 3.5, -0.29999998, -24, 3.5, -0.29999998, 24, -3.5, -0.29999998, -24, 3.5, -0.29999998, -24, -3.5, -0.29999998, 24, -3.5, -0.29999998, 24, 3.5, 0.29999998, 24, 3.5, -0.29999998, 24, -3.5, 0.29999998, 24, 3.5, -0.29999998, 24, -3.5, -0.29999998, 24, -3.5, 0.29999998, -24, 3.5, -0.29999998, -24, 3.5, 0.29999998, -24, -3.5, -0.29999998, -24, 3.5, 0.29999998, -24, -3.5, 0.29999998, -24, -3.5, -0.29999998, 24, 3.5, 0.29999998, -24, 3.5, 0.29999998, 24, 3.5, -0.29999998, -24, 3.5, 0.29999998, -24, 3.5, -0.29999998, 24, 3.5, -0.29999998, -24, -3.5, 0.29999998, 24, -3.5, 0.29999998, -24, -3.5, -0.29999998, 24, -3.5, 0.29999998, 24, -3.5, -0.29999998, -24, -3.5, -0.29999998)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gv5lr"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s08fu"]
+size = Vector3(14, 4, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qb1ny"]
+data = PackedVector3Array(-7, 2, 0.25, 7, 2, 0.25, -7, -2, 0.25, 7, 2, 0.25, 7, -2, 0.25, -7, -2, 0.25, 7, 2, -0.25, -7, 2, -0.25, 7, -2, -0.25, -7, 2, -0.25, -7, -2, -0.25, 7, -2, -0.25, 7, 2, 0.25, 7, 2, -0.25, 7, -2, 0.25, 7, 2, -0.25, 7, -2, -0.25, 7, -2, 0.25, -7, 2, -0.25, -7, 2, 0.25, -7, -2, -0.25, -7, 2, 0.25, -7, -2, 0.25, -7, -2, -0.25, 7, 2, 0.25, -7, 2, 0.25, 7, 2, -0.25, -7, 2, 0.25, -7, 2, -0.25, 7, 2, -0.25, -7, -2, 0.25, 7, -2, 0.25, -7, -2, -0.25, 7, -2, 0.25, 7, -2, -0.25, -7, -2, -0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_psbpg"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hl0pn"]
+size = Vector3(4, 0.6, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_svnb2"]
+data = PackedVector3Array(-2, 0.29999998, 0.25, 2, 0.29999998, 0.25, -2, -0.29999998, 0.25, 2, 0.29999998, 0.25, 2, -0.29999998, 0.25, -2, -0.29999998, 0.25, 2, 0.29999998, -0.25, -2, 0.29999998, -0.25, 2, -0.29999998, -0.25, -2, 0.29999998, -0.25, -2, -0.29999998, -0.25, 2, -0.29999998, -0.25, 2, 0.29999998, 0.25, 2, 0.29999998, -0.25, 2, -0.29999998, 0.25, 2, 0.29999998, -0.25, 2, -0.29999998, -0.25, 2, -0.29999998, 0.25, -2, 0.29999998, -0.25, -2, 0.29999998, 0.25, -2, -0.29999998, -0.25, -2, 0.29999998, 0.25, -2, -0.29999998, 0.25, -2, -0.29999998, -0.25, 2, 0.29999998, 0.25, -2, 0.29999998, 0.25, 2, 0.29999998, -0.25, -2, 0.29999998, 0.25, -2, 0.29999998, -0.25, 2, 0.29999998, -0.25, -2, -0.29999998, 0.25, 2, -0.29999998, 0.25, -2, -0.29999998, -0.25, 2, -0.29999998, 0.25, 2, -0.29999998, -0.25, -2, -0.29999998, -0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78my4"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q047b"]
+size = Vector3(5, 4, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yjnxp"]
+data = PackedVector3Array(-2.5, 2, 0.25, 2.5, 2, 0.25, -2.5, -2, 0.25, 2.5, 2, 0.25, 2.5, -2, 0.25, -2.5, -2, 0.25, 2.5, 2, -0.25, -2.5, 2, -0.25, 2.5, -2, -0.25, -2.5, 2, -0.25, -2.5, -2, -0.25, 2.5, -2, -0.25, 2.5, 2, 0.25, 2.5, 2, -0.25, 2.5, -2, 0.25, 2.5, 2, -0.25, 2.5, -2, -0.25, 2.5, -2, 0.25, -2.5, 2, -0.25, -2.5, 2, 0.25, -2.5, -2, -0.25, -2.5, 2, 0.25, -2.5, -2, 0.25, -2.5, -2, -0.25, 2.5, 2, 0.25, -2.5, 2, 0.25, 2.5, 2, -0.25, -2.5, 2, 0.25, -2.5, 2, -0.25, 2.5, 2, -0.25, -2.5, -2, 0.25, 2.5, -2, 0.25, -2.5, -2, -0.25, 2.5, -2, 0.25, 2.5, -2, -0.25, -2.5, -2, -0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cf0x0"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uuikm"]
+size = Vector3(5, 4, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rm3c8"]
+data = PackedVector3Array(-2.5, 2, 0.25, 2.5, 2, 0.25, -2.5, -2, 0.25, 2.5, 2, 0.25, 2.5, -2, 0.25, -2.5, -2, 0.25, 2.5, 2, -0.25, -2.5, 2, -0.25, 2.5, -2, -0.25, -2.5, 2, -0.25, -2.5, -2, -0.25, 2.5, -2, -0.25, 2.5, 2, 0.25, 2.5, 2, -0.25, 2.5, -2, 0.25, 2.5, 2, -0.25, 2.5, -2, -0.25, 2.5, -2, 0.25, -2.5, 2, -0.25, -2.5, 2, 0.25, -2.5, -2, -0.25, -2.5, 2, 0.25, -2.5, -2, 0.25, -2.5, -2, -0.25, 2.5, 2, 0.25, -2.5, 2, 0.25, 2.5, 2, -0.25, -2.5, 2, 0.25, -2.5, 2, -0.25, 2.5, 2, -0.25, -2.5, -2, 0.25, 2.5, -2, 0.25, -2.5, -2, -0.25, 2.5, -2, 0.25, 2.5, -2, -0.25, -2.5, -2, -0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2ivy"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ietmq"]
+size = Vector3(0.5, 4, 12)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s7k2n"]
+data = PackedVector3Array(-0.25, 2, 6, 0.25, 2, 6, -0.25, -2, 6, 0.25, 2, 6, 0.25, -2, 6, -0.25, -2, 6, 0.25, 2, -6, -0.25, 2, -6, 0.25, -2, -6, -0.25, 2, -6, -0.25, -2, -6, 0.25, -2, -6, 0.25, 2, 6, 0.25, 2, -6, 0.25, -2, 6, 0.25, 2, -6, 0.25, -2, -6, 0.25, -2, 6, -0.25, 2, -6, -0.25, 2, 6, -0.25, -2, -6, -0.25, 2, 6, -0.25, -2, 6, -0.25, -2, -6, 0.25, 2, 6, -0.25, 2, 6, 0.25, 2, -6, -0.25, 2, 6, -0.25, 2, -6, 0.25, 2, -6, -0.25, -2, 6, 0.25, -2, 6, -0.25, -2, -6, 0.25, -2, 6, 0.25, -2, -6, -0.25, -2, -6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sf76"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_khqh3"]
+size = Vector3(0.5, 4, 12)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5ve8w"]
+data = PackedVector3Array(-0.25, 2, 6, 0.25, 2, 6, -0.25, -2, 6, 0.25, 2, 6, 0.25, -2, 6, -0.25, -2, 6, 0.25, 2, -6, -0.25, 2, -6, 0.25, -2, -6, -0.25, 2, -6, -0.25, -2, -6, 0.25, -2, -6, 0.25, 2, 6, 0.25, 2, -6, 0.25, -2, 6, 0.25, 2, -6, 0.25, -2, -6, 0.25, -2, 6, -0.25, 2, -6, -0.25, 2, 6, -0.25, -2, -6, -0.25, 2, 6, -0.25, -2, 6, -0.25, -2, -6, 0.25, 2, 6, -0.25, 2, 6, 0.25, 2, -6, -0.25, 2, 6, -0.25, 2, -6, 0.25, 2, -6, -0.25, -2, 6, 0.25, -2, 6, -0.25, -2, -6, 0.25, -2, 6, 0.25, -2, -6, -0.25, -2, -6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lebmb"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qoo4g"]
+size = Vector3(14, 0.3, 12)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ihk2t"]
+data = PackedVector3Array(-7, 0.14999999, 6, 7, 0.14999999, 6, -7, -0.14999999, 6, 7, 0.14999999, 6, 7, -0.14999999, 6, -7, -0.14999999, 6, 7, 0.14999999, -6, -7, 0.14999999, -6, 7, -0.14999999, -6, -7, 0.14999999, -6, -7, -0.14999999, -6, 7, -0.14999999, -6, 7, 0.14999999, 6, 7, 0.14999999, -6, 7, -0.14999999, 6, 7, 0.14999999, -6, 7, -0.14999999, -6, 7, -0.14999999, 6, -7, 0.14999999, -6, -7, 0.14999999, 6, -7, -0.14999999, -6, -7, 0.14999999, 6, -7, -0.14999999, 6, -7, -0.14999999, -6, 7, 0.14999999, 6, -7, 0.14999999, 6, 7, 0.14999999, -6, -7, 0.14999999, 6, -7, 0.14999999, -6, 7, 0.14999999, -6, -7, -0.14999999, 6, 7, -0.14999999, 6, -7, -0.14999999, -6, 7, -0.14999999, 6, 7, -0.14999999, -6, -7, -0.14999999, -6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg51l"]
+shading_mode = 0
+albedo_color = Color(0.3, 0.24, 0.17, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u2xgy"]
+size = Vector3(14, 0.04, 12)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_keihw"]
+data = PackedVector3Array(-7, 0.02, 6, 7, 0.02, 6, -7, -0.02, 6, 7, 0.02, 6, 7, -0.02, 6, -7, -0.02, 6, 7, 0.02, -6, -7, 0.02, -6, 7, -0.02, -6, -7, 0.02, -6, -7, -0.02, -6, 7, -0.02, -6, 7, 0.02, 6, 7, 0.02, -6, 7, -0.02, 6, 7, 0.02, -6, 7, -0.02, -6, 7, -0.02, 6, -7, 0.02, -6, -7, 0.02, 6, -7, -0.02, -6, -7, 0.02, 6, -7, -0.02, 6, -7, -0.02, -6, 7, 0.02, 6, -7, 0.02, 6, 7, 0.02, -6, -7, 0.02, 6, -7, 0.02, -6, 7, 0.02, -6, -7, -0.02, 6, 7, -0.02, 6, -7, -0.02, -6, 7, -0.02, 6, 7, -0.02, -6, -7, -0.02, -6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qebpb"]
+shading_mode = 0
+albedo_color = Color(0.34, 0.36, 0.35, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vaq0g"]
+size = Vector3(2, 0.8, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ys6sd"]
+data = PackedVector3Array(-1, 0.39999998, 1, 1, 0.39999998, 1, -1, -0.39999998, 1, 1, 0.39999998, 1, 1, -0.39999998, 1, -1, -0.39999998, 1, 1, 0.39999998, -1, -1, 0.39999998, -1, 1, -0.39999998, -1, -1, 0.39999998, -1, -1, -0.39999998, -1, 1, -0.39999998, -1, 1, 0.39999998, 1, 1, 0.39999998, -1, 1, -0.39999998, 1, 1, 0.39999998, -1, 1, -0.39999998, -1, 1, -0.39999998, 1, -1, 0.39999998, -1, -1, 0.39999998, 1, -1, -0.39999998, -1, -1, 0.39999998, 1, -1, -0.39999998, 1, -1, -0.39999998, -1, 1, 0.39999998, 1, -1, 0.39999998, 1, 1, 0.39999998, -1, -1, 0.39999998, 1, -1, 0.39999998, -1, 1, 0.39999998, -1, -1, -0.39999998, 1, 1, -0.39999998, 1, -1, -0.39999998, -1, 1, -0.39999998, 1, 1, -0.39999998, -1, -1, -0.39999998, -1)
+
+[node name="Template" type="Node3D" unique_id=1301125664]
+metadata/id = "template"
+metadata/title = "My world"
+metadata/bounds = Rect2(-24, -24, 48, 48)
+metadata/default_surface = "gravel"
+
+[node name="Geometry" type="Node3D" parent="." unique_id=370421737]
+
+[node name="Ground" type="StaticBody3D" parent="Geometry" unique_id=901778421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("2_x3f8h")
+metadata/absorption = 0.55
+metadata/material = "gravel"
+metadata/surface = "gravel"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/Ground" unique_id=1840059058]
+material_override = SubResource("StandardMaterial3D_kfykg")
+mesh = SubResource("BoxMesh_sce6r")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/Ground" unique_id=2088291710]
+shape = SubResource("ConcavePolygonShape3D_tg8cx")
+
+[node name="WestBoundary" type="StaticBody3D" parent="Geometry" unique_id=2143714469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 3.5, 0)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("2_x3f8h")
+metadata/absorption = 0.5
+metadata/material = "gravel"
+metadata/surface = "gravel"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WestBoundary" unique_id=1789553986]
+material_override = SubResource("StandardMaterial3D_v7tsa")
+mesh = SubResource("BoxMesh_oarag")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/WestBoundary" unique_id=960040388]
+shape = SubResource("ConcavePolygonShape3D_64lpu")
+
+[node name="EastBoundary" type="StaticBody3D" parent="Geometry" unique_id=692474296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3.5, 0)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("2_x3f8h")
+metadata/absorption = 0.5
+metadata/material = "gravel"
+metadata/surface = "gravel"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/EastBoundary" unique_id=266935160]
+material_override = SubResource("StandardMaterial3D_kqfcg")
+mesh = SubResource("BoxMesh_j4hja")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/EastBoundary" unique_id=1699537567]
+shape = SubResource("ConcavePolygonShape3D_gonu1")
+
+[node name="NorthBoundary" type="StaticBody3D" parent="Geometry" unique_id=429623799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -24)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("2_x3f8h")
+metadata/absorption = 0.5
+metadata/material = "gravel"
+metadata/surface = "gravel"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/NorthBoundary" unique_id=208306088]
+material_override = SubResource("StandardMaterial3D_jmedj")
+mesh = SubResource("BoxMesh_3sdhk")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/NorthBoundary" unique_id=197295207]
+shape = SubResource("ConcavePolygonShape3D_i3k3m")
+
+[node name="SouthBoundary" type="StaticBody3D" parent="Geometry" unique_id=2108036512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 24)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("2_x3f8h")
+metadata/absorption = 0.5
+metadata/material = "gravel"
+metadata/surface = "gravel"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/SouthBoundary" unique_id=191885939]
+material_override = SubResource("StandardMaterial3D_q340j")
+mesh = SubResource("BoxMesh_j0p5s")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/SouthBoundary" unique_id=695851787]
+shape = SubResource("ConcavePolygonShape3D_6gd8o")
+
+[node name="StarterShelternorth0" type="StaticBody3D" parent="Geometry" unique_id=284392065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, -17)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/StarterShelternorth0" unique_id=1372603209]
+material_override = SubResource("StandardMaterial3D_gv5lr")
+mesh = SubResource("BoxMesh_s08fu")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/StarterShelternorth0" unique_id=1750724890]
+shape = SubResource("ConcavePolygonShape3D_qb1ny")
+
+[node name="StarterSheltersouthLintel" type="StaticBody3D" parent="Geometry" unique_id=726088670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3.7, -5)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/StarterSheltersouthLintel" unique_id=82284215]
+material_override = SubResource("StandardMaterial3D_psbpg")
+mesh = SubResource("BoxMesh_hl0pn")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/StarterSheltersouthLintel" unique_id=385582656]
+shape = SubResource("ConcavePolygonShape3D_svnb2")
+
+[node name="StarterSheltersouth0" type="StaticBody3D" parent="Geometry" unique_id=1648308739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 2, -5)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/StarterSheltersouth0" unique_id=952056362]
+material_override = SubResource("StandardMaterial3D_78my4")
+mesh = SubResource("BoxMesh_q047b")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/StarterSheltersouth0" unique_id=662280157]
+shape = SubResource("ConcavePolygonShape3D_yjnxp")
+
+[node name="StarterSheltersouth1" type="StaticBody3D" parent="Geometry" unique_id=230592115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2, -5)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/StarterSheltersouth1" unique_id=636696644]
+material_override = SubResource("StandardMaterial3D_cf0x0")
+mesh = SubResource("BoxMesh_uuikm")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/StarterSheltersouth1" unique_id=1898861410]
+shape = SubResource("ConcavePolygonShape3D_rm3c8")
+
+[node name="StarterShelterwest0" type="StaticBody3D" parent="Geometry" unique_id=1940629389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2, -11)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/StarterShelterwest0" unique_id=41477080]
+material_override = SubResource("StandardMaterial3D_v2ivy")
+mesh = SubResource("BoxMesh_ietmq")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/StarterShelterwest0" unique_id=386463710]
+shape = SubResource("ConcavePolygonShape3D_s7k2n")
+
+[node name="StarterSheltereast0" type="StaticBody3D" parent="Geometry" unique_id=123865971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -11)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/StarterSheltereast0" unique_id=626357581]
+material_override = SubResource("StandardMaterial3D_4sf76")
+mesh = SubResource("BoxMesh_khqh3")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/StarterSheltereast0" unique_id=502103476]
+shape = SubResource("ConcavePolygonShape3D_5ve8w")
+
+[node name="StarterShelterRoof" type="StaticBody3D" parent="Geometry" unique_id=2132862704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 4.15, -11)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/StarterShelterRoof" unique_id=1309133687]
+material_override = SubResource("StandardMaterial3D_lebmb")
+mesh = SubResource("BoxMesh_qoo4g")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/StarterShelterRoof" unique_id=1484431496]
+shape = SubResource("ConcavePolygonShape3D_ihk2t")
+
+[node name="ShelterFloorFloor" type="StaticBody3D" parent="Geometry" unique_id=340048921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.02, -11)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("3_6qh8r")
+metadata/absorption = 0.4
+metadata/material = "wood"
+metadata/surface = "wood"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/ShelterFloorFloor" unique_id=729385077]
+material_override = SubResource("StandardMaterial3D_kg51l")
+mesh = SubResource("BoxMesh_u2xgy")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/ShelterFloorFloor" unique_id=1136065161]
+shape = SubResource("ConcavePolygonShape3D_keihw")
+
+[node name="WaterMarker" type="StaticBody3D" parent="Geometry" unique_id=935809516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.4, -10)
+collision_layer = 2
+script = ExtResource("1_bwkgl")
+acoustic_material = ExtResource("4_pkh0q")
+metadata/absorption = 0.15
+metadata/material = "stone"
+metadata/surface = "stone"
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WaterMarker" unique_id=1609818601]
+material_override = SubResource("StandardMaterial3D_qebpb")
+mesh = SubResource("BoxMesh_vaq0g")
+
+[node name="MeshCollision" type="CollisionShape3D" parent="Geometry/WaterMarker" unique_id=472252025]
+shape = SubResource("ConcavePolygonShape3D_ys6sd")
+
+[node name="Sources" type="Node3D" parent="." unique_id=97107547]
+
+[node name="WindExample" type="Marker3D" parent="Sources" unique_id=1471633656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, 14)
+script = ExtResource("5_6vcqa")
+sound = ExtResource("6_mla37")
+gain_db = -14.0
+audible_range = 45.0
+metadata/clip = "wind_open0"
+metadata/db = -14.0
+metadata/loop = true
+metadata/budget = 1
+metadata/range = 45.0
+metadata/near = 2.5
+metadata/interval_min = 8.0
+metadata/interval_max = 22.0
+metadata/pitch_min = 0.98
+metadata/pitch_max = 1.02
+metadata/gain_variation_db = 1.5
+metadata/motion = 0.0
+metadata/landmark = false
+
+[node name="WaterExample" type="Marker3D" parent="Sources" unique_id=720040972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -10)
+script = ExtResource("5_6vcqa")
+sound = ExtResource("7_q2cre")
+gain_db = -10.0
+landmark = true
+reflection_budget = 2
+audible_range = 32.0
+metadata/clip = "water_lap"
+metadata/db = -10.0
+metadata/loop = true
+metadata/budget = 2
+metadata/range = 32.0
+metadata/near = 2.5
+metadata/interval_min = 8.0
+metadata/interval_max = 22.0
+metadata/pitch_min = 0.98
+metadata/pitch_max = 1.02
+metadata/gain_variation_db = 1.5
+metadata/motion = 0.0
+metadata/landmark = true
+
+[node name="SurfaceAreas" type="Node3D" parent="." unique_id=973994884]
+
+[node name="ShelterFloor" type="Marker3D" parent="SurfaceAreas" unique_id=117211418]
+metadata/rect = Rect2(-18, -17, 14, 12)
+metadata/surface = "wood"
+
+[node name="Landmarks" type="Node3D" parent="." unique_id=1755520284]
+
+[node name="Smallshelter" type="Marker3D" parent="Landmarks" unique_id=1558032546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -11)
+metadata/label = "Small shelter"
+metadata/kind = "shelter"
+
+[node name="Watermarker" type="Marker3D" parent="Landmarks" unique_id=997688200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -10)
+metadata/label = "Water marker"
+metadata/kind = "water"
+
+[node name="Regions" type="Node3D" parent="." unique_id=642968639]
+
+[node name="Openarea" type="Marker3D" parent="Regions" unique_id=350360997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+metadata/label = "Open area"
+metadata/rect = Rect2(-24, -4, 48, 28)
+metadata/signature = "Wind and gravel"
+metadata/waypoints = [Vector3(0, 1, 16), Vector3(10, 1, 10)]
+
+[node name="Shelter" type="Marker3D" parent="Regions" unique_id=1377692456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -11)
+metadata/label = "Shelter"
+metadata/rect = Rect2(-18, -17, 14, 12)
+metadata/signature = "Wooden floor and walls"
+metadata/waypoints = [Vector3(-11, 1, -8), Vector3(-11, 1, -13)]
+
+[node name="Spawn" type="Marker3D" parent="." unique_id=2027684676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 16)

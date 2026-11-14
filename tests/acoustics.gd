@@ -46,7 +46,7 @@ func run() -> void:
 	game.set_process(false)
 	var base_bus_count := AudioServer.bus_count
 	await enter("cistern")
-	check(game.world.scene_file_path == "res://scenes/levels/cistern.tscn", "runtime instantiates the editable saved cistern scene")
+	check(game.world.scene_file_path == "res://scenes/levels/legacy/cistern.tscn", "runtime instantiates the editable saved cistern scene")
 	check(game.foot_pool.size() == 3 and is_instance_valid(game.action_sound), "three independent foot slots and one action emitter exist")
 	check(bus_sends_to("Environment", "Master") and bus_sends_to("Footsteps", "Master"), "direct categories bypass all reverberation")
 	check(bus_sends_to("EnvironmentReflections", "Diffusion") and bus_sends_to("FootstepsReflections", "Diffusion"), "reflection categories feed diffusion exactly once")

@@ -92,7 +92,7 @@ func run() -> void:
 	check(room.stats.decay_bands[1] > stone_stats.decay_bands[1]+.4,"larger reflective geometry produces a longer late decay estimate")
 	large.queue_free()
 	await process_frame
-	var forest: Node3D = load("res://scenes/levels/forest.tscn").instantiate()
+	var forest: Node3D = load("res://scenes/levels/legacy/forest.tscn").instantiate()
 	root.add_child(forest)
 	await physics_frame
 	await physics_frame

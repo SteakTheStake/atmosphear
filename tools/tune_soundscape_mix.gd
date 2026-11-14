@@ -31,7 +31,7 @@ const MIX := {
 
 func _initialize() -> void:
 	for id in MIX:
-		var path: String = "res://scenes/levels/"+id+".tscn"
+		var path: String = "res://scenes/levels/legacy/"+id+".tscn"
 		var scene: Node3D = load(path).instantiate()
 		var before := geometry_signature(scene)
 		for label in MIX[id]:

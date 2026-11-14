@@ -163,7 +163,7 @@ func author() -> void:
 		var packed := PackedScene.new()
 		var result := packed.pack(scene)
 		assert(result == OK)
-		result = ResourceSaver.save(packed,"res://scenes/levels/%s.tscn"%id)
+		result = ResourceSaver.save(packed,"res://scenes/levels/legacy/%s.tscn"%id)
 		assert(result == OK)
 		print("AUTHORED ",id," geometry=",geometry_root.get_child_count()," sources=",source_root.get_child_count())
 		scene.free()

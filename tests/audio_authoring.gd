@@ -23,7 +23,7 @@ func run() -> void:
 func examine() -> void:
 	var total := 0
 	for id in ["forest","cistern","freighter","courtyard"]:
-		var scene: Node3D = load("res://scenes/levels/"+id+".tscn").instantiate()
+		var scene: Node3D = load("res://scenes/levels/legacy/"+id+".tscn").instantiate()
 		var valid := true
 		for anchor in scene.get_node("Sources").get_children():
 			valid = valid and anchor is Emitter and anchor.sound is AudioStream

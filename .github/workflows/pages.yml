@@ -42,7 +42,9 @@ jobs:
           python3 tools/build_pages.py --godot godot
           python3 tools/build_pages.py --godot godot --mobile --output build/pages/mobile
       - name: Verify native controller menu behavior
-        run: godot --headless --path . --script tests/controller_ui.gd
+        run: |
+          godot --headless --path . --script tests/controller_ui.gd
+          godot --headless --path . --script tests/template_level.gd
       - name: Install browser test tools
         working-directory: tests
         run: |

@@ -6,9 +6,12 @@ const DebugView = preload("res://scripts/acoustic_debug.gd")
 const RoomAcoustics = preload("res://scripts/room_acoustics.gd")
 const SoundPalette = preload("res://scripts/sound_palette.gd")
 @export var sound_palette: SoundPalette = preload("res://resources/audio/default_palette.tres")
-const TITLES := {"forest":"Forest & lake", "cistern":"Stone cistern", "freighter":"Deep-space freighter", "courtyard":"Rain courtyard"}
+const LEGACY_TITLES := {"forest":"Forest & lake", "cistern":"Stone cistern", "freighter":"Deep-space freighter", "courtyard":"Rain courtyard"}
 var settings := {"master":0.75,"ambience":0.8,"footsteps":0.75,"ui":0.35,"sensitivity":1.0,"speed":1.0,"quality":1.0,"binaural":1.0}
-var level := "forest"
+@export_group("Main Level")
+@export var main_level: PackedScene
+@export var main_level_title := "My world"
+var level := "template"
 var player: CharacterBody3D
 var listener: AudioListener3D
 var camera: Camera3D
@@ -213,19 +216,27 @@ func _clip(file: String) -> AudioStream:
 	if not clips.has(file): clips[file] = load("res://assets/library/" + file)
 	return clips[file]
 
+func level_title(id: String) -> String:
+	return main_level_title if id == "template" else String(LEGACY_TITLES.get(id,id))
+
+func level_scenes() -> Dictionary:
+	var result := {"template":main_level.resource_path}
+	for id in LEGACY_TITLES: result[id] = "res://scenes/levels/legacy/"+id+".tscn"
+	return result
+
 func play_level(id: String) -> void:
-	if not TITLES.has(id): return
+	if id != "template" and not LEGACY_TITLES.has(id): return
 	_clear_world()
 	level = id
 	qa_region = -1
 	level_generation += 1
-	world = load("res://scenes/levels/"+level+".tscn").instantiate()
+	world = (main_level if level == "template" else load("res://scenes/levels/legacy/"+level+".tscn")).instantiate()
 	add_child(world)
 	surfaces.clear()
 	for area in world.get_node("SurfaceAreas").get_children():
 		surfaces.append({"rect":area.get_meta("rect"),"surface":area.get_meta("surface")})
 	player.position = world.get_node("Spawn").global_position
-	player.rotation = Vector3.ZERO
+	player.rotation = Vector3(0,world.get_node("Spawn").global_rotation.y,0)
 	player.velocity = Vector3.ZERO
 	paused = false
 	elapsed = 0
@@ -618,7 +629,7 @@ func _probe_room() -> void:
 func surface_at(pos: Vector3) -> String:
 	for area in surfaces:
 		if area.rect.has_point(Vector2(pos.x,pos.z)): return area.surface
-	return "gravel" if level == "forest" else ("metal" if level == "freighter" else "stone")
+	return String(world.get_meta("default_surface","stone")) if is_instance_valid(world) else "stone"
 
 func set_paused(value: bool) -> void:
 	if not started: return
@@ -657,7 +668,7 @@ func _command(command: String) -> void:
 					if Vector2(candidate.x-center.x,candidate.z-center.z).length_squared()<Vector2(point.x-center.x,point.z-center.z).length_squared(): point = candidate
 				player.position = Vector3(point.x,1.0,point.z)
 				player.velocity = Vector3.ZERO
-				player.rotation = Vector3.ZERO
+				player.rotation = Vector3(0,world.get_node("Spawn").global_rotation.y,0)
 				qa_region = index
 				acoustic_clock = 0.0
 				_report()
@@ -694,7 +705,9 @@ func _report() -> void:
 	if not OS.has_feature("web") or player == null: return
 	var source_data: Array = []
 	for sound in sources: source_data.append({"clip":sound.get_meta("clip"),"active_clip":sound.get_meta("active_clip",""),"event_count":sound.get_meta("event_count",0),"playing":sound.direct.playing,"anchor":sound.get_meta("anchor"),"landmark":sound.get_meta("landmark"),"virtualized":sound._virtualized,"acoustics":sound.diagnostics})
-	var state := {"ready":true,"started":started,"paused":paused,"level":level,"title":TITLES[level],"steps":steps,"surface":surface_at(player.position),"position":[snappedf(player.position.x,0.01),snappedf(player.position.z,0.01)],"yaw":snappedf(player.rotation.y,0.01),"controllers":Input.get_connected_joypads().size(),"settings":settings,"event":last_event,"generation":level_generation,"diagnostics":{"room":room_stats,"sources":source_data,"bus_count":AudioServer.bus_count}}
+	var state := {"ready":true,"started":started,"paused":paused,"level":level,"title":level_title(level),"steps":steps,"surface":surface_at(player.position),"position":[snappedf(player.position.x,0.01),snappedf(player.position.z,0.01)],"yaw":snappedf(player.rotation.y,0.01),"controllers":Input.get_connected_joypads().size(),"settings":settings,"event":last_event,"generation":level_generation,"diagnostics":{"room":room_stats,"sources":source_data,"bus_count":AudioServer.bus_count}}
+	state.main_level_scene = main_level.resource_path
+	state.region_count = world.get_node("Regions").get_child_count() if is_instance_valid(world) else 0
 	state.ui_screen = game_ui.screen if game_ui else "main"
 	state.host_input_ready = host_input_ready
 	var focus: Dictionary = game_ui.focus_state() if game_ui else {}

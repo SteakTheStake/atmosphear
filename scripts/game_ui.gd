@@ -178,7 +178,7 @@ func show_screen(next: String) -> void:
 	refresh_map_visibility()
 	if next == "playing":
 		map_view.data = game.map_data.duplicate(true)
-		map_view.title = game.TITLES[game.level]
+		map_view.title = game.level_title(game.level)
 		map_view.queue_redraw()
 		get_viewport().gui_release_focus()
 		return
@@ -191,14 +191,20 @@ func show_screen(next: String) -> void:
 	match next:
 		"main":
 			_label("Choose somewhere to wander.",32)
-			_label("Four places. Walk, stop, listen. Take your time.",15,Color("a7b59a"))
-			for id in game.TITLES:
-				_button(game.TITLES[id],func(): game._command("play:"+id))
+			_button(game.main_level_title,func(): game._command("play:template"))
+			_button("Legacy environments",func(): show_screen("legacy"))
 			_button("Settings",func(): back_screen="main";show_screen("settings"))
 			if game.started: _button("Back to this walk",func(): game._command("resume"))
+		"legacy":
+			_label("Legacy environments",32)
+			for id in game.LEGACY_TITLES:
+				_button(game.LEGACY_TITLES[id],func(): game._command("play:"+id))
+			_button("Settings",func(): back_screen="legacy";show_screen("settings"))
+			if game.started: _button("Back to this walk",func(): game._command("resume"))
+			_button("Back to main menu",func(): show_screen("main"))
 		"pause":
 			_label("Take your time.",32)
-			_label(game.TITLES[game.level],17,Color("a7b59a"))
+			_label(game.level_title(game.level),17,Color("a7b59a"))
 			_button("Resume exploring",func(): game._command("resume"))
 			_button("Settings",func(): back_screen="pause";show_screen("settings"))
 			_button("Change environment",func(): show_screen("main"))
@@ -302,6 +308,7 @@ func _slider(entry: Array) -> void:
 func go_back() -> void:
 	_sound("back")
 	if screen == "settings": show_screen(back_screen)
+	elif screen == "legacy": show_screen("main")
 	elif screen == "main" and game.started: show_screen("pause")
 	elif game.started: game._command("resume")
 	else: show_screen("main")

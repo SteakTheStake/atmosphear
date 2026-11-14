@@ -83,7 +83,7 @@ func examine() -> void:
 	var canopy_beds_long := true
 	var varied_families: Dictionary = {}
 	for id in ["forest","cistern","freighter","courtyard"]:
-		var scene = load("res://scenes/levels/%s.tscn" % id).instantiate()
+		var scene = load("res://scenes/levels/legacy/%s.tscn" % id).instantiate()
 		for anchor in scene.get_node("Sources").get_children():
 			var primary: AudioStream = anchor.sound
 			var pool: Array = [primary]

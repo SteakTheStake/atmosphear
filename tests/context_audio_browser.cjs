@@ -97,8 +97,8 @@ const fs=require('node:fs');
     assert(result.focus.peak<.008,'Default feedback stays below0.8% full-scale measured output RMS');
     assert(result.focus.active_ms>0&&result.focus.active_ms<100,'Audio-thread measurements must show a brief click rather than a sustained tone');
 
-    // Actual native navigation: cistern selection -> Settings -> fourth slider.
-    for(let i=0;i<3;i++)await key('ArrowDown');
+    // Actual native navigation: Legacy selection -> Settings -> fourth slider.
+    await key('ArrowDown');
     await key('Enter');await until(()=>window.atmoDebug.ui_screen==='settings');
     for(let i=0;i<3;i++)await key('ArrowDown');
     for(let i=0;i<7;i++)await key('ArrowLeft');
@@ -111,7 +111,7 @@ const fs=require('node:fs');
     for(let i=0;i<7;i++)await key('ArrowRight');
     await until(()=>window.atmoDebug.settings.ui===.35);
     await key('Escape');await until(()=>window.atmoDebug.ui_screen==='main');
-    await key('Enter');await until(()=>window.atmoDebug.started&&window.atmoDebug.level==='forest');
+    await key('ArrowDown');await key('Enter');await until(()=>window.atmoDebug.ui_screen==='legacy');await key('Enter');await until(()=>window.atmoDebug.started&&window.atmoDebug.level==='forest');
     for(const setting of ['setting:ambience:0','setting:footsteps:0'])await command(setting);
     await until(()=>window.atmoDebug.settings.ambience===0&&window.atmoDebug.settings.footsteps===0);
     await page.waitForTimeout(1500);

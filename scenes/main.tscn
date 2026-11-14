@@ -2,5 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bmju3c6uaergd" path="res://scripts/main.gd" id="1"]
 
+[ext_resource type="PackedScene" path="res://scenes/levels/template.tscn" id="2_main_level"]
+
 [node name="Atmosphear" type="Node3D" unique_id=2061075865]
 script = ExtResource("1")
+main_level = ExtResource("2_main_level")

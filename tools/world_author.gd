@@ -144,5 +144,5 @@ static func region(scene: Node3D, label: String, rect: Rect2, signature: String,
 static func save(scene: Node3D, id: String) -> void:
 	var packed := PackedScene.new()
 	assert(packed.pack(scene) == OK)
-	assert(ResourceSaver.save(packed,"res://scenes/levels/%s.tscn"%id) == OK)
+	assert(ResourceSaver.save(packed,"res://scenes/levels/legacy/%s.tscn"%id) == OK)
 	print("AUTHORED ",id," geometry=",scene.get_node("Geometry").get_child_count()," sources=",scene.get_node("Sources").get_child_count()," regions=",scene.get_node("Regions").get_child_count())

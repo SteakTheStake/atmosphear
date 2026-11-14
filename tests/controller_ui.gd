@@ -48,6 +48,10 @@ func run() -> void:
 	await frames(5)
 	var original_settings: Dictionary = game.settings.duplicate()
 	var ui = game.game_ui
+	await tap(JOY_BUTTON_A)
+	check(game.level=="template" and game.world.scene_file_path==game.main_level.resource_path,"first main-menu choice loads the Inspector-selected main scene")
+	game._command("menu")
+	await frames()
 	check(game.host_input_ready and focus_index()==0,"native startup focuses first environment")
 	for action in ["left","right","forward","back","turn_left","turn_right","run_hold","run_toggle","jump","punch","pause","debug_toggle"]:
 		var all_match := true
@@ -65,6 +69,9 @@ func run() -> void:
 	check(not game.started and focus_index()==0,"host startup gate blocks navigation, activation, and Start")
 	game._command("host:ready")
 	await frames()
+	await tap(JOY_BUTTON_DPAD_DOWN)
+	await tap(JOY_BUTTON_A)
+	check(ui.screen=="legacy","Legacy submenu retains the original environments")
 	await axis(JOY_AXIS_LEFT_Y,.2)
 	check(focus_index()==0,"small stick drift does not move menu focus")
 	await axis(JOY_AXIS_LEFT_Y,.8)
@@ -113,7 +120,7 @@ func run() -> void:
 	await frames()
 	check(focus_index()==9,"controller reconnect preserves usable menu focus")
 	await tap(JOY_BUTTON_A)
-	check(ui.screen=="main" and focus_index()==0,"Done returns to main menu")
+	check(ui.screen=="legacy" and focus_index()==0,"Done returns to main menu")
 	button(JOY_BUTTON_A,true)
 	await create_timer(.5).timeout
 	check(game.started and ui.screen=="playing" and game.jumps==0,"held menu confirmation starts a walk without jumping")
@@ -157,9 +164,11 @@ func run() -> void:
 		await tap(JOY_BUTTON_DPAD_DOWN)
 		await tap(JOY_BUTTON_DPAD_DOWN)
 		await tap(JOY_BUTTON_A)
+		await tap(JOY_BUTTON_DPAD_DOWN)
+		await tap(JOY_BUTTON_A)
 		for i in range(level_index): await tap(JOY_BUTTON_DPAD_DOWN)
 		await tap(JOY_BUTTON_A)
-		check(game.level==game.TITLES.keys()[level_index] and not game.paused,"controller loads "+game.TITLES.keys()[level_index])
+		check(game.level==game.LEGACY_TITLES.keys()[level_index] and not game.paused,"controller loads "+game.LEGACY_TITLES.keys()[level_index])
 	await tap(JOY_BUTTON_START)
 	# Up wraps from Resume to Main menu.
 	await tap(JOY_BUTTON_DPAD_UP)

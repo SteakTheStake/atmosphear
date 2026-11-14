@@ -17,7 +17,7 @@ func pool(anchor: AtmoSoundEmitter, names: Array) -> void:
 func _initialize() -> void:
 	var total := 0
 	for id in ["forest","cistern","freighter","courtyard"]:
-		var path: String = "res://scenes/levels/"+id+".tscn"
+		var path: String = "res://scenes/levels/legacy/"+id+".tscn"
 		var scene: Node3D = load(path).instantiate()
 		var geometry_before := geometry_signature(scene)
 		var canopy_index := 0

@@ -150,7 +150,7 @@ async function serve(target){
     await noOtherInput();
   };
   const play=async(index,id)=>{
-    await screen('main');await focus(index);
+    await screen(id==='template'?'main':'legacy');await focus(index);
     const generation=(await state()).generation;
     await button(0,true);
     await until(value=>window.atmoDebug?.level===value&&window.atmoDebug?.ui_screen==='playing',id,`enter ${id}`);
@@ -158,7 +158,7 @@ async function serve(target){
     const current=await state();
     assert.equal(current.generation,generation+1,'Held confirm loads an environment exactly once');
     assert.equal(current.jumps,0,'Held environment confirmation must not also jump');
-    assert(current.scene_source.endsWith(`${id}.tscn`));
+    assert(id==='template'?current.scene_source===current.main_level_scene:current.scene_source.endsWith(`/legacy/${id}.tscn`));
     await button(0,false);await sleep(350);
     const mean=[0,0];let running=false;
     for(let i=0;i<12;i++){
@@ -168,12 +168,12 @@ async function serve(target){
       await sleep(50);
     }
     assert(running&&mean.every(value=>value>1e-6),`${id} must produce actual stereo audio`);
-    const renderer=await evaluate(()=>window.AtmoAcoustics.snapshot());assert.equal(renderer.version,2);assert(renderer.active>0);assert.deepEqual(renderer.errors,[]);assert.equal(renderer.room_fields,6);
+    const renderer=await evaluate(()=>window.AtmoAcoustics.snapshot());assert.equal(renderer.version,2);assert(renderer.active>0);assert.deepEqual(renderer.errors,[]);assert.equal(renderer.room_fields,current.region_count);
     report.levels[id]={renderer,generation:current.generation,scene:current.scene_source,stereo_rms:mean};
     check(`Controller enters ${id}; held confirm causes no jump; stereo output runs`);
   };
   const pause=async()=>{await tap(9);await screen('pause');};
-  const chooser=async()=>{await pause();await focus(2);await tap(0);await screen('main');};
+  const chooser=async()=>{await pause();await focus(2);await tap(0);await screen('main');await focus(1);await tap(0);await screen('legacy');};
 
   try{
     const url=new URL(host.base);url.searchParams.set('debug','1');
@@ -181,18 +181,18 @@ async function serve(target){
     await launch(0);
     check('A launches from the overlay without native activation, and release gates menu input');
     assert.equal((await state()).ui_focus_index,0);
-    await tap(12);assert.equal((await state()).ui_focus_index,4,'D-pad up wraps to Settings');
+    await tap(12);assert.equal((await state()).ui_focus_index,2,'D-pad up wraps to Settings');
     await tap(13);assert.equal((await state()).ui_focus_index,0,'D-pad down wraps to Forest');
     await stick(1,.2,300);assert.equal((await state()).ui_focus_index,0,'Stick drift below dead zone does not navigate');
     await stick(1,.8);assert.equal((await state()).ui_focus_index,1,'One stick edge moves exactly one item');
     await stick(1,-.8);assert.equal((await state()).ui_focus_index,0);
     await stick(1,.8,590);const repeated=(await state()).ui_focus_index;
-    assert(repeated>=2&&repeated<=3,'Held stick repeats after the navigation delay');
+    assert(repeated>=0&&repeated<3&&repeated!==1,'Held stick repeats after the navigation delay');
     await sleep(350);assert.equal((await state()).ui_focus_index,repeated,'Neutral stick stops navigation repeat');
     check('D-pad wrap, stick dead zone, single edges, delayed repeat, and neutral release');
     await screenshot('test-results/controller-main.png');await noOtherInput();
 
-    await focus(4);await tap(0);await screen('settings');
+    await focus(2);await tap(0);await screen('settings');
     const settings=[['master',1,.05],['ambience',1,.05],['footsteps',1,.05],['ui',1,.05],['sensitivity',2,.1],['speed',1.5,.1]];
     for(let i=0;i<settings.length;i++){
       const [key,max,step]=settings[i];await focus(i);
@@ -213,7 +213,8 @@ async function serve(target){
     report.saved_settings={...(await state()).settings};await focus(9);await tap(0);await screen('main');
     check('All six settings sliders, quality/debug toggles, and Done work using controller focus');
 
-    await play(0,'forest');
+    await play(0,'template');check('Default main choice loads the editable template');
+    await chooser();await play(0,'forest');
     const beforeWalk=await state();await stick(1,-.85,1000);const walked=await state();
     assert(walked.position[1]<beforeWalk.position[1]-.5&&walked.steps>beforeWalk.steps,'Left stick walks with footsteps');
     const yaw=walked.yaw;await stick(2,.8,400);assert(Math.abs((await state()).yaw-yaw)>.1,'Right stick turns');
@@ -251,7 +252,7 @@ async function serve(target){
     assert.equal((await state()).jumps,resumeJumps,'Held Resume confirmation must not also jump');await button(0,false);await sleep(350);
     await pause();await focus(1);await tap(0);await screen('settings');await tap(1);await screen('pause');
     await focus(1);await tap(0);await screen('settings');await tap(9);await screen('playing');
-    await chooser();await tap(1);await screen('pause');await tap(1);await screen('playing');
+    await chooser();await tap(1);await screen('main');await tap(1);await screen('pause');await tap(1);await screen('playing');
     await chooser();await focus(5);await tap(0);await screen('playing');
     check('Start pause/resume, held transitions, B back through both submenus, and Back to this walk');
 
@@ -279,7 +280,7 @@ async function serve(target){
     await noOtherInput();report.before_reload={activation:(await snapshot()).activation,inputs:(await snapshot()).inputs};
     await sleep(1200);await page.reload({waitUntil:'domcontentloaded'});await launch(9);
     assert.deepEqual((await state()).settings,report.saved_settings,'Every edited setting persists across a browser reload');
-    await focus(4);await tap(0);await screen('settings');await tap(1);await screen('main');
+    await focus(2);await tap(0);await screen('settings');await tap(1);await screen('main');
     await noOtherInput();
     check('Start also launches safely after reload; settings persist; B returns from initial Settings');
     assert.deepEqual(errors,[],'No browser or Godot errors');
