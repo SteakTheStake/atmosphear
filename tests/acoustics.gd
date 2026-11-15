@@ -76,6 +76,9 @@ func run() -> void:
 	check(drips.diagnostics.reflections > 0, "finite cistern faces produce reflected paths")
 	print("DOORWAY ", drips.diagnostics)
 	var towards: Vector3 = (CISTERN_CLEAR - drips.global_position).normalized()
+	# This fixture is normally a stationary landmark. Explicitly opt it into
+	# Doppler while exercising the moving-source calibration below.
+	drips.doppler_enabled = true
 	drips.source_velocity = towards * 12.0
 	settle(drips, CISTERN_CLEAR)
 	check(drips.diagnostics.pitch > 1.025, "approaching source raises pitch")

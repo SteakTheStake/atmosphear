@@ -4,7 +4,7 @@ compatibility_minimum = "4.5"
 reloadable = false
 
 [libraries]
-windows.x86_64 = "res://native/bin/3493de942d2bc820/atmo_audio.dll"
+windows.x86_64 = "res://native/bin/814b48b2f8e08190/atmo_audio.dll"
 
 [dependencies]
-windows.x86_64 = {"res://native/bin/3493de942d2bc820/phonon.dll": ""}
+windows.x86_64 = {"res://native/bin/814b48b2f8e08190/phonon.dll": ""}

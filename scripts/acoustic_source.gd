@@ -14,6 +14,7 @@ const MAX_SECOND_ORDER_CANDIDATES := 18
 const AcousticProfile = preload("res://scripts/acoustic_material.gd")
 
 var source_velocity := Vector3.ZERO
+var doppler_enabled := true
 var diagnostics: Dictionary = {}
 var direct: AudioStreamPlayer3D
 var direct_filter: AudioEffectLowPassFilter
@@ -75,6 +76,7 @@ func _web_call(method: String, args: Array = []) -> void:
 func configure(stream: AudioStream, db: float, category: String, looped := true, reflection_budget := 2) -> void:
 	assert(not _configured, "Configure each acoustic source only once; use set_stream for pooled footsteps.")
 	_category = category
+	if category == "Footsteps": doppler_enabled = false
 	_base_db = db
 	_looped = looped
 	_reflection_budget = (16 if category == "Environment" else 8) if _native_audio else clampi(reflection_budget, 0, MAX_REFLECTION_COUNT)
@@ -285,7 +287,7 @@ func tick(listener_pos: Vector3, listener_velocity: Vector3, delta: float, quali
 	var listener_radial := clampf(listener_velocity.dot(direction), -55.0, 55.0)
 	var ratio := (SPEED_OF_SOUND - listener_radial) / (SPEED_OF_SOUND - source_radial)
 	var smoothing := 1.0 - exp(-delta * 7.0)
-	_pitch = lerpf(_pitch, clampf(ratio, 0.85, 1.18), smoothing)
+	_pitch = lerpf(_pitch, clampf(ratio, 0.85, 1.18), smoothing) if doppler_enabled else 1.0
 	direct.pitch_scale = _variation_pitch if _propagation_audio else _pitch * _variation_pitch
 	_query_timer -= delta
 	if _query_timer <= 0.0:
@@ -346,8 +348,8 @@ func tick(listener_pos: Vector3, listener_velocity: Vector3, delta: float, quali
 		for path in _paths:
 			paths.append({"id":path.id,"position":[path.point.x,path.point.y,path.point.z],"length":path.length,"cutoff":path.get("cutoff",clampf(20000.0*exp(-path.length*.0015),6000,20000)),"db":_base_db+_variation_gain_db+mix_gain_db+medium_gain_db+linear_to_db(maxf(near_distance/maxf(path.length,near_distance),.001))+linear_to_db(maxf(_largest(path.bands),.001))-3.0})
 		var send_gain := sqrt(maxf(_diffuse_energy.y,.000001))*.35*near_distance/maxf(distance,near_distance)
-		_web_call("update",[{"distance":distance,"position":[global_position.x,global_position.y,global_position.z],"cutoff":_target_cutoff,"db":direct.volume_db+linear_to_db(near_distance/maxf(distance,near_distance)),"pitch":_variation_pitch,"paths":paths,"transmission":_largest(_transmission),"send_db":_base_db+_variation_gain_db+mix_gain_db+medium_gain_db+linear_to_db(maxf(send_gain,.00001))}])
-	diagnostics = {"blocked": snappedf(_obstruction, 0.01), "cutoff": int(direct_filter.cutoff_hz), "pitch": snappedf(_pitch, 0.0001), "reflections": _paths.size(), "distance": snappedf(distance, 0.01), "direct_db": snappedf(direct.volume_db, 0.1), "transmission":_transmission, "diffuse_energy":_diffuse_energy,"surface_probes":_probe_count,"visibility_queries":_visibility_queries,"second_order":_paths.filter(func(p):return p.order == 2).size()}
+		_web_call("update",[{"distance":distance,"position":[global_position.x,global_position.y,global_position.z],"cutoff":_target_cutoff,"db":direct.volume_db+linear_to_db(near_distance/maxf(distance,near_distance)),"pitch":_variation_pitch,"doppler":doppler_enabled,"paths":paths,"transmission":_largest(_transmission),"send_db":_base_db+_variation_gain_db+mix_gain_db+medium_gain_db+linear_to_db(maxf(send_gain,.00001))}])
+	diagnostics = {"blocked": snappedf(_obstruction, 0.01), "cutoff": int(direct_filter.cutoff_hz), "pitch": snappedf(_pitch, 0.0001), "doppler_enabled":doppler_enabled, "reflections": _paths.size(), "distance": snappedf(distance, 0.01), "direct_db": snappedf(direct.volume_db, 0.1), "transmission":_transmission, "diffuse_energy":_diffuse_energy,"surface_probes":_probe_count,"visibility_queries":_visibility_queries,"second_order":_paths.filter(func(p):return p.order == 2).size()}
 
 func _tick_native_reflection(i: int, distance: float, smoothing: float, delta: float) -> void:
 	var state: Dictionary = _reflection_fades[i]

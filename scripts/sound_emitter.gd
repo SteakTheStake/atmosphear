@@ -50,6 +50,12 @@ var _watched_variants: Array[AudioStream] = []
 		_changed()
 
 @export_group("Spatial Acoustics")
+## Automatic enables Doppler only for moving emitters and authored bird paths.
+## Diffuse wind, leaves, water beds and stationary landmarks retain stable pitch.
+@export_enum("Automatic", "Disabled", "Enabled") var doppler_mode := 0:
+	set(value):
+		doppler_mode = clampi(value,0,2)
+		_changed()
 @export_range(0,4,1) var reflection_budget := 1:
 	set(value):
 		reflection_budget = clampi(value,0,4)
@@ -107,6 +113,7 @@ func configuration() -> Dictionary:
 		"variants":recordings(),
 		"clip":sound.resource_path.get_file().get_basename() if sound != null and not sound.resource_path.is_empty() else "",
 		"db":gain_db,"loop":looped,"budget":reflection_budget,
+		"doppler":doppler_mode==2 or (doppler_mode==0 and (motion>0 or not String(get_meta("bird_path","")).is_empty() or bool(get_meta("managed_event",false)))),
 		"range":audible_range,"near":minf(near_distance,audible_range),
 		"interval_min":interval_min,"interval_max":maxf(interval_max,interval_min),
 		"pitch_min":pitch_min,"pitch_max":maxf(pitch_max,pitch_min),

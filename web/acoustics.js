@@ -94,16 +94,24 @@ renderer.dispose=function(id){const e=this.emitters.get(id);if(!e)return;this.st
  setTimeout(()=>{for(const node of [e.input,e.delay,e.filter,e.gain,e.pan,e.send,...e.air])node.disconnect();},100);this.emitters.delete(id);};
 function retire(e,p){const t=renderer.context.currentTime;ramp(p.gain.gain,0,t,.06);setTimeout(()=>{try{e.input.disconnect(p.delay);}catch{}for(const n of [p.delay,p.filter,p.gain,p.pan])n.disconnect();},100);}
 renderer.update=function(id,d){const e=this.emitters.get(id);if(!e||!this.ready)return;const c=this.context,t=c.currentTime;
+ const doppler=d.doppler!==false;
  const region=this.region(d.position);if(e.field!==region){e.send.disconnect();e.send.connect(this.fields?.get(region)?.input||this.roomInput);e.field=region;}
  e.pitch=d.pitch; // source variation only; propagation delay supplies physical Doppler.
  if(e.source){ramp(e.source.playbackRate,d.pitch,t);e.lastRate=d.pitch;}
  const category=e.category==='Footsteps'?this.settings?.footsteps:this.settings?.ambience;
  airUpdate(e.air,d.distance,t);
  const gain=(category??.8)*db(d.db);ramp(e.gain.gain,this.isolation==='early'||this.isolation==='late'?0:gain,t);
- ramp(e.delay.delayTime,clamp(d.distance/343,0,.8),t,1/30);ramp(e.filter.frequency,d.cutoff,t);position(e.pan,d.position,t);
+ // Continuous environmental beds have no discrete wavefront to chase. Keep
+ // their direct clock unshifted; distance still controls gain, filtering/pan.
+ if(doppler)ramp(e.delay.delayTime,clamp(d.distance/343,0,.8),t,1/30);
+ else{e.delay.delayTime.cancelScheduledValues(t);e.delay.delayTime.setValueAtTime(0,t);}
+ ramp(e.filter.frequency,d.cutoff,t);position(e.pan,d.position,t);
  const seen=new Set();for(const path of d.paths){seen.add(path.id);let p=e.paths.get(path.id);
- if(!p){p={delay:c.createDelay(1),filter:filter(c),gain:c.createGain(),pan:panner(c)};p.gain.gain.value=0;p.delay.delayTime.value=clamp(path.length/343,0,.8);e.input.connect(p.delay);p.delay.connect(p.filter);p.filter.connect(p.gain);p.gain.connect(p.pan);p.pan.connect(this.output);e.paths.set(path.id,p);this.audit.pathReplacements++;}
- ramp(p.delay.delayTime,clamp(path.length/343,0,.8),t,.16);ramp(p.filter.frequency,path.cutoff,t);position(p.pan,path.position,t);
+ if(!p){p={delay:c.createDelay(1),filter:filter(c),gain:c.createGain(),pan:panner(c)};p.gain.gain.value=0;p.delay.delayTime.value=clamp((doppler?path.length:Math.max(0,path.length-d.distance))/343,0,.8);e.input.connect(p.delay);p.delay.connect(p.filter);p.filter.connect(p.gain);p.gain.connect(p.pan);p.pan.connect(this.output);e.paths.set(path.id,p);this.audit.pathReplacements++;}
+ // Each ambient reflection retains its initial excess delay. New path IDs
+ // fade between separate fixed taps instead of dragging an audible read head.
+ if(doppler)ramp(p.delay.delayTime,clamp(path.length/343,0,.8),t,.16);
+ ramp(p.filter.frequency,path.cutoff,t);position(p.pan,path.position,t);
  ramp(p.gain.gain,this.isolation==='direct'||this.isolation==='late'?0:(category??.8)*db(path.db),t,.06);}
  for(const [key,p] of e.paths)if(!seen.has(key)){retire(e,p);e.paths.delete(key);}
  ramp(e.send.gain,this.isolation==='direct'||this.isolation==='early'?0:(category??.8)*db(d.send_db)*(region?1:(d.transmission??1)),t);

@@ -37,6 +37,23 @@ report.motion=await page.evaluate(async()=>{
  result.push({speed_m_s:speed,source_rate:playbackRate,frequency_hz:(crossings.length-1)*48000/(crossings.at(-1)-crossings[0]),expected_hz:1000*(1-speed/343)});
  }return result;
 });
+report.ambient=await page.evaluate(async()=>{
+ const results=[];
+ for(const isolation of ['direct','early']){
+  const c=new OfflineAudioContext(2,28800,48000),r=AtmoAcoustics;r.context=c;r.output=c.createGain();r.output.connect(c.destination);r.roomInput=c.createGain();r.ready=true;r.mode='speakers';r.isolation=isolation;r.settings={ambience:1};r.emitters.clear();r.cache.clear();
+  const b=c.createBuffer(1,48000,48000),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=Math.sin(2*Math.PI*1000*i/48000)*.1;
+  r.cache.set('ambient',Promise.resolve(b));r.configure('ambient','ambient',true,'Environment');
+  const update=t=>r.update('ambient',{doppler:false,distance:3.43+1.715*t,position:[0,0,-3.43-1.715*t],cutoff:20000,db:0,pitch:1,send_db:-120,paths:[{id:'wall',position:[0,0,-6.86],length:6.86+3.43*t,cutoff:20000,db:0}]});
+  update(0);r.play('ambient');await Promise.resolve();await Promise.resolve();
+  const stops=[.1,.2,.3,.4,.5].map(t=>c.suspend(t)),render=c.startRendering();
+  for(const stop of stops){await stop;update(c.currentTime);await c.resume();}
+  const y=(await render).getChannelData(0),crossings=[];
+  for(let i=4800;i<24000;i++)if(y[i]<=0&&y[i+1]>0)crossings.push(i-y[i]/(y[i+1]-y[i]));
+  const e=r.emitters.get('ambient');results.push({isolation,frequency_hz:(crossings.length-1)*48000/(crossings.at(-1)-crossings[0]),direct_delay:e.delay.delayTime.value,reflection_delay:e.paths.get('wall').delay.delayTime.value});
+ }
+ return results;
+});
+for(const a of report.ambient){assert(Math.abs(a.frequency_hz-1000)<.2,`${a.isolation} ambience retains pitch while listener distance and reflection length change`);assert.equal(a.direct_delay,0);assert(Math.abs(a.reflection_delay-.01)<.00001,'Ambient reflection retains a fixed excess-delay tap');}
 report.transitions=await page.evaluate(async()=>{
  const results=[];
  for(const action of ['stop','suspend','restart','dispose']){

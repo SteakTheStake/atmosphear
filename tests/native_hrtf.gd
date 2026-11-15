@@ -142,6 +142,26 @@ func run() -> void:
 	var frequency := (crossings.size()-1)*RATE/(crossings[-1]-crossings[0])
 	check(absf(frequency-995.0)<1.0,"fractional propagation applies one physical Doppler shift")
 	report.doppler_hz=frequency
+	report.ambient_pitch=[]
+	for reflected in [false,true]:
+		var ambient=engine(false)
+		ambient.configure_pcm("wind",tone,true,"Environment")
+		ambient.play("wind",0.0)
+		var pcm:=PackedVector2Array()
+		for i in range(60):
+			var d:=params(Vector3(0,0,-3.43),3.43+1.715*float(i)/60.0)
+			d.doppler=false
+			if reflected:
+				d.db=-120
+				d.paths=[{"id":"wall","position":[0,0,-6.86],"length":6.86+3.43*float(i)/60.0,"cutoff":20000,"db":0}]
+			ambient.update("wind",d)
+			pcm.append_array(ambient.render_frames(800))
+		var zeroes:Array[float]=[]
+		for i in range(24000,pcm.size()-1):
+			if pcm[i].x<=0 and pcm[i+1].x>0:zeroes.append(i-pcm[i].x/(pcm[i+1].x-pcm[i].x))
+		var hz:float=(zeroes.size()-1)*RATE/(zeroes[-1]-zeroes[0])
+		check(absf(hz-1000.0)<.2,"native ambient pitch stays stable while "+("reflected" if reflected else "direct")+" distance changes")
+		report.ambient_pitch.append({"reflected":reflected,"frequency_hz":hz})
 	var state := scene_data(false)
 	state.paused=true
 	moving.scene(state)

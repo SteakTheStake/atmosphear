@@ -56,6 +56,12 @@ calls provide a quieter background. Raw water beds have rumble reduction and
 loop-wrap crossfades. The mix keeps transient headroom rather than forcing every
 source to the same loudness. Menu clicks retain their existing soft feedback.
 
+Doppler defaults to moving emitters and bird paths. Wind, leaf rustle, water beds,
+stationary landmarks and self-generated footsteps keep stable pitch while their
+distance, panning, filtering and reverb continue to update. Ambient early paths
+retain fixed excess-delay taps to avoid pitch glides. Each sound emitter exposes
+an Automatic / Disabled / Enabled Doppler override in the Inspector.
+
 Audio files come only from the supplied library. New derivatives and source
 hashes are recorded in the local catalog; `package_used_audio.py --write` publishes
 only the dependency closure of playable scenes and their actual sound slots.

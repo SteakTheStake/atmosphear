@@ -319,6 +319,7 @@ func _emitter_configuration(anchor: Node3D) -> Dictionary:
 func _create_emitter(anchor: Node3D, position_override = null) -> Node3D:
 	var config := _emitter_configuration(anchor)
 	var sound = Source.new()
+	sound.doppler_enabled = bool(config.get("doppler",float(config.get("motion",0))>0))
 	world.add_child(sound)
 	sound.global_position = anchor.global_position if position_override == null else position_override
 	var stream: AudioStream = config.get("stream")

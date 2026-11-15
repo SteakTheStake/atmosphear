@@ -16,6 +16,10 @@ func run() -> void:
 	check(game.world.get_node("TakeoffEvents").get_child_count()==14,"all takeoff events imported")
 	check(game.sources.size()<=22,"large map audio has bounded active voice count")
 	check(game.sources.any(func(s):return s.direct.playing),"spawn has continuous environment sound")
+	var anchors:Array=game.world.get_node("Sources").get_children()
+	check(anchors.filter(func(a):return a.get_meta("mix_group","") in ["wind","water","canopy","detail"]).all(func(a):return not a.configuration().doppler),"wind, water, foliage and other ambience disable Doppler automatically")
+	check(anchors.filter(func(a):return a.has_meta("bird_path") or bool(a.get_meta("managed_event",false))).all(func(a):return a.configuration().doppler),"flying birds and takeoff events retain Doppler")
+	check(game.foot_pool.all(func(s):return not s.doppler_enabled),"self-generated footsteps have no Doppler shift")
 	var entry:Dictionary=game.world.active.values()[0]
 	var anchor:Node3D=entry.anchor;var original:AudioStream=anchor.sound
 	var previous_id:int=entry.sound.get_instance_id()

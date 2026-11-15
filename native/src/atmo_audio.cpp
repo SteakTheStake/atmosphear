@@ -71,7 +71,7 @@ struct PathTarget {uint64_t id=0;V3 position;float distance=0,cutoff=20000,volum
 struct Control {
  std::shared_ptr<PCM> pcm;
  std::array<PathTarget,INPUT_PATHS> paths{};
- int count=0,field=0;float pitch=1,send=0,offset=0;bool loop=false,playing=false,silent=false,disposed=false,foot=false;uint64_t serial=0;
+ int count=0,field=0;float pitch=1,send=0,offset=0;bool loop=false,playing=false,silent=false,disposed=false,foot=false,doppler=true;uint64_t serial=0;
 };
 struct Scene {V3 position{0,0,0},forward{0,0,-1};float ambience=.8f,footsteps=.75f;bool paused=true,headphones=true;};
 struct Path {
@@ -224,7 +224,7 @@ public:
    std::array<int,PATHS> target_index{};target_index.fill(-1);
    if(!c.disposed)for(int t=0;t<c.count;t++){
     int found=-1;for(int p=0;p<PATHS;p++)if(e.paths[p].id==c.paths[t].id){found=p;break;}
-    if(found<0)for(int p=0;p<PATHS;p++)if(e.paths[p].level<.000001f&&target_index[p]<0){found=p;auto &s=e.paths[p];s.id=c.paths[t].id;s.delay=bound(c.paths[t].distance/343*rate,0,rate*.8f);s.delay_left=0;s.direction=relative(c.paths[t].position);s.filters={};iplBinauralEffectReset(s.hrtf);break;}
+    if(found<0)for(int p=0;p<PATHS;p++)if(e.paths[p].level<.000001f&&target_index[p]<0){found=p;auto &s=e.paths[p];s.id=c.paths[t].id;s.delay=bound((c.doppler?c.paths[t].distance:(t==0?0:std::max(0.0f,c.paths[t].distance-c.paths[0].distance)))/343*rate,0,rate*.8f);s.delay_left=0;s.direction=relative(c.paths[t].position);s.filters={};iplBinauralEffectReset(s.hrtf);break;}
     if(found>=0)target_index[found]=t;else path_overflows.fetch_add(1);
    }
    bool finished=c.disposed&&e.envelope<.000001f;
@@ -236,7 +236,8 @@ public:
      // New geometry updates create a continuous linear delay ramp. Its slope
      // supplies Doppler, so source playback receives take variation only.
      float remaining=s.delay+s.delay_step*s.delay_left;
-     if(std::abs(delay-remaining)>.005f){s.delay_left=std::max(1,int(rate*(s.id==1?1.0f/60:.08f)));s.delay_step=(delay-s.delay)/s.delay_left;}
+     if(c.doppler&&std::abs(delay-remaining)>.005f){s.delay_left=std::max(1,int(rate*(s.id==1?1.0f/60:.08f)));s.delay_step=(delay-s.delay)/s.delay_left;}
+     if(!c.doppler)s.delay_left=0; // Stable ambient taps; spatial gain/filter/direction still update.
      s.direction=(s.direction*.8f+relative(dest.position)*.2f).normalized();s.distance+=.2f*(dest.distance-s.distance);s.cutoff+=.2f*(dest.cutoff-s.cutoff);
     }
     if(s.level<.000001f&&target_level<.000001f)continue;
@@ -349,7 +350,7 @@ public:
  void clear(){std::lock_guard<std::mutex> g(core->mutex);for(auto &e:core->emitters)if(e){e->control.disposed=true;e->control.playing=false;}core->ids.clear();core->scene.paused=true;}
  void update(const String &id,const Dictionary &d){
   std::lock_guard<std::mutex> g(core->mutex);core->collect();auto *e=lookup(id);if(!e)return;auto &c=e->control;
-  c.pitch=number(d,"pitch",1);c.send=gain(number(d,"send_db",-100));c.field=core->region(vector(d["position"]));if(c.field==0)c.send*=number(d,"transmission",1);
+  c.doppler=bool(d.get("doppler",true));c.pitch=number(d,"pitch",1);c.send=gain(number(d,"send_db",-100));c.field=core->region(vector(d["position"]));if(c.field==0)c.send*=number(d,"transmission",1);
   c.count=1;c.paths[0]={1,vector(d["position"]),number(d,"distance",0),number(d,"cutoff",20000),gain(number(d,"db",-100))};
   Array paths=d.get("paths",Array());for(int i=0;i<paths.size()&&c.count<INPUT_PATHS;i++){Dictionary p=paths[i];c.paths[c.count++]={identity(p["id"]),vector(p["position"]),number(p,"length",0),number(p,"cutoff",20000),gain(number(p,"db",-100))};}
  }
