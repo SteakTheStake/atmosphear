@@ -29,10 +29,10 @@ func enter(id: String) -> void:
 
 func expected_private_buses() -> int:
 	# Independent contract: each authored emitter owns one direct bus plus its
-	# authored reflection budget; the three foot slots and action slot have 2/3.
-	var count := 3 * (1 + 2) + (1 + 3)
+	# authored reflection budget, each with two crossfaded native delay taps.
+	var count := 3 * (1 + 2 * 2) + (1 + 2 * 3)
 	for anchor in game.world.get_node("Sources").get_children():
-		count += 1 + int(anchor.get_meta("budget", 2))
+		count += 1 + 2 * int(anchor.get_meta("budget", 2))
 	return count
 
 func bus_sends_to(bus_name: StringName, destination: StringName) -> bool:
@@ -41,6 +41,7 @@ func bus_sends_to(bus_name: StringName, destination: StringName) -> bool:
 
 func run() -> void:
 	game = load("res://scenes/main.tscn").instantiate()
+	game.native_audio_enabled = false # Exercise the retained portable geometry/mixer regression path.
 	root.add_child(game)
 	game.set_physics_process(false)
 	game.set_process(false)

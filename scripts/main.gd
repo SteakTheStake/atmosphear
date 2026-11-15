@@ -63,6 +63,9 @@ var debug_view: Node3D
 var qa_enabled := false
 var qa_region := -1
 var host_input_ready := not OS.has_feature("web")
+var native_audio_enabled := true
+var native_audio
+var native_audio_player: AudioStreamPlayer
 
 func _ready() -> void:
 	if OS.has_feature("web") and bool(JavaScriptBridge.eval("typeof ATMO_MOBILE_BUILD !== 'undefined' && ATMO_MOBILE_BUILD")):
@@ -70,6 +73,10 @@ func _ready() -> void:
 	_load_settings()
 	_setup_input()
 	_setup_buses()
+	if native_audio_enabled and not OS.has_feature("web") and native_audio == null:
+		push_error("Native spatial audio is unavailable. Build it with python tools/build_native_audio.py before running the desktop game.")
+		get_tree().quit(1)
+		return
 	_build_player()
 	debug_view = DebugView.new()
 	add_child(debug_view)
@@ -95,6 +102,7 @@ func _save_settings() -> void:
 	config.save("user://settings.cfg")
 
 func _setting_value(key: String, value: float) -> float:
+	if key == "quality" and native_audio != null: return clampf(value,0.0,2.0)
 	var high := 2.0 if key == "sensitivity" else (1.5 if key == "speed" else 1.0)
 	var low := 0.5 if key in ["sensitivity","speed"] else 0.0
 	return clampf(value,low,high)
@@ -162,6 +170,21 @@ func _setup_buses() -> void:
 	room_acoustics.setup_buses()
 	room_effect = room_acoustics.primary_effect
 	AudioServer.add_bus_effect(0, AudioEffectLimiter.new())
+	if native_audio_enabled and not OS.has_feature("web") and ClassDB.class_exists("AtmoSpatialStream"):
+		native_audio = ClassDB.instantiate("AtmoSpatialStream")
+		if native_audio.initialize(int(AudioServer.get_mix_rate())):
+			Engine.register_singleton("AtmoAudio",native_audio)
+			native_audio.layout({"rooms":[],"portals":[]})
+			native_audio_player = AudioStreamPlayer.new()
+			native_audio_player.stream = native_audio
+			native_audio_player.bus = "Master"
+			add_child(native_audio_player)
+			native_audio_player.play()
+			# Desktop is the reference build; migrate older Low/Standard preferences.
+			settings.quality = 2.0
+		else:
+			push_error("Native HRTF initialization failed: "+str(native_audio.snapshot()))
+			native_audio = null
 	ui_player = AudioStreamPlayer.new()
 	ui_player.bus = "UI"
 	ui_player.playback_type = AudioServer.PLAYBACK_TYPE_STREAM
@@ -191,7 +214,7 @@ func play_ui(cue: String) -> void:
 func _build_player() -> void:
 	player = CharacterBody3D.new()
 	player.collision_layer = 1
-	player.collision_mask = 2
+	player.collision_mask = 18
 	player.floor_snap_length = 0.3
 	add_child(player)
 	var capsule := CapsuleShape3D.new()
@@ -241,9 +264,11 @@ func play_level(id: String) -> void:
 	paused = false
 	elapsed = 0
 	for anchor in world.get_node("Sources").get_children():
+		if world.has_method("setup_audio"): break
 		sources.append(_create_emitter(anchor))
 		if anchor.has_signal("configuration_changed"):
 			anchor.configuration_changed.connect(_queue_emitter_change.bind(anchor))
+	if world.has_method("setup_audio"): world.setup_audio(self)
 	for i in range(3):
 		var step_source = Source.new()
 		world.add_child(step_source)
@@ -274,7 +299,7 @@ func play_level(id: String) -> void:
 	acoustic_clock = 0
 	last_event = "entered"
 	_build_map_data()
-	if OS.has_feature("web"): call_deferred("_setup_room_fields",level_generation)
+	if OS.has_feature("web") or native_audio != null: call_deferred("_setup_room_fields",level_generation)
 	debug_view.rebuild(world,sources)
 	debug_view.set_enabled(debug_enabled)
 	game_ui.show_screen("playing")
@@ -311,6 +336,7 @@ func _create_emitter(anchor: Node3D, position_override = null) -> Node3D:
 	sound.set_meta("active_clip",String(config.get("clip","Unassigned sound")))
 	sound.set_meta("event_count",0)
 	sound.set_meta("loop",looped)
+	sound.set_meta("managed_event",bool(anchor.get_meta("managed_event",false)))
 	sound.set_meta("recordings",config.get("variants",[stream] if stream else []))
 	sound.set_meta("next_event",elapsed+_arrival_event_delay(sound))
 	if float(sound.get_meta("motion")) > 0 and position_override == null: sound.position += Vector3(0,0,3)
@@ -328,6 +354,9 @@ func _flush_emitter_changes() -> void:
 	if pending_emitter_changes.is_empty(): return
 	for anchor in pending_emitter_changes.values():
 		if not is_instance_valid(anchor): continue
+		if is_instance_valid(world) and world.has_method("replace_emitter"):
+			world.replace_emitter(anchor)
+			continue
 		for i in range(sources.size()):
 			var old = sources[i]
 			if old.get_meta("source_anchor",null) != anchor: continue
@@ -342,6 +371,7 @@ func _flush_emitter_changes() -> void:
 	_report()
 
 func _clear_world() -> void:
+	if native_audio != null: native_audio.clear()
 	pending_emitter_changes.clear()
 	recording_bags.clear()
 	recording_last.clear()
@@ -397,7 +427,7 @@ func set_debug_enabled(value: bool) -> void:
 func _physics_process(delta: float) -> void:
 	report_clock += delta
 	spatial_clock += delta
-	if OS.has_feature("web") and spatial_clock >= 1.0/30.0:
+	if (OS.has_feature("web") or native_audio != null) and spatial_clock >= 1.0/(60.0 if native_audio != null else 30.0):
 		spatial_clock = 0.0
 		var data := {"settings":settings,"paused":paused or not started,"level":level,"position":[listener.global_position.x,listener.global_position.y,listener.global_position.z],"forward":[-player.global_basis.z.x,-player.global_basis.z.y,-player.global_basis.z.z],"decay":room_stats.get("decay_bands",[.2,.2,.2]),"wet":room_stats.get("wet",0.0)}
 		var visibility := {}
@@ -406,7 +436,8 @@ func _physics_process(delta: float) -> void:
 			var query := PhysicsRayQueryParameters3D.create(listener.global_position,Vector3(v[0],v[1],v[2]),2)
 			visibility[portal.id] = get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 		data["portal_visibility"] = visibility
-		JavaScriptBridge.eval("if(window.AtmoAcoustics)window.AtmoAcoustics.scene("+JSON.stringify(data)+")")
+		if native_audio != null: native_audio.scene(data)
+		else: JavaScriptBridge.eval("if(window.AtmoAcoustics)window.AtmoAcoustics.scene("+JSON.stringify(data)+")")
 	if report_clock > 0.2:
 		report_clock = 0
 		_report()
@@ -419,6 +450,8 @@ func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("left","right","forward","back")
 	var running := run_latched or Input.is_action_pressed("run_hold")
 	var desired := player.transform.basis * Vector3(input.x,0,input.y)*(4.2 if running else 1.7)*float(settings.speed)
+	if world.has_method("tick_audio"):
+		desired*=lerpf(1.0,.48,clampf((float(world.water_depth)-.15),0,1))
 	player.velocity.x = move_toward(player.velocity.x,desired.x,delta*9)
 	player.velocity.z = move_toward(player.velocity.z,desired.z,delta*9)
 	var was_grounded := player.is_on_floor()
@@ -445,6 +478,11 @@ func _physics_process(delta: float) -> void:
 				stride = 0
 				_play_footfall(running)
 	else: stride = 0
+	if world.has_method("tick_audio"):
+		world.tick_audio(delta,listener.global_position)
+		if debug_enabled and int(debug_view.get_meta("audio_revision",-1))!=int(world.audio_revision):
+			debug_view.rebuild(world,sources)
+			debug_view.set_meta("audio_revision",world.audio_revision)
 	for sound in sources:
 		if sound.direct.stream == null: continue
 		var origin: Vector3 = sound.get_meta("origin")
@@ -465,7 +503,7 @@ func _physics_process(delta: float) -> void:
 		# together or restart a predictable chorus on every visit.
 		if waking and not looped and float(sound.get_meta("next_event"))<elapsed:
 			sound.set_meta("next_event",elapsed+_arrival_event_delay(sound))
-		if not looped and not sound.direct.playing and elapsed >= float(sound.get_meta("next_event")):
+		if not looped and not bool(sound.get_meta("managed_event",false)) and not sound.direct.playing and elapsed >= float(sound.get_meta("next_event")):
 			var selected := _choose_event_stream(sound)
 			if selected == null: continue
 			sound.set_stream(selected)
@@ -485,7 +523,7 @@ func _physics_process(delta: float) -> void:
 		action_sound.tick(listener.global_position,actual_velocity,delta,int(settings.quality))
 	acoustic_clock -= delta
 	if acoustic_clock <= 0:
-		acoustic_clock = 0.35 if settings.quality > 0 else 0.7
+		acoustic_clock = .2 if settings.quality > 1 else (0.35 if settings.quality > 0 else 0.7)
 		_probe_room()
 	room_acoustics.tick(delta)
 	room_stats = room_acoustics.stats
@@ -594,6 +632,7 @@ func _build_map_data() -> void:
 	for landmark in world.get_node("Landmarks").get_children():
 		landmarks.append({"pos":landmark.global_position,"label":landmark.get_meta("label"),"kind":landmark.get_meta("kind")})
 	map_data = {"bounds":world.get_meta("bounds",bounds),"footprints":footprints,"landmarks":landmarks}
+	if world.has_method("tick_audio"):map_data["terrain_texture"]=world.plan_texture
 
 func _setup_room_fields(generation: int) -> void:
 	await get_tree().physics_frame
@@ -603,7 +642,7 @@ func _setup_room_fields(generation: int) -> void:
 	for region in world.get_node("Regions").get_children():
 		var rect: Rect2 = region.get_meta("rect",Rect2())
 		var probe = RoomAcoustics.new()
-		probe.probe(get_world_3d(),region.global_position+Vector3.UP*1.6,1)
+		probe.probe(get_world_3d(),region.global_position+Vector3.UP*1.6,int(settings.quality))
 		rooms.append({"id":String(region.name),"rect":[rect.position.x,rect.position.y,rect.size.x,rect.size.y],"rt":probe.stats.get("decay_targets",[.2,.2,.2]),"wet":probe.wet_target})
 	for body in world.get_node("Geometry").get_children():
 		if not "lintel" in String(body.name).to_lower(): continue
@@ -619,7 +658,12 @@ func _setup_room_fields(generation: int) -> void:
 			if distance < best: best=distance;room_id=String(region.name)
 		portals.append({"id":String(body.name),"room":room_id,"position":[at.x,at.y,at.z],"width":maxf(box.size.x,box.size.z),"open":clampf(float(body.get_meta("acoustic_open_fraction",1.0)),0,1)})
 	acoustic_layout = {"rooms":rooms,"portals":portals}
-	JavaScriptBridge.eval("if(window.AtmoAcoustics)window.AtmoAcoustics.layout("+JSON.stringify(acoustic_layout)+")")
+	if native_audio != null: native_audio.layout(acoustic_layout)
+	else: JavaScriptBridge.eval("if(window.AtmoAcoustics)window.AtmoAcoustics.layout("+JSON.stringify(acoustic_layout)+")")
+
+func _exit_tree() -> void:
+	if native_audio != null and Engine.has_singleton("AtmoAudio") and Engine.get_singleton("AtmoAudio") == native_audio:
+		Engine.unregister_singleton("AtmoAudio")
 
 func _probe_room() -> void:
 	room_acoustics.probe(get_world_3d(),listener.global_position,int(settings.quality))
@@ -627,6 +671,7 @@ func _probe_room() -> void:
 	wet_target = room_acoustics.wet_target
 
 func surface_at(pos: Vector3) -> String:
+	if is_instance_valid(world) and world.has_method("footstep_surface"):return world.footstep_surface(pos)
 	for area in surfaces:
 		if area.rect.has_point(Vector2(pos.x,pos.z)): return area.surface
 	return String(world.get_meta("default_surface","stone")) if is_instance_valid(world) else "stone"
@@ -656,6 +701,14 @@ func _command(command: String) -> void:
 		action_grace = 0.2
 		game_ui.reset_controller_navigation()
 		_report()
+	elif command.begins_with("qa:takeoff:") and qa_enabled and is_instance_valid(world) and world.has_node("TakeoffEvents"):
+		var index := command.trim_prefix("qa:takeoff:").to_int()
+		var triggers := world.get_node("TakeoffEvents").get_children()
+		if index>=0 and index<triggers.size():
+			triggers[index].set_meta("activation_probability",1.0)
+			player.position=triggers[index].global_position
+			player.velocity=Vector3.ZERO
+			_report()
 	elif command.begins_with("qa:region:") and qa_enabled and is_instance_valid(world):
 		var index := command.trim_prefix("qa:region:").to_int()
 		var regions := world.get_node("Regions").get_children()
@@ -666,7 +719,7 @@ func _command(command: String) -> void:
 				var center: Vector3 = regions[index].position
 				for candidate: Vector3 in points:
 					if Vector2(candidate.x-center.x,candidate.z-center.z).length_squared()<Vector2(point.x-center.x,point.z-center.z).length_squared(): point = candidate
-				player.position = Vector3(point.x,1.0,point.z)
+				player.position = Vector3(point.x,point.y if bool(world.get_meta("terrain_height",false)) else 1.0,point.z)
 				player.velocity = Vector3.ZERO
 				player.rotation = Vector3(0,world.get_node("Spawn").global_rotation.y,0)
 				qa_region = index
@@ -717,6 +770,7 @@ func _report() -> void:
 	state.map_visible = game_ui.map_visible if game_ui else true
 	state.map_signature = hash(map_data)
 	state.player_y = snappedf(player.position.y,0.001)
+	if is_instance_valid(world) and world.has_method("diagnostics"):state.world_audio=world.diagnostics()
 	state.on_floor = player.is_on_floor()
 	state.locomotion = locomotion
 	state.jumps = jumps

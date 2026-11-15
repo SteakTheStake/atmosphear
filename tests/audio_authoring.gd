@@ -108,6 +108,7 @@ func examine() -> void:
 
 func _runtime_hot_swap() -> void:
 	var game = load("res://scenes/main.tscn").instantiate()
+	game.native_audio_enabled = false # Exercise the retained portable geometry/mixer regression path.
 	root.add_child(game)
 	game.play_level("forest")
 	for i in range(10): await physics_frame
@@ -131,7 +132,7 @@ func _runtime_hot_swap() -> void:
 	check(game.player.position == before_position and game.level_generation == before_generation,"live source edits preserve the listener and environment generation")
 	anchor.reflection_budget = 4
 	game._flush_emitter_changes()
-	check(game.sources[0].reflections.size() == 4 and AudioServer.bus_count == before_buses+4-original_budget,"reflection-budget edits allocate exactly the requested new paths")
+	check(game.sources[0].reflections.size() == 4 and AudioServer.bus_count == before_buses+2*(4-original_budget),"reflection-budget edits allocate exactly the requested paired native paths")
 	anchor.sound = null
 	anchor.looped = false
 	game._flush_emitter_changes()

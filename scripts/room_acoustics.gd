@@ -8,7 +8,7 @@ const AcousticMaterial = preload("res://scripts/acoustic_material.gd")
 const BANDS := ["Low", "Mid", "High"]
 const SPEED_OF_SOUND := 343.0
 const PROBE_DISTANCE := 45.0
-const MASK := 2
+const MASK := 14
 const BAND_BALANCE := Vector3(0.8, 1.0, 0.72)
 
 var primary_effect: AudioEffectReverb
@@ -139,8 +139,8 @@ func _hemisphere(normal: Vector3, index: int, bounce: int) -> Vector3:
 func probe(world: World3D, listener: Vector3, quality: int) -> void:
 	if world == null: return
 	var space := world.direct_space_state
-	var count := 48 if quality > 0 else 16
-	var depth := 3 if quality > 0 else 2
+	var count := 192 if quality > 1 else (48 if quality > 0 else 16)
+	var depth := 5 if quality > 1 else (3 if quality > 0 else 2)
 	var first_hits := 0
 	var upward_count := 0
 	var upward_hits := 0

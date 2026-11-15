@@ -1,4 +1,5 @@
-"""Fetch only the web templates from the official release archive using HTTP ranges."""
+"""Fetch Web or Windows templates from the official release using HTTP ranges."""
+import argparse
 import io
 import os
 from pathlib import Path
@@ -36,11 +37,24 @@ class RemoteZip(io.RawIOBase):
         self.pos += len(data)
         return data
 
-target = Path(os.environ['APPDATA']) / 'Godot/export_templates/4.6.2.stable'
-target.mkdir(parents=True, exist_ok=True)
-with zipfile.ZipFile(RemoteZip()) as archive:
-    for info in archive.infolist():
-        if Path(info.filename).name in ('web_release.zip', 'web_debug.zip', 'version.txt'):
-            print('Installing', info.filename, flush=True)
-            (target / Path(info.filename).name).write_bytes(archive.read(info))
-print('Web templates ready:', target, flush=True)
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--windows', action='store_true', help='Install Windows x64 templates instead of Web')
+    args = parser.parse_args()
+    target = Path(os.environ['APPDATA']) / 'Godot/export_templates/4.6.2.stable'
+    names = {'windows_release_x86_64.exe', 'windows_debug_x86_64.exe', 'version.txt'} if args.windows else {'web_release.zip', 'web_debug.zip', 'version.txt'}
+    target.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(RemoteZip()) as archive:
+        for info in archive.infolist():
+            if Path(info.filename).name in names:
+                print('Installing', info.filename, flush=True)
+                # ZipFile.read validates the member CRC before writing it.
+                (target / Path(info.filename).name).write_bytes(archive.read(info))
+    missing = [name for name in names if not (target / name).is_file()]
+    if missing:
+        raise RuntimeError('Release archive lacks required templates: ' + ', '.join(missing))
+    print('Windows templates ready:' if args.windows else 'Web templates ready:', target, flush=True)
+
+
+if __name__ == '__main__':
+    main()

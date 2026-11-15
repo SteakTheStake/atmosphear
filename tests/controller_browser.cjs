@@ -213,7 +213,13 @@ async function serve(target){
     report.saved_settings={...(await state()).settings};await focus(9);await tap(0);await screen('main');
     check('All six settings sliders, quality/debug toggles, and Done work using controller focus');
 
-    await play(0,'template');check('Default main choice loads the editable template');
+    await play(0,'template');check('Default main choice loads the configured main level');
+    if((await state()).world_audio){
+      const before=await state();await stick(1,-.85,1400);const after=await state();
+      assert(after.steps>before.steps&&Math.hypot(after.position[0]-before.position[0],after.position[1]-before.position[1])>.5,'Controller walks on the imported forest terrain with footsteps');
+      assert(after.world_audio.active_voices<=after.world_audio.voice_budget+4,'Forest voice budget stays bounded during controller movement');
+      check('Controller movement and material footsteps work on the new default forest');
+    }
     await chooser();await play(0,'forest');
     const beforeWalk=await state();await stick(1,-.85,1000);const walked=await state();
     assert(walked.position[1]<beforeWalk.position[1]-.5&&walked.steps>beforeWalk.steps,'Left stick walks with footsteps');

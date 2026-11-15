@@ -6,6 +6,11 @@ extends Resource
 var _watched_streams: Array[AudioStream] = []
 
 @export_group("Footsteps")
+## Additional terrain palettes, each an Array of replaceable AudioStreams.
+@export var terrain_footsteps: Dictionary = {}:
+	set(value):
+		terrain_footsteps = value
+		_palette_edited()
 @export var gravel_footsteps: Array[AudioStream] = []:
 	set(value):
 		gravel_footsteps = value
@@ -72,10 +77,10 @@ var _watched_streams: Array[AudioStream] = []
 		_palette_edited()
 
 func footstep_streams(surface: String) -> Array[AudioStream]:
-	var streams: Array[AudioStream] = {
+	var streams: Array = terrain_footsteps.get(surface,{
 		"gravel":gravel_footsteps,"stone":stone_footsteps,
 		"wood":wood_footsteps,"metal":metal_footsteps,
-	}.get(surface,stone_footsteps)
+	}.get(surface,stone_footsteps))
 	# Empty slots are allowed while editing; they are not playable footfalls.
 	var playable: Array[AudioStream] = []
 	for stream in streams:
@@ -108,6 +113,7 @@ func _palette_edited() -> void:
 	var streams: Array = []
 	for surface in ["gravel","stone","wood","metal"]:
 		streams.append_array(footstep_streams(surface))
+	for surface in terrain_footsteps: streams.append_array(footstep_streams(surface))
 	for name in ["punch_swing","punch_stone","punch_wood","punch_metal","jump_takeoff","ui_move","ui_accept","ui_back"]:
 		streams.append_array(cue_streams(name))
 	for stream in streams:

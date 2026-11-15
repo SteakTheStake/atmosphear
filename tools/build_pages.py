@@ -15,6 +15,10 @@ def main():
     parser.add_argument("--output", type=Path, default=ROOT / "build/pages")
     parser.add_argument("--mobile", action="store_true", help="Export the single-thread mobile build")
     args = parser.parse_args()
+    # A clean checkout has no build directory yet. Keep generated PNG/JS/PCK
+    # outputs out of the editor scan when exporting the second browser variant.
+    (ROOT / "build").mkdir(exist_ok=True)
+    (ROOT / "build/.gdignore").touch()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     commands = [

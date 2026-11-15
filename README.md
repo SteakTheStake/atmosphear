@@ -1,19 +1,21 @@
 # atmosphear
 Puzzle game based on an original concept Take 5 from Chuck Sutton
 
-The current prototype is a speech-free, sound-led walking simulator made in Godot 4.6.2. Start in your editable main level, or explore four legacy environments using a controller or keyboard. There are no spoken directions or objectives. Geometry, distance, surface materials, footsteps, and fixed sound landmarks provide orientation.
+The current prototype is a speech-free, sound-led walking simulator made in Godot 4.6.2. The default **Coastal forest & river** level uses the approved Blender island: approximately 4.4 km across, with material-specific footsteps, moving birds, proximity takeoffs, and local forest, river, marsh, coast, and mountain soundscapes. Four legacy environments remain available using a controller or keyboard. There are no spoken directions or objectives. See [forest authoring and mix notes](docs/FOREST_MAP.md).
 
-**[Play in your browser](https://SteakTheStake.github.io/atmosphear/)** · Headphones recommended.
+**Windows desktop is the primary build.** Run `python tools/build_desktop.py`, then open `build/windows/Atmosphear.exe`. Native HRTF and High acoustic quality are enabled. The game runs offline without a browser or Godot installation. Headphones recommended. To share it, use `build/Atmosphear-windows-x64.zip` and keep the extracted folder, including its DLLs, together.
+
+The **[browser version](https://SteakTheStake.github.io/atmosphear/)** remains available as a secondary build; browser publication is now manual.
 
 ## Build your own main level
 
-Open **`scenes/levels/template.tscn`** in Godot. This is the default **My world** menu choice. It contains a gravel floor and boundaries, a small wooden shelter, a stone water marker, two example sound emitters, map landmarks, regions, and a spawn point. Everything is saved as normal editor nodes; no runtime geometry generator rewrites your edits.
+Open **`scenes/levels/template.tscn`** in Godot for the preserved starter, or **`scenes/levels/forest_river.tscn`** for the current default map. The starter contains a gravel floor and boundaries, a small wooden shelter, a stone water marker, two example sound emitters, map landmarks, regions, and a spawn point. Everything is saved as normal editor nodes; no runtime geometry generator rewrites your edits.
 
 Move or duplicate bodies under **Geometry**. Keep each body's Mesh and MeshCollision aligned; scaling/moving the parent moves both. Assign its Acoustic Material in the Inspector. Change the recordings/ranges under **Sources**, the material rectangles under **SurfaceAreas**, and object labels under **Landmarks**. Move **Spawn** and rotate it around Y to choose the starting position and facing. Keep spawn positions above a walkable collider. Update the level root Metadata **bounds** when resizing the world, and **default_surface** for the fallback footstep material. Update **Regions** rectangles/waypoints as you change room layout; they drive room fields and local QA positions.
 
-Press **F5** and choose **My world** to test through the full game. F3/right-stick click reveals acoustic geometry. Running the level scene alone with F6 does not create the player/audio runtime.
+Press **F5** and choose **Coastal forest & river** to test through the full game. F3/right-stick click reveals acoustic geometry. Running the level scene alone with F6 does not create the player/audio runtime. Assign the starter as Main Level in `scenes/main.tscn` to test a new world instead.
 
-To keep the starter untouched, use **Save Scene As** to create your own `.tscn`. Open **`scenes/main.tscn`**, select its **Atmosphear** root, and set **Main Level → Main Level** to your scene and **Main Level Title** to its name. Save the scene. The first menu choice uses that reference; no path table needs editing. Keep the standard Geometry, Sources, SurfaceAreas, Landmarks, Regions, and Spawn nodes in your level.
+To keep the starter untouched, use **Save Scene As** to create your own `.tscn`. Open **`scenes/main.tscn`**, select its **Atmosphear** root, and set **Main Level â†’ Main Level** to your scene and **Main Level Title** to its name. Save the scene. The first menu choice uses that reference; no path table needs editing. Keep the standard Geometry, Sources, SurfaceAreas, Landmarks, Regions, and Spawn nodes in your level.
 
 The original four scenes now live in **`scenes/levels/legacy/`** and remain available through **Legacy environments**. Their authoring/curation utilities target that folder and do not overwrite your main level. `tools/create_template_level.gd` only creates a missing starter; it refuses to overwrite an existing template.
 
@@ -25,10 +27,10 @@ Each environment has six connected areas, routes that loop back, and local sound
 
 | Environment | Areas | Size |
 |---|---|---|
-| Forest & lake | Clearing, bird grove, boardwalk, waterfall cove, timber hut, frog wetland | 108 × 108 m |
-| Stone cistern | Bell vault, reservoir, drip gallery, pump room, overflow passage, airshaft | 90 × 110 m |
-| Deep-space freighter | Engine hall, electrical gallery, cargo hold, servo workshop, ventilation, airlock | 90 × 110 m |
-| Rain courtyard | Bell gate, rain square, cloister, fountain, stable, wind tower | 108 × 108 m |
+| Forest & lake | Clearing, bird grove, boardwalk, waterfall cove, timber hut, frog wetland | 108 Ã— 108 m |
+| Stone cistern | Bell vault, reservoir, drip gallery, pump room, overflow passage, airshaft | 90 Ã— 110 m |
+| Deep-space freighter | Engine hall, electrical gallery, cargo hold, servo workshop, ventilation, airlock | 90 Ã— 110 m |
+| Rain courtyard | Bell gate, rain square, cloister, fountain, stable, wind tower | 108 Ã— 108 m |
 
 The optional map is a fixed plan of objects and landmarks. It never shows the player, heading, or trail. Hide it for black-screen listening. Developer mode can separately reveal geometry, sources, and acoustic paths.
 
@@ -69,6 +71,20 @@ Automated phone profiles test the actual single-thread export with simulated sta
 
 Open `project.godot` in Godot **4.6.2** and run the main scene. All playable worlds are saved scenes under `scenes/levels/`; they are not reconstructed by runtime geometry generators.
 
+For a native Windows x64 build, install the matching Windows export templates (once), then build:
+
+```powershell
+python tools/install_web_templates.py --windows
+python tools/build_desktop.py
+.\build\windows\Atmosphear.exe
+```
+
+`tools/play.ps1` now builds and launches desktop by default; `tools/play.ps1 -Web` runs the secondary browser build. `tools/play_desktop.ps1` is also available. Both desktop helpers accept an explicit Godot path (`--godot` or `-Godot`). Building requires CMake and the Visual Studio C++ workload; pinned Steam Audio and Godot C++ dependencies download automatically and are checked by SHA-256. Players only need the extracted release folder.
+
+The desktop renderer is a C++ GDExtension feeding Godot's native mixer. It uses Steam Audio's measured HRTF with bilinear interpolation for direct sound, reflections and remote room tails; a shared source clock with fractional propagation delays; air/material filtering; bounded thickness-aware transmission and edge diffraction; and separate 16-line spectral room fields with door-opening returns. High quality selects up to 16 environmental reflection paths, eight action/footstep paths, 192 room-probe rays with five bounces, and 60 Hz spatial updates. The mix volumes remain unchanged. Settings includes a working headphone/speaker switch. Restart an already-open Godot editor after rebuilding the extension so F5 loads the new library.
+
+The native audio buffer target remains 30 ms. To compare a larger buffer when troubleshooting device-dependent crackling, run `Atmosphear.exe --audio-output-latency 60` or `tools/play_desktop.ps1 -AudioLatency 60`. This trades extra response delay for buffering; it does not repair an audio discontinuity. See [desktop audio validation](docs/DESKTOP_AUDIO.md).
+
 For a browser build, install matching Web export templates and run:
 
 ```powershell
@@ -97,11 +113,11 @@ The authored mix softens prominent bird/frog/horse calls, enclosed drips, pump t
 
 The browser renderer uses one AudioBufferSource clock per audible emitter. Direct sound and persistent first/second-order reflections share that signal, with fractional propagation delays, pressure-distance loss, material absorption, and smooth path gains. Travel-delay changes supply Doppler; a second pitch Doppler effect is not applied. Native duplicated reflection/reverb voices are silent in Web builds. Short fixed diffusion taps are disabled.
 
-Headphone mode uses the browser's HRTF panner; **Headphone binaural audio** can be disabled in Settings for speakers. Direct air absorption uses broad-band EQ fitted from ISO 9613-1 coefficients at 20°C, 50% humidity and standard pressure, rather than the previous blanket distance/rear low-pass. Materials have an editable transmission reference thickness; bounded multi-barrier tracing scales transmission by geometry thickness and incidence. A bounded visibility search supplies filtered edge paths.
+The secondary browser build uses its browser HRTF panner; **Headphone binaural audio** can be disabled in Settings for speakers. Direct air absorption uses broad-band EQ fitted from ISO 9613-1 coefficients at 20Â°C, 50% humidity and standard pressure, rather than the previous blanket distance/rear low-pass. Materials have an editable transmission reference thickness; bounded multi-barrier tracing scales transmission by geometry thickness and incidence. A bounded visibility search supplies filtered edge paths.
 
-Six authored regions have separate eight-line frequency-dependent feedback delay networks. Their decay targets come from geometric/material probes. Existing door lintels define openings into the connecting passage field; remote room tails emerge toward these openings and weaken when geometry blocks them. This is a one-hop room/passage approximation. Local room tails retain stereo diffusion; they are not collapsed into a single HRTF point. Forest canopies retain separate recordings/offsets on individual trees, and extended water/rain features retain their authored distributed anchors.
+The secondary browser renderer uses eight-line frequency-dependent feedback delay networks per authored region; desktop uses 16-line networks. Their decay targets come from geometric/material probes. Existing door lintels define openings into the connecting passage field; remote room tails emerge toward these openings and weaken when geometry blocks them. This is a one-hop room/passage approximation. Local room tails retain stereo diffusion; they are not collapsed into a single HRTF point. Forest canopies retain separate recordings/offsets on individual trees, and extended water/rain features retain their authored distributed anchors.
 
-See [the renderer validation](docs/ACOUSTICS_V2.md) for measurements and limitations. This remains a bounded acoustic model, not a full wave solver, personalized HRTF, structural-vibration simulation, or measured room convolution. Desktop Godot playback retains the existing native fallback; the new shared-clock/HRTF/FDN renderer targets the browser build.
+See [the renderer validation](docs/ACOUSTICS_V2.md) for measurements and limitations. This remains a bounded acoustic model, not a full wave solver, personalized HRTF, structural-vibration simulation, or measured room convolution. The desktop port and its High profile are documented in [native spatial audio](docs/DESKTOP_AUDIO.md); the browser-specific measurements above describe the secondary renderer.
 
 ## Publish only used audio
 
@@ -121,7 +137,7 @@ The full preparation catalog is retained locally in ignored `assets/library/mani
 
 ## GitHub Pages
 
-Pushes to `main` run [the Pages workflow](.github/workflows/pages.yml). It installs official Godot 4.6.2 with pinned SHA-512 checks, imports resources, verifies the used-audio inventory, exports the game, checks a project subpath on a plain server, and tests controller menus, navigation, and blocked-audio handling before deployment. Generated WebAssembly and build output are deployment artifacts, not committed source files.
+Pushes to `main` run [the Windows desktop workflow](.github/workflows/desktop.yml), which builds the native renderer, checks HRTF/propagation/reverb, tests native controller menus and the executable's packed environments, and uploads the portable release and measurement reports. The [secondary Pages workflow](.github/workflows/pages.yml) runs only when manually dispatched. Build output and downloaded SDKs stay outside source control.
 
 The desktop threaded audio engine needs cross-origin isolation; the mobile export does not. Godot's PWA service worker supplies the necessary headers on GitHub Pages, where custom response headers are unavailable. First use may reload once to activate it. Caches are scoped to this project and versioned by build content. If service workers are blocked, the launch screen explains how to retry; it does not reload indefinitely. Chromium and Firefox were tested with actual audio on a header-free server. Real macOS Safari was not available for playback verification. The game itself uses no external API, account, or microphone.
 
@@ -137,6 +153,7 @@ godot_console --headless --path . --script tests/expanded_worlds.gd
 godot_console --headless --path . --script tests/locomotion.gd
 godot_console --headless --path . --script tests/controller_ui.gd
 godot_console --headless --path . --script tests/template_level.gd
+godot_console --headless --path . --script tests/native_audio.gd
 npm ci --prefix tests
 npx --prefix tests playwright install chromium
 node tests/pages_browser.cjs build/web

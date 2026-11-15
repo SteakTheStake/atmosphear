@@ -71,17 +71,27 @@ renderer.start=async function(e){const token=++e.serial;
  try{const buffer=await this.load(e.path);if(!e.playing||e.silent||e.serial!==token||!this.emitters.has(e.id))return;
  const c=this.context,s=c.createBufferSource();s.buffer=buffer;s.loop=e.loop;s.playbackRate.value=e.pitch||1;
  let offset=e.offset+(e.silent?0:(c.currentTime-e.request)*(e.pitch||1));if(e.loop)offset%=buffer.duration;else if(offset>=buffer.duration){e.playing=false;return;}
- e.source=s;e.startOffset=offset;e.startTime=c.currentTime;e.lastRate=e.pitch||1;s.connect(e.input);s.start(0,offset);this.audit.starts++;
- s.onended=()=>{s.disconnect();if(e.source===s){e.source=null;if(!e.silent)e.playing=false;}};
+ // Each playback owns its envelope so a pooled restart can overlap the old
+ // voice's release without cutting a nonzero sample or fading the new voice.
+ const envelope=c.createGain();envelope.gain.setValueAtTime(0,c.currentTime);envelope.gain.linearRampToValueAtTime(1,c.currentTime+.008);
+ e.source=s;e.envelope=envelope;e.startOffset=offset;e.startTime=c.currentTime;e.lastRate=e.pitch||1;s.connect(envelope);envelope.connect(e.input);s.start(0,offset);this.audit.starts++;
+ s.onended=()=>{s.disconnect();envelope.disconnect();if(e.source===s){e.source=null;e.envelope=null;if(!e.silent)e.playing=false;}};
  }catch(err){this.errors.push(String(err));}
 };
-renderer.stop=function(id){const e=this.emitters.get(id);if(!e)return;e.serial++;e.playing=false;if(e.source){e.source.onended=null;e.source.stop();e.source.disconnect();e.source=null;}};
+function release(e){if(!e.source)return;const s=e.source,envelope=e.envelope,t=renderer.context.currentTime;
+ e.source=null;e.envelope=null;
+ // Keep the signal connected until the audio clock has rendered the release.
+ s.onended=()=>{s.disconnect();envelope.disconnect();};ramp(envelope.gain,0,t,.008);s.stop(t+.010);
+}
+renderer.stop=function(id){const e=this.emitters.get(id);if(!e)return;e.serial++;e.playing=false;release(e);};
 renderer.suspend=function(id,silent){const e=this.emitters.get(id);if(!e||e.silent===silent)return;
- if(silent){e.serial++;if(e.source){e.offset=e.startOffset+(this.context.currentTime-e.startTime)*(e.lastRate||1);e.source.onended=null;e.source.stop();e.source.disconnect();e.source=null;}}
+ if(silent){e.serial++;if(e.source){e.offset=e.startOffset+(this.context.currentTime-e.startTime)*(e.lastRate||1);release(e);}}
  e.silent=silent;if(!silent&&e.playing){e.request=this.context.currentTime;this.start(e);}
  ramp(e.input.gain,silent?0:1,this.context.currentTime,.015);
 };
-renderer.dispose=function(id){const e=this.emitters.get(id);if(!e)return;this.stop(id);for(const p of e.paths.values())retire(e,p);for(const node of [e.input,e.delay,e.filter,e.gain,e.pan,e.send,...e.air])node.disconnect();this.emitters.delete(id);};
+renderer.dispose=function(id){const e=this.emitters.get(id);if(!e)return;this.stop(id);const t=this.context.currentTime;
+ ramp(e.gain.gain,0,t,.015);ramp(e.send.gain,0,t,.015);for(const p of e.paths.values())retire(e,p);
+ setTimeout(()=>{for(const node of [e.input,e.delay,e.filter,e.gain,e.pan,e.send,...e.air])node.disconnect();},100);this.emitters.delete(id);};
 function retire(e,p){const t=renderer.context.currentTime;ramp(p.gain.gain,0,t,.06);setTimeout(()=>{try{e.input.disconnect(p.delay);}catch{}for(const n of [p.delay,p.filter,p.gain,p.pan])n.disconnect();},100);}
 renderer.update=function(id,d){const e=this.emitters.get(id);if(!e||!this.ready)return;const c=this.context,t=c.currentTime;
  const region=this.region(d.position);if(e.field!==region){e.send.disconnect();e.send.connect(this.fields?.get(region)?.input||this.roomInput);e.field=region;}

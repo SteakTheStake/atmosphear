@@ -74,7 +74,7 @@ func run() -> void:
 	source.position = Vector3(2,1,4)
 	source.configure(load("res://assets/library/pipe_ring0.wav"),-6,"Environment",true,4)
 	source.configure_late_reverb("Environment")
-	check(AudioServer.bus_count == test_buses+5,"three late voices add no private effect buses")
+	check(AudioServer.bus_count == test_buses+9,"three late voices add no private effect buses beyond the paired early paths")
 	check(source.late_players.size() == 3,"all three late bands are configured")
 	await physics_frame
 	await physics_frame

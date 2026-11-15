@@ -1,0 +1,10 @@
+[configuration]
+entry_symbol = "atmo_audio_init"
+compatibility_minimum = "4.5"
+reloadable = false
+
+[libraries]
+windows.x86_64 = "res://native/bin/3493de942d2bc820/atmo_audio.dll"
+
+[dependencies]
+windows.x86_64 = {"res://native/bin/3493de942d2bc820/phonon.dll": ""}

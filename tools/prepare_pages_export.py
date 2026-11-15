@@ -19,11 +19,21 @@ def main():
         assert resource.startswith("res://") and (ROOT / resource[6:]).is_file(), resource
     preset = ROOT / "export_presets.cfg"
     text = preset.read_text(encoding="utf8")
-    line = "export_files=PackedStringArray(" + ", ".join(json.dumps(resource) for resource in sorted(selected)) + ")"
-    updated, count = re.subn(r"^export_files=PackedStringArray\(.*\)$", lambda _: line, text, flags=re.MULTILINE)
-    assert count == 2, "Expected desktop and mobile Web presets"
+    count = 0
+    def selection(match):
+        nonlocal count
+        header, body = match.groups()
+        resources = selected.copy()
+        if 'platform="Windows Desktop"' in body:
+            resources.add("res://native/atmo_audio.gdextension")
+        line = "export_files=PackedStringArray(" + ", ".join(json.dumps(resource) for resource in sorted(resources)) + ")"
+        body, changed = re.subn(r"^export_files=PackedStringArray\(.*\)$", lambda _: line, body, flags=re.MULTILINE)
+        count += changed
+        return header + body
+    updated = re.sub(r"(^\[preset\.\d+\]\n)(.*?)(?=^\[|\Z)", selection, text, flags=re.MULTILINE | re.S)
+    assert count == 3, "Expected two Web presets and one Windows Desktop preset"
     preset.write_text(updated, encoding="utf8", newline="\n")
-    print(f"Explicit Web selection: {len(selected)} resources, {len(inventory['files'])} used recordings")
+    print(f"Explicit runtime selection: {len(selected)} resources, {len(inventory['files'])} used recordings")
 
 
 if __name__ == "__main__":

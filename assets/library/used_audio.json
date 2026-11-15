@@ -2,11 +2,11 @@
   "schema_version": 1,
   "export_roots": [
     "res://resources/audio/default_palette.tres",
+    "res://scenes/levels/forest_river.tscn",
     "res://scenes/levels/legacy/cistern.tscn",
     "res://scenes/levels/legacy/courtyard.tscn",
     "res://scenes/levels/legacy/forest.tscn",
     "res://scenes/levels/legacy/freighter.tscn",
-    "res://scenes/levels/template.tscn",
     "res://scenes/main.tscn",
     "res://scripts/acoustic_debug.gd",
     "res://scripts/acoustic_map.gd",
@@ -14,8 +14,8 @@
     "res://scripts/game_ui.gd",
     "res://scripts/room_acoustics.gd"
   ],
-  "asset_count": 118,
-  "total_bytes": 9742682,
+  "asset_count": 185,
+  "total_bytes": 12689885,
   "files": [
     {
       "file": "assets/library/bell_phrase0.ogg",
@@ -40,7 +40,25 @@
       "bytes": 34888,
       "sha256": "616116e34d8bc588848f7820b09e079249bf8a00a10e0de41bf834a57696f8f2",
       "references": [
-        "res://scenes/levels/legacy/courtyard.tscn:Sources/FountainBird.sound"
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_North_Oak_pewee.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_River_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_River_3.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Spruce_Forest_pewee.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_North_Oak_pewee.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_Spruce_Forest_pewee.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_North_Oak_bird_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_North_Oak_bird_3.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Spruce_Forest_bird_2.sound",
+        "res://scenes/levels/legacy/courtyard.tscn:Sources/FountainBird.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1028]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][10]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1168]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][118]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][133]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][164]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1794]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1823]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1938]"
       ]
     },
     {
@@ -48,7 +66,15 @@
       "bytes": 21208,
       "sha256": "98ba5d70576e2434f69d4e7472d9cf7e61237da17f2d7e42fdbd28d0818352d3",
       "references": [
-        "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdEast.sound"
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Spruce_Forest_tanager.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_Spruce_Forest_tanager.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Spruce_Forest_bird_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Spruce_Forest_bird_3.sound",
+        "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdEast.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][103]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1154]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1924]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1952]"
       ]
     },
     {
@@ -56,7 +82,21 @@
       "bytes": 41448,
       "sha256": "9a99d6836094cb4152782b9c1752a929d892eb74418fb649aaedad663b7595bf",
       "references": [
-        "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdWest.sound"
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Birch_Riverbank_vireo.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_South_Oak_vireo.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_Birch_Riverbank_vireo.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_South_Oak_vireo.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Birch_Riverbank_bird_2.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_3.sound",
+        "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdWest.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1070]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1127]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1837]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1866]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1895]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][41]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][88]"
       ]
     },
     {
@@ -64,9 +104,25 @@
       "bytes": 38886,
       "sha256": "60c4168d3de8660a0b40fc1c79e58b5a1977a5c90678f9780cfd2f8abe9fe0cd",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Birch_Riverbank_goldfinch.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_North_Oak_goldfinch.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_River_2.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_Birch_Riverbank_goldfinch.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_North_Oak_goldfinch.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Birch_Riverbank_bird_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Birch_Riverbank_bird_3.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_North_Oak_bird_2.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdBeacon.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdNorth.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/HutOutsideBird.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/HutOutsideBird.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1042]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1112]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][148]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1808]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1880]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1909]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][25]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][72]"
       ]
     },
     {
@@ -74,8 +130,14 @@
       "bytes": 45408,
       "sha256": "665675de1e69fd4220e53b9e9e89ff8cee214e5c10afcb0db6eb94925257cef3",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_South_Oak_cowbird.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_South_Oak_cowbird.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_2.sound",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/TowerBird.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/ClearingBird.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/ClearingBird.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1084]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1851]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][56]"
       ]
     },
     {
@@ -83,8 +145,14 @@
       "bytes": 36784,
       "sha256": "59301d3ee6ba479a4e120faa161e57b571b7dec25fe3048b2a546a5238e8df13",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_South_Oak_cowbird.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_South_Oak_cowbird.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_2.sound_variants[0]",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/TowerBird.sound_variants[0]",
-        "res://scenes/levels/legacy/forest.tscn:Sources/ClearingBird.sound_variants[0]"
+        "res://scenes/levels/legacy/forest.tscn:Sources/ClearingBird.sound_variants[0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1085][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1852][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][57][0]"
       ]
     },
     {
@@ -92,9 +160,25 @@
       "bytes": 40922,
       "sha256": "1e685fefbc70373ff203050bdf0f419a7081d097ba25854c37d0378b97407446",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Birch_Riverbank_goldfinch.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_North_Oak_goldfinch.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_River_2.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_Birch_Riverbank_goldfinch.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_North_Oak_goldfinch.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Birch_Riverbank_bird_1.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Birch_Riverbank_bird_3.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_North_Oak_bird_2.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdBeacon.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdNorth.sound_variants[0]",
-        "res://scenes/levels/legacy/forest.tscn:Sources/HutOutsideBird.sound_variants[0]"
+        "res://scenes/levels/legacy/forest.tscn:Sources/HutOutsideBird.sound_variants[0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1043][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1113][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][149][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1809][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1881][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1910][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][26][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][73][0]"
       ]
     },
     {
@@ -102,8 +186,18 @@
       "bytes": 9260,
       "sha256": "36f529fc8e024cb8b783e731147d9aa9225a6515688576d4d9a70536122c9f49",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Estuary_stilt_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Estuary_stilt_2.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_Estuary_stilt.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Estuary_stilt_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Estuary_stilt_2.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/CoveBird.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandBird.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandBird.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1689]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][179]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][195]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1966]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1981]"
       ]
     },
     {
@@ -111,8 +205,18 @@
       "bytes": 9310,
       "sha256": "3ea01d52771ec3253c0bf1cfbb8fc296e0353e4042c0754a0df5984f921ab855",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Estuary_stilt_1.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/BIRD_FLIGHT_Estuary_stilt_2.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/PERCH_Estuary_stilt.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Estuary_stilt_1.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Estuary_stilt_2.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/CoveBird.sound_variants[0]",
-        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandBird.sound_variants[0]"
+        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandBird.sound_variants[0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1690][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][180][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1967][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][196][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1982][0]"
       ]
     },
     {
@@ -120,10 +224,42 @@
       "bytes": 172834,
       "sha256": "45abfb4d7ba4ce6d63e32d67a1c01c290717845e4e8ee5d35d83fc5c0158165c",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_018.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_023.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_027.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_003.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_007.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_011.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_015.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_030.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_034.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_038.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_043.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_048.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_052.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_056.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_060.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_064.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/ClearingLeaves.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle00.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle12.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle24.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle24.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][247]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][295]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][343]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][391]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][439]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][487]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][535]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][583]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][631]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][679]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][727]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][775]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][823]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][871]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][919]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][967]"
       ]
     },
     {
@@ -131,10 +267,44 @@
       "bytes": 172637,
       "sha256": "9c5df88120655eacc1f39be280f1fbcfe309090f5b4fe46befbb5208fe2e7ed9",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_020.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_024.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_028.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_004.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_008.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_012.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_016.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_031.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_035.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_039.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_044.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_049.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_053.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_057.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_061.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_065.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/ClearingOak.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle03.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle15.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle27.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle27.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][211]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][259]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][307]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][355]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][403]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][451]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][499]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][547]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][595]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][643]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][691]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][739]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][787]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][835]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][883]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][931]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][979]"
       ]
     },
     {
@@ -142,10 +312,44 @@
       "bytes": 171019,
       "sha256": "a7480d4f813a3eec41e36d219e10f5b75588fe78bc2b182040689744424dc3b3",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_021.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_025.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_001.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_005.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_009.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_013.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_019.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_032.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_036.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_040.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_045.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_041.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_050.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_054.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_058.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_062.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_066.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveCanopy.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle06.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle18.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle30.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle30.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][223]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][271]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][319]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][367]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][415]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][463]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][511]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][559]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][607]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][655]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][703]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][751]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][799]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][847]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][895]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][943]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][991]"
       ]
     },
     {
@@ -153,10 +357,44 @@
       "bytes": 171774,
       "sha256": "0e0937428c5aecb374cc70aeafafd86d6ee6bf0462e5a9ae7fae078b77129dc0",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_017.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_022.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_birch_Tree_026.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_002.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_006.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_010.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_014.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_029.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_033.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_037.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_oak_Tree_042.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_047.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_051.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_055.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_059.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_063.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/LEAVES_spruce_Tree_067.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle09.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle21.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle33.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandTree.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandTree.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1003]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][235]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][283]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][331]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][379]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][427]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][475]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][523]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][571]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][619]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][667]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][715]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][763]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][811]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][859]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][907]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][955]"
       ]
     },
     {
@@ -326,11 +564,646 @@
       ]
     },
     {
+      "file": "assets/library/forest_ocean_surf.ogg",
+      "bytes": 328492,
+      "sha256": "74c4cf5b1eda7802e8cda20e6c7521a0c349508dd71e4495fa99cff7785f47bf",
+      "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_01.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_02.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_03.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_04.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_05.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_06.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_07.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_08.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_09.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_10.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_11.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_12.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_13.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_14.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_15.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_16.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_17.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_18.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_19.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_20.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_21.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_22.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_23.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_24.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1377]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1390]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1403]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1416]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1429]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1442]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1455]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1468]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1481]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1494]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1507]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1520]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1533]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1546]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1559]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1572]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1585]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1598]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1611]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1624]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1637]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1650]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1663]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1676]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_river_flow.ogg",
+      "bytes": 328328,
+      "sha256": "1c09b1ca5d41e70f1dd3b810b5cc8d660d324e5f2b04d7eef4f315d6941c1747",
+      "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_02.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_03.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_05.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_06.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_08.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_09.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_11.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_12.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_14.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_15.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1195]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1208]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1234]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1247]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1273]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1286]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1312]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1325]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1351]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1364]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_0.wav",
+      "bytes": 30948,
+      "sha256": "e6d14781ae8ba67e1c6eb7e5104e9ccba906af52114f677355d4a51c72da0b3f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_1.wav",
+      "bytes": 30948,
+      "sha256": "a7d856110f9499f7ab92478e2f1f95140e7078993225433927a20b44c4bc7482",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_2.wav",
+      "bytes": 30948,
+      "sha256": "cb344e6bc62d52acb6c3f1684aeb9752973775380434172d0805f0d1e47504d1",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_3.wav",
+      "bytes": 30948,
+      "sha256": "18a9dc0c7c9e39caae15138f9e6dc0488b19044a6b5541b1a1a2b0b0238de91e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_4.wav",
+      "bytes": 30948,
+      "sha256": "968a55de4d9ea7f7cd4bed55c8bd6f3aa288b813e45ce8df80362ee421b313f2",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_5.wav",
+      "bytes": 30948,
+      "sha256": "b804695b0837470fc8aca2f544fe0a1dac48eb1835065c6c71ab6215e3fabf0d",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_6.wav",
+      "bytes": 30948,
+      "sha256": "c6f40dd77178f9b2b4eb7c3437a64b191717898acd680c790b4d91f58d386398",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_dirt_7.wav",
+      "bytes": 30948,
+      "sha256": "967d85b2c4a3dd5f19c90551edfa7618a3f8041ddd94d24a35112706f218e771",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[dirt][7]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_0.wav",
+      "bytes": 30948,
+      "sha256": "92160c2342fcfec5f55b3a454b4561221e9b7ba344d7c6a56e819b058b4b073e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_1.wav",
+      "bytes": 30948,
+      "sha256": "052d9a3905af94cdc61bd1f01b8f511f31cb025b941a17ad94330884afbb2933",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_2.wav",
+      "bytes": 30948,
+      "sha256": "f0a9d8eebe0570b5b3fc4a7b841bad09d338b64c67f7b6e7f2d32868c7ac7d4f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_3.wav",
+      "bytes": 30948,
+      "sha256": "960aa8a649627bbe3379ae3b7093d493d4e4e871a875dfb1cc5b1a992a789c9a",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_4.wav",
+      "bytes": 30948,
+      "sha256": "e1eed5cce36a2c80ece98801752b8d1d3c7c91e01099a1a4bb4544e4b87437e3",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_5.wav",
+      "bytes": 30948,
+      "sha256": "28ca3615e4093ba54411608716b454d1c616d8dfc5313d60f6b2d7086a76bd2c",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_6.wav",
+      "bytes": 30948,
+      "sha256": "b1be9a0d43c7aaf968c4bd535abc3231120be40ee5c998a6e621279134e2c79b",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_7.wav",
+      "bytes": 30948,
+      "sha256": "2cb84b98be14052e2e64f5b7fa499a13c80be6c46f954801957d1f7c4260dc2a",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[forest_litter][7]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_0.wav",
+      "bytes": 30948,
+      "sha256": "3b5883734d6a87ac6ba26b32af40e286b31be5fe901a885d78ad75d6d483861d",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_1.wav",
+      "bytes": 30948,
+      "sha256": "320c10f52319859e1b2bca523558b5505b950b293e51dc0836fa76b7d052e4ba",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_2.wav",
+      "bytes": 30948,
+      "sha256": "097095316f727131a937eaceb56ecf3389714b61c516e973e12a5410b0263338",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_3.wav",
+      "bytes": 30948,
+      "sha256": "5362c5d8041664371c3570672cafce71751e49b730039b93720c8dfa28dadb8e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_4.wav",
+      "bytes": 30948,
+      "sha256": "3e2f0cc47dcbf955af5f33bd4369655f267956470e0554296cda018cbd07889c",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_5.wav",
+      "bytes": 30948,
+      "sha256": "b13229054f1df025b21202a7eba57127b6618c5cf355b32184eaeed3e0217c0d",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_6.wav",
+      "bytes": 30948,
+      "sha256": "bab7cdabf832da98f23aec1ab724efea4b8f17669246dbfd47935cdd3ec56893",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_grass_7.wav",
+      "bytes": 30948,
+      "sha256": "2892c35fd6b31507eb5ec746b167673eef79ac897d49eec7d898a16c90c0bce6",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[grass][7]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_0.wav",
+      "bytes": 30948,
+      "sha256": "b50562bab6da31eeca52d28130a6c9d9b7ddb153a3b01d05abcd3e03701cbffa",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_1.wav",
+      "bytes": 30948,
+      "sha256": "53a96aff289abcde1871c96e9bd3d59d0fbfc5e281c24f5132d9473af3f26354",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_2.wav",
+      "bytes": 30948,
+      "sha256": "89eb656679c8a81b082b8b6790074611456d76ed45943cd51704da7ec83dea90",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_3.wav",
+      "bytes": 30948,
+      "sha256": "bdf8b78bf5f052737b7112537619a7c59b4b729631bae37da2d588ce0356439e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_4.wav",
+      "bytes": 30948,
+      "sha256": "1e02812103b1926454b6e99c266746eb8a842ac73b3a79f3d7c3757e8b9c57f5",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_5.wav",
+      "bytes": 30948,
+      "sha256": "7950ab2f7a9910df66c6ed3feb1eb2333ffeac78c9972ee78340da81ff79db75",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_6.wav",
+      "bytes": 30948,
+      "sha256": "e2dcdb90438e6df239461e37e9a04a74039e712b3ab1866119df3a2570355784",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_marsh_7.wav",
+      "bytes": 30948,
+      "sha256": "4aec9e0f777f49bd768a481b30ea2a8f9b561b761e2777831cd2a5890bd72d66",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[marsh][7]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_0.wav",
+      "bytes": 24466,
+      "sha256": "39f51a405abccf9d146a15691903456eac768aad79e5aa5d9c5080191f6bf541",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_1.wav",
+      "bytes": 26928,
+      "sha256": "500fd11ec07485bbaf8a073cee644a47d5f0639081aea420e8fd6c4b150a3bcd",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_2.wav",
+      "bytes": 19888,
+      "sha256": "f14680f97f56ddb7900eb17ce634f8dfd4a542518816f118fcc2b6d0bc8719b4",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_3.wav",
+      "bytes": 29568,
+      "sha256": "d7b3d86555226456d273faaea3930bf92a74060197ee6e60991b19cfbad53741",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_4.wav",
+      "bytes": 25346,
+      "sha256": "ada516946ad814ef807957ea65ec6cafda925a25004ce20e83a039bc0b927f7d",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_5.wav",
+      "bytes": 45942,
+      "sha256": "ae318e033a33709b232652b53e74336d0dfaa083b97937b42048c0781db2216e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_6.wav",
+      "bytes": 12146,
+      "sha256": "87f76f41cce479a48c5bdbbb83e625e452a783cea6042db6a60641aae9b839e4",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_sand_7.wav",
+      "bytes": 29746,
+      "sha256": "c13f03853bce0c1d9978dca37722aae08f46f84701488a6c4be1f66bf8edd4fb",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[sand][7]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_0.wav",
+      "bytes": 30948,
+      "sha256": "56a915af3a063e9a59bbdd4d657533525db15b990da9c2621f7cd1391e9e11b2",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][0]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][0]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][0]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_1.wav",
+      "bytes": 30948,
+      "sha256": "974e31e4951030917eb01fdd8a5e081eb97a75804822c17bf26c7abe83f624f8",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][1]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][1]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][1]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_2.wav",
+      "bytes": 30948,
+      "sha256": "310a9a21fe13a43290336c1a0119c18f80d73405bde04de9390e09d33b51c61f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][2]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][2]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][2]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_3.wav",
+      "bytes": 30948,
+      "sha256": "893b85a8a815836cf8614ac543bbf6b2115b9f81033f34ff2cc225513ba35e78",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][3]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][3]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][3]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_4.wav",
+      "bytes": 30948,
+      "sha256": "f2ec72a9490253975e7271a205d2982b5f29c9be15cbd1d94887a1221d629b87",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][4]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][4]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][4]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_5.wav",
+      "bytes": 30948,
+      "sha256": "c1c569b4ba00d87a223d22624cce94740769979a4d0e46bc8461318087f9e5a9",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][5]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][5]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][5]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_6.wav",
+      "bytes": 30948,
+      "sha256": "c50fe5d850f8ca273173f36f88d3d85d1080d36165ce2f6eb0a541858979fed7",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][6]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][6]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][6]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_water_7.wav",
+      "bytes": 30948,
+      "sha256": "7df109cdcc6f75111b200e34ad3b2846b478ea5c230b983b300e868d2b278d73",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_mud][7]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_sand][7]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[underwater_stone][7]",
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[water][7]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_0.wav",
+      "bytes": 30948,
+      "sha256": "bf86518fc3f47711a38a5def8373044ba4058a3de01bc07521cb563d3eede71f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_1.wav",
+      "bytes": 30948,
+      "sha256": "43bbf792453b8363c3689abab906ebe9ade8959119e25c3e82250b016c3dd921",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_2.wav",
+      "bytes": 30948,
+      "sha256": "c41398bc3df4f2e1d97e29b468f478dbbdce80c7776c58e8d54efea45c119ce7",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_3.wav",
+      "bytes": 30948,
+      "sha256": "4d7c21d787c1852a9090bf8e4bf8c3f5db0e9a891af97f56b31c4b257f6f4698",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_4.wav",
+      "bytes": 30948,
+      "sha256": "4da5b0d7ea05d8e18c77171bda2ebfdf1f08278180ed0d63a9148ba4897187b0",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_5.wav",
+      "bytes": 30948,
+      "sha256": "bbecb2694497c0e32674e389df3eb3f6cadc1682b14f6aa02a455d6f7bb184b0",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_6.wav",
+      "bytes": 30948,
+      "sha256": "ec6888ff2de786c61fc420ad38bc9b173e071aa982001eacb74f841866aeae20",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_7.wav",
+      "bytes": 30948,
+      "sha256": "3793317d6b054f7c7ec621f7bbad87a09e3d58c16866fa0b880091e838523863",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_dirt][7]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_0.wav",
+      "bytes": 30948,
+      "sha256": "e7a42052026ce820442a48600118462d246d16bd1c62d16e6afb579d7c26f5d8",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][0]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_1.wav",
+      "bytes": 30948,
+      "sha256": "824ca49159f52772785f3b0a09471661ef8add16bc0fab05d30cddd00ad2c42f",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][1]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_2.wav",
+      "bytes": 30948,
+      "sha256": "d081b16ccd92b826271f2a01f5f46ccf2e25d35f64b87f5445575dfd84676b03",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][2]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_3.wav",
+      "bytes": 30948,
+      "sha256": "12b988ce823cc39c682934f0f536151a874bb5e8db8163713630b61ce7fd260e",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][3]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_4.wav",
+      "bytes": 30948,
+      "sha256": "6f731e394217d62e8ac65a82c7eaac918d92850aca40fdaca1da5a43ce6f79b6",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][4]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_5.wav",
+      "bytes": 45942,
+      "sha256": "36c63e19043b2d9610d28f5d3a71b11bf659bd1285b263ac512adae9ce9436f7",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][5]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_6.wav",
+      "bytes": 30948,
+      "sha256": "84290f322641d5261b3c99a048957cb3d66fa015c2c91d8a45b5b142e18ad5ca",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][6]"
+      ]
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_7.wav",
+      "bytes": 30948,
+      "sha256": "26c8b193f0c01d00a6d25dc1145d61987fae6cf491f22b4fcaee1365cf2d089b",
+      "references": [
+        "res://scenes/main.tscn:..sound_palette/terrain_footsteps[wet_sand][7]"
+      ]
+    },
+    {
       "file": "assets/library/forest_stream.ogg",
       "bytes": 214725,
       "sha256": "7c205a520caa15ebabcef674e256d511016b026dead30afe4167e671495bf784",
       "references": [
         "res://scenes/levels/legacy/forest.tscn:Sources/CoveOutlet.sound"
+      ]
+    },
+    {
+      "file": "assets/library/forest_stream_detail.ogg",
+      "bytes": 328271,
+      "sha256": "7a5555638bfd411528dec81d0a7688179bdc8ecce4ca89aa7f5a0f23296018af",
+      "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_01.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_04.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_07.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_10.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_13.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1182]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1221]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1260]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1299]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1338]"
       ]
     },
     {
@@ -472,8 +1345,10 @@
       "bytes": 202727,
       "sha256": "8315f752b78b56c22c3389c6dafac1f57ab86f7113fa0426f2d45eeb38df5055",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/MARSH_insects.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/SpurReeds.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandInsectBeacon.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandInsectBeacon.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1704]"
       ]
     },
     {
@@ -533,7 +1408,9 @@
       "bytes": 122842,
       "sha256": "71a675a55bd8de4eb2b79f1d0b0916017dabc0bf7d3f106006f36cd08578825d",
       "references": [
-        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandFrogBeacon.sound"
+        "res://scenes/levels/forest_river.tscn:Sources/MARSH_gray_tree_frog.sound",
+        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandFrogBeacon.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1716]"
       ]
     },
     {
@@ -1003,9 +1880,7 @@
         "res://scenes/levels/legacy/courtyard.tscn:Sources/FountainPoolLap.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/BoardwalkWater.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/CoveLapping.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandPool.sound",
-        "res://scenes/levels/template.tscn:Sources/WaterExample.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][164]"
+        "res://scenes/levels/legacy/forest.tscn:Sources/WetlandPool.sound"
       ]
     },
     {
@@ -1013,10 +1888,26 @@
       "bytes": 193927,
       "sha256": "14999d4000d69213658182e435cde2cbdd92e25adb936fc3e8834a6874720ba0",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_1.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_2.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_3.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_4.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_5.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_Birch_Riverbank.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_North_Oak.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_South_Oak.sound",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_Spruce_Forest.sound",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/GateSlotWind.sound",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/TowerGustBeacon.sound",
-        "res://scenes/levels/template.tscn:Sources/WindExample.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][146]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1015]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1057]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1099]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1141]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1729]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1742]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1755]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1768]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1781]"
       ]
     },
     {
@@ -1024,8 +1915,26 @@
       "bytes": 189545,
       "sha256": "78045d195185780f2482e9173143d3af0ea0652c4cd41241b87502b99702b5e0",
       "references": [
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_1.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_2.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_3.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_4.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/RIDGE_WIND_5.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_Birch_Riverbank.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_North_Oak.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_South_Oak.sound_variants[0]",
+        "res://scenes/levels/forest_river.tscn:Sources/WIND_Spruce_Forest.sound_variants[0]",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/StableRoofWind.sound",
-        "res://scenes/levels/legacy/forest.tscn:Sources/HutRoofWind.sound"
+        "res://scenes/levels/legacy/forest.tscn:Sources/HutRoofWind.sound",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1016][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1058][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1100][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1142][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1730][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1743][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1756][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1769][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1782][0]"
       ]
     },
     {

@@ -134,6 +134,7 @@ func examine() -> void:
 	check(ui_navigation_varied,"frequent menu navigation varies between at least three recorded takes")
 	check(ui_headroom,"menu recordings retain at least twenty decibels of sample-peak headroom")
 	game=load("res://scenes/main.tscn").instantiate()
+	game.native_audio_enabled = false # Exercise the retained portable geometry/mixer regression path.
 	root.add_child(game)
 	game.set_process(false)
 	game.set_physics_process(false)

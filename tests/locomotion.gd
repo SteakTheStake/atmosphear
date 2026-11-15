@@ -29,6 +29,7 @@ func reset_position(pos := Vector3.INF) -> void:
 
 func run() -> void:
 	game = load("res://scenes/main.tscn").instantiate()
+	game.native_audio_enabled = false # Exercise the retained portable geometry/mixer regression path.
 	root.add_child(game)
 	await frames(3)
 	check(game.game_ui is CanvasLayer, "menus are rendered inside Godot")

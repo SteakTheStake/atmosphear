@@ -1,7 +1,7 @@
 /* Measured DSP behavior, independent of game telemetry. */
 const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 const {chromium}=require('playwright');
-const source=fs.readFileSync('web/acoustics.js','utf8');
+const source=fs.readFileSync(process.env.ATMO_DSP_SOURCE||'web/acoustics.js','utf8');
 const code=source.match(/const worklet=`([\s\S]*?)`;/)[1];
 let Room;vm.runInNewContext(code,{sampleRate:48000,Float32Array,Float64Array,Int32Array,Math,AudioWorkletProcessor:class{constructor(){this.port={};}},registerProcessor:(name,type)=>Room=type});
 function impulse(rt){const r=new Room();r.port.onmessage({data:{rt:[rt,rt,rt],wet:1}});r.wet=1;r.g=r.targetG.map(a=>a.slice());
@@ -37,6 +37,27 @@ report.motion=await page.evaluate(async()=>{
  result.push({speed_m_s:speed,source_rate:playbackRate,frequency_hz:(crossings.length-1)*48000/(crossings.at(-1)-crossings[0]),expected_hz:1000*(1-speed/343)});
  }return result;
 });
+report.transitions=await page.evaluate(async()=>{
+ const results=[];
+ for(const action of ['stop','suspend','restart','dispose']){
+  const c=new OfflineAudioContext(2,12000,48000),r=AtmoAcoustics;
+  r.context=c;r.output=c.createGain();r.roomInput=c.createGain();r.ready=true;r.emitters.clear();r.cache.clear();
+  const b=c.createBuffer(1,24000,48000);b.getChannelData(0).fill(.4);r.cache.set('constant',Promise.resolve(b));
+  r.configure('voice','constant',true,'Environment');const e=r.emitters.get('voice');
+  e.input.disconnect();e.input.connect(c.destination);r.play('voice');await Promise.resolve();await Promise.resolve();
+  const at=c.suspend(.064),render=c.startRendering();await at;
+  if(action==='suspend')r.suspend('voice',true);
+  else if(action==='restart'){
+   const next=c.createBuffer(1,24000,48000);next.getChannelData(0).fill(-.4);r.cache.set('constant',Promise.resolve(next));
+   r.play('voice');await Promise.resolve();await Promise.resolve();
+  }else r[action]('voice');
+  await c.resume();const y=(await render).getChannelData(0);let jump=0;
+  for(let i=1;i<y.length;i++)jump=Math.max(jump,Math.abs(y[i]-y[i-1]));
+  results.push({action,max_sample_jump:jump,steady_sample:y[2000],final_sample:y[10000]});
+ }
+ return results;
+});
+for(const item of report.transitions){assert(Math.abs(item.steady_sample-.4)<.001,'Voice must play before transition');assert(item.max_sample_jump<.01,`${item.action} must ramp instead of cutting a nonzero sample: ${item.max_sample_jump}`);assert(Math.abs(item.final_sample-(item.action==='restart'?-.4:0))<.001,'Transition must complete');}
 for(const motion of report.motion){assert(Math.abs(motion.frequency_hz-motion.expected_hz)<1,'Moving propagation must produce one physical Doppler shift');assert.equal(motion.source_rate,1,'Doppler must not also pitch the playback clock');}
 for(const item of report.propagation){const times=item.regions.map(r=>r.ms);if(item.isolation!=='early')assert(times.some(t=>Math.abs(t-90)<=1),'Direct arrival must be distance/c');if(item.isolation!=='direct')assert(times.some(t=>Math.abs(t-100)<=1),'Reflection must be total length/c');assert(times.every(t=>Math.abs(t-90)<=1||Math.abs(t-100)<=1),'No arbitrary 3/11/19 ms copies');}
 console.log(JSON.stringify(report,null,2));fs.mkdirSync('test-results',{recursive:true});fs.writeFileSync('test-results/propagation-dsp.json',JSON.stringify(report,null,2));

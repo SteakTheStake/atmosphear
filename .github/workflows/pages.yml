@@ -1,4 +1,4 @@
-name: Build and publish Godot game
+name: Build and deploy browser game
 
 on:
   push:
@@ -37,6 +37,8 @@ jobs:
         run: python3 tools/install_ci_godot.py --destination "$RUNNER_TEMP/godot"
       - name: Add Godot to PATH
         run: echo "$RUNNER_TEMP/godot" >> "$GITHUB_PATH"
+      - name: Keep Windows-only native audio out of the browser build
+        run: touch native/.gdignore
       - name: Import, verify used audio, and export release game
         run: |
           python3 tools/build_pages.py --godot godot
@@ -45,6 +47,7 @@ jobs:
         run: |
           godot --headless --path . --script tests/controller_ui.gd
           godot --headless --path . --script tests/template_level.gd
+          godot --headless --path . --script tests/forest_world.gd
       - name: Install browser test tools
         working-directory: tests
         run: |

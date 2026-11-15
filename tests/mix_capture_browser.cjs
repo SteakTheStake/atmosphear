@@ -89,16 +89,17 @@ const save=()=>fs.writeFileSync(path.resolve('test-results','mix-audit-'+phase+'
     const wallStart=Date.now();
     const taps=await page.evaluate(()=>window.beginMixCapture());
     console.log('CAPTURE_TAPS '+JSON.stringify(taps));
-    if(move)await page.keyboard.down('w');
+    if(move===true)await page.keyboard.down('w');
+    if(move==='takeoff')await command('qa:takeoff:0');
     for(let i=0;i<duration*4;i++){
-      if(move&&i===Math.floor(duration*2)){
+      if(move===true&&i===Math.floor(duration*2)){
         await page.keyboard.up('w');
         await page.keyboard.down('ArrowRight');
       }
       await page.waitForTimeout(250);
       const snapshot=await state();snapshot.capture_t=(Date.now()-wallStart)/1000;states.push(snapshot);
     }
-    if(move){await page.keyboard.up('w');await page.keyboard.up('ArrowRight');}
+    if(move===true){await page.keyboard.up('w');await page.keyboard.up('ArrowRight');}
     const result=await page.evaluate(()=>window.finishMixCapture());
     const bytes=Buffer.from(result.audio_base64,'base64');delete result.audio_base64;
     const wav=path.join(out,filename+'.wav');fs.writeFileSync(wav,bytes);
@@ -110,9 +111,9 @@ const save=()=>fs.writeFileSync(path.resolve('test-results','mix-audit-'+phase+'
     const countMap=snapshot=>Object.fromEntries(snapshot.diagnostics.sources.map(s=>[s.anchor,s.event_count??null]));
     const countsBefore=countMap(before),countsAfter=countMap(states.at(-1));
     const events=Object.entries(countsAfter).map(([anchor,count])=>{
-      let prior=countsBefore[anchor];const timeline=[];
+      let prior=countsBefore[anchor]??0;const timeline=[];
       for(const snapshot of states){const current=snapshot.diagnostics.sources.find(x=>x.anchor===anchor);if(current&&current.event_count!==prior){timeline.push({t:snapshot.capture_t,clip:current.active_clip,count:current.event_count-prior});prior=current.event_count;}}
-      return {anchor,events:count===null||countsBefore[anchor]===null?null:count-countsBefore[anchor],timeline,active_clips:[...new Set(states.map(s=>s.diagnostics.sources.find(x=>x.anchor===anchor)?.active_clip).filter(Boolean))]};
+      return {anchor,events:count===null||countsBefore[anchor]===null?null:count-(countsBefore[anchor]??0),timeline,active_clips:[...new Set(states.map(s=>s.diagnostics.sources.find(x=>x.anchor===anchor)?.active_clip).filter(Boolean))]};
     }).filter(e=>e.events>0||e.active_clips.length>1);
     const snapshot=states.at(-1);
     const active=snapshot.diagnostics.sources.filter(s=>!s.virtualized);
@@ -148,6 +149,14 @@ const save=()=>fs.writeFileSync(path.resolve('test-results','mix-audit-'+phase+'
         const measurement=await capture(level+'-'+String(index).padStart(2,'0')+'-'+slug(label),seconds);
         report.areas.push({level,index,label,...measurement});save();
         console.log(JSON.stringify({level,area:label,rms_dbfs:+measurement.rms_dbfs.toFixed(2),peak_dbfs:+measurement.peak_dbfs.toFixed(2),events:measurement.events.map(e=>[e.anchor,e.events])}));
+      }
+      if(process.env.ATMO_CAPTURE_TAKEOFF==='1'){
+        await command('play:'+level);await until(id=>window.atmoDebug.level===id,level);await page.waitForTimeout(2400);
+        const measurement=await capture(level+'-takeoff',12,'takeoff');
+        const current=await state();assert(current.world_audio.takeoffs>=1,'Actual proximity entry must trigger a bird');
+        assert(current.world_audio.active_voices<=current.world_audio.voice_budget+4,'Runtime voices stay bounded');
+        assert.equal(measurement.clipped_samples,0,'Takeoff mix must not clip');
+        report.walks.push({level,label:'Proximity bird takeoff',...measurement});save();
       }
       if(process.env.ATMO_LONG_LOOPS==='1'){
         const requested={forest:/bird grove/i,cistern:/bell vault/i,freighter:/servo/i,courtyard:/bell gate/i}[level];

@@ -36,6 +36,7 @@ func audio_snapshot() -> Dictionary:
 
 func run() -> void:
 	game = load("res://scenes/main.tscn").instantiate()
+	game.native_audio_enabled = false # Exercise the retained portable geometry/mixer regression path.
 	root.add_child(game)
 	game.set_physics_process(false)
 	game.set_process(false)
@@ -63,11 +64,11 @@ func run() -> void:
 	for i in range(clear.reflections.size()):
 		var shown: Dictionary = clear.reflections[i]
 		var actual: Dictionary = source._paths[i]
-		var expected_delay := clampf((float(actual.length) - source.global_position.distance_to(game.listener.global_position)) / 343.0 * 1000.0, 3.0, 500.0)
+		var expected_delay := clampf((float(actual.length) - source.global_position.distance_to(game.listener.global_position)) / 343.0 * 1000.0, 0.0, 500.0)
 		check(shown.points == actual.points and shown.order == actual.order, "reflection %s preserves the ordered bounce chain" % i)
 		check(shown.point == actual.point and shown.length == actual.length and shown.absorption == actual.absorption, "reflection %s uses actual audio geometry and absorption" % i)
 		check(is_equal_approx(shown.delay_ms, expected_delay), "reflection %s uses the audio path-delay formula" % i)
-		check(shown.applied_delay_ms == source.reflection_delays[i].tap1_delay_ms, "reflection %s reports the current smoothed delay" % i)
+		check(shown.applied_delay_ms == source.reflection_delays[i].tap1_delay_ms, "reflection %s reports the current fixed native tap" % i)
 		check(shown.rendered_point == source.reflections[i].global_position, "reflection %s reports the rendered acoustic proxy" % i)
 	var original_point: Vector3 = source._paths[0].point
 	var original_sample: Vector3 = source._debug_obstruction_samples[0].point

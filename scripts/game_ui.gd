@@ -45,6 +45,7 @@ class EnvironmentPlan extends Control:
 		var drawn_size := bounds.size*scale_factor
 		var origin := map_area.position+(map_area.size-drawn_size)*0.5
 		draw_rect(Rect2(origin,drawn_size),Color("0b100a"))
+		if data.get("terrain_texture") is Texture2D:draw_texture_rect(data.terrain_texture,Rect2(origin,drawn_size),false)
 		for footprint in data.get("footprints",[]):
 			if not footprint is Rect2: continue
 			var shape: Rect2 = footprint
@@ -216,9 +217,9 @@ func show_screen(next: String) -> void:
 				_slider(entry)
 			var quality := CheckButton.new()
 			quality.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-			quality.text = "Full acoustic detail"
+			quality.text = "High acoustic quality" if game.native_audio != null else "Full acoustic detail"
 			quality.button_pressed = game.settings.quality > 0
-			quality.toggled.connect(func(value): _sound("move");game._command("setting:quality:"+("1" if value else "0")))
+			quality.toggled.connect(func(value): _sound("move");game._command("setting:quality:"+(("2" if game.native_audio != null else "1") if value else "0")))
 			content.add_child(quality)
 			_focus(quality)
 			var debug := CheckButton.new()
@@ -228,13 +229,16 @@ func show_screen(next: String) -> void:
 			debug.toggled.connect(func(value): _sound("accept");game._command("debug:on" if value else "debug:off"))
 			content.add_child(debug)
 			_focus(debug)
-			var binaural := CheckButton.new()
-			binaural.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-			binaural.text = "Headphone binaural audio (off for speakers)"
-			binaural.button_pressed = game.settings.get("binaural",1.0) > .5
-			binaural.toggled.connect(func(on): game._command("setting:binaural:"+str(1 if on else 0)); _sound("accept"))
-			content.add_child(binaural)
-			_focus(binaural)
+			if OS.has_feature("web") or game.native_audio != null:
+				var binaural := CheckButton.new()
+				binaural.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				binaural.text = "Headphone binaural audio (off for speakers)"
+				binaural.button_pressed = game.settings.get("binaural",1.0) > .5
+				binaural.toggled.connect(func(on): game._command("setting:binaural:"+str(1 if on else 0)); _sound("accept"))
+				content.add_child(binaural)
+				_focus(binaural)
+			else:
+				_label("Spatial stereo audio. Headphones recommended.",16)
 			_button("Done",go_back)
 	_label("Walk: left stick / WASD     Turn: right stick / arrows     Run: LB / Shift or L3 toggle",15,Color("9eaf8c"))
 	_label("Jump: bottom button / Space     Punch: left button / E / RT     Plan: top button / M     Pause: Menu / Esc",14,Color("9eaf8c"))

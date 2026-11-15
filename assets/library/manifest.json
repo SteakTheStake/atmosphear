@@ -557,6 +557,2026 @@
       "asset_sha256": "f552025c46e1742e3e89a166019bcb385791200885e51b207d24e68b13dcc7e8"
     },
     {
+      "file": "assets/library/forest_ocean_surf.ogg",
+      "sources": [
+        {
+          "path": "audio/ambience_2/Ambience Ocean Shore 01.wav",
+          "sha256": "6b9a52f6a87ed61b1ecde876eb7c82ae7a2d8c6cbb197d6e976dced0e3e2971d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": true,
+      "duration_seconds": 31.35,
+      "gain_db": 14.256,
+      "peak_dbfs": -5.274,
+      "rms_dbfs": -28.464,
+      "processing": "Mono point-source ambience; 75Hz rumble reduction; 650ms loop wrap; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "74c4cf5b1eda7802e8cda20e6c7521a0c349508dd71e4495fa99cff7785f47bf"
+    },
+    {
+      "file": "assets/library/forest_river_flow.ogg",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water River Flowing Water 02.wav",
+          "sha256": "6328512a5481877e9aecb92c9c6287a2abe57831bb2de1f89ec4b42d1adc9dfe"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": true,
+      "duration_seconds": 31.35,
+      "gain_db": 6.396,
+      "peak_dbfs": -6.127,
+      "rms_dbfs": -21.638,
+      "processing": "Mono point-source ambience; 75Hz rumble reduction; 650ms loop wrap; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "1c09b1ca5d41e70f1dd3b810b5cc8d660d324e5f2b04d7eef4f315d6941c1747"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_0.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -2.672,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.852,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "e6d14781ae8ba67e1c6eb7e5104e9ccba906af52114f677355d4a51c72da0b3f"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_1.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 0.721,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -24.687,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "a7d856110f9499f7ab92478e2f1f95140e7078993225433927a20b44c4bc7482"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_2.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 7.435,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.317,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "cb344e6bc62d52acb6c3f1684aeb9752973775380434172d0805f0d1e47504d1"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_3.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -2.596,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.938,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "18a9dc0c7c9e39caae15138f9e6dc0488b19044a6b5541b1a1a2b0b0238de91e"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_4.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.303,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.286,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "968a55de4d9ea7f7cd4bed55c8bd6f3aa288b813e45ce8df80362ee421b313f2"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_5.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 7.966,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.046,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "b804695b0837470fc8aca2f544fe0a1dac48eb1835065c6c71ab6215e3fabf0d"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_6.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.511,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.752,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "c6f40dd77178f9b2b4eb7c3437a64b191717898acd680c790b4d91f58d386398"
+    },
+    {
+      "file": "assets/library/forest_step_dirt_7.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 0.355,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.159,
+      "processing": "One isolated footfall; recorded dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "967d85b2c4a3dd5f19c90551edfa7618a3f8041ddd94d24a35112706f218e771"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_0.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 8.44,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -28.19,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "92160c2342fcfec5f55b3a454b4561221e9b7ba344d7c6a56e819b058b4b073e"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_1.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 1.732,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -27.772,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "052d9a3905af94cdc61bd1f01b8f511f31cb025b941a17ad94330884afbb2933"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_2.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 5.038,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -33.484,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "f0a9d8eebe0570b5b3fc4a7b841bad09d338b64c67f7b6e7f2d32868c7ac7d4f"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_3.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.569,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -27.424,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "960aa8a649627bbe3379ae3b7093d493d4e4e871a875dfb1cc5b1a992a789c9a"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_4.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 5.927,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -26.436,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "e1eed5cce36a2c80ece98801752b8d1d3c7c91e01099a1a4bb4544e4b87437e3"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_5.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.627,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -29.086,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "28ca3615e4093ba54411608716b454d1c616d8dfc5313d60f6b2d7086a76bd2c"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_6.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -3.321,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -32.103,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "b1be9a0d43c7aaf968c4bd535abc3231120be40ee5c998a6e621279134e2c79b"
+    },
+    {
+      "file": "assets/library/forest_step_forest_litter_7.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Boots Walking On Leaves 01.wav",
+          "sha256": "213f4bde74d11b44685312302a805b8b707697ffa7f979981e3d10ec4dfd8100"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Leaves And Twigs Debris Slow Walking 01.wav",
+          "sha256": "4bfd0b4693bd46db599a2f68b1a9546496107097e08ddc79e9cda6e1c9b031dd"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 4.564,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -28.43,
+      "processing": "One isolated footfall; recorded forest litter; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "2cb84b98be14052e2e64f5b7fa499a13c80be6c46f954801957d1f7c4260dc2a"
+    },
+    {
+      "file": "assets/library/forest_step_grass_0.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 10.3,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.702,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "3b5883734d6a87ac6ba26b32af40e286b31be5fe901a885d78ad75d6d483861d"
+    },
+    {
+      "file": "assets/library/forest_step_grass_1.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.418,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -30.001,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "320c10f52319859e1b2bca523558b5505b950b293e51dc0836fa76b7d052e4ba"
+    },
+    {
+      "file": "assets/library/forest_step_grass_2.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 0.474,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -28.439,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "097095316f727131a937eaceb56ecf3389714b61c516e973e12a5410b0263338"
+    },
+    {
+      "file": "assets/library/forest_step_grass_3.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 14.089,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -33.198,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "5362c5d8041664371c3570672cafce71751e49b730039b93720c8dfa28dadb8e"
+    },
+    {
+      "file": "assets/library/forest_step_grass_4.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 1.874,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -27.319,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "3e2f0cc47dcbf955af5f33bd4369655f267956470e0554296cda018cbd07889c"
+    },
+    {
+      "file": "assets/library/forest_step_grass_5.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 6.544,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.35,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "b13229054f1df025b21202a7eba57127b6618c5cf355b32184eaeed3e0217c0d"
+    },
+    {
+      "file": "assets/library/forest_step_grass_6.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 5.156,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -38.265,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "bab7cdabf832da98f23aec1ab724efea4b8f17669246dbfd47935cdd3ec56893"
+    },
+    {
+      "file": "assets/library/forest_step_grass_7.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 01.wav",
+          "sha256": "57f29619879ab6caa49710018a1abeed229273ecc4d1f8b979e209e0c6c64ec7"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Human Walking Through Tall Grass 02.wav",
+          "sha256": "777556eead7af429965f2c9fbc70d60e44865e01f8f3bee2d95082004ee188b5"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 2.927,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -24.141,
+      "processing": "One isolated footfall; recorded grass; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "2892c35fd6b31507eb5ec746b167673eef79ac897d49eec7d898a16c90c0bce6"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_0.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.058,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.275,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "b50562bab6da31eeca52d28130a6c9d9b7ddb153a3b01d05abcd3e03701cbffa"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_1.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.54,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.647,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "53a96aff289abcde1871c96e9bd3d59d0fbfc5e281c24f5132d9473af3f26354"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_2.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -3.07,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.805,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "89eb656679c8a81b082b8b6790074611456d76ed45943cd51704da7ec83dea90"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_3.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -3.931,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -24.93,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "bdf8b78bf5f052737b7112537619a7c59b4b729631bae37da2d588ce0356439e"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_4.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -4.457,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -24.062,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "1e02812103b1926454b6e99c266746eb8a842ac73b3a79f3d7c3757e8b9c57f5"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_5.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.091,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.181,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "7950ab2f7a9910df66c6ed3feb1eb2333ffeac78c9972ee78340da81ff79db75"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_6.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -2.085,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.449,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "e2dcdb90438e6df239461e37e9a04a74039e712b3ab1866119df3a2570355784"
+    },
+    {
+      "file": "assets/library/forest_step_marsh_7.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.519,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.58,
+      "processing": "One isolated footfall; recorded marsh; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "4aec9e0f777f49bd768a481b30ea2a8f9b561b761e2777831cd2a5890bd72d66"
+    },
+    {
+      "file": "assets/library/forest_step_sand_0.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.27651,
+      "gain_db": 12.38,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -19.895,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "39f51a405abccf9d146a15691903456eac768aad79e5aa5d9c5080191f6bf541"
+    },
+    {
+      "file": "assets/library/forest_step_sand_1.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.30442,
+      "gain_db": 14.956,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.952,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "500fd11ec07485bbaf8a073cee644a47d5f0639081aea420e8fd6c4b150a3bcd"
+    },
+    {
+      "file": "assets/library/forest_step_sand_2.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.2246,
+      "gain_db": 4.976,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.915,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "f14680f97f56ddb7900eb17ce634f8dfd4a542518816f118fcc2b6d0bc8719b4"
+    },
+    {
+      "file": "assets/library/forest_step_sand_3.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.33435,
+      "gain_db": 19.184,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.72,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "d7b3d86555226456d273faaea3930bf92a74060197ee6e60991b19cfbad53741"
+    },
+    {
+      "file": "assets/library/forest_step_sand_4.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.28649,
+      "gain_db": 7.14,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.35,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "ada516946ad814ef807957ea65ec6cafda925a25004ce20e83a039bc0b927f7d"
+    },
+    {
+      "file": "assets/library/forest_step_sand_5.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.52,
+      "gain_db": 21.214,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.449,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "ae318e033a33709b232652b53e74336d0dfaa083b97937b42048c0781db2216e"
+    },
+    {
+      "file": "assets/library/forest_step_sand_6.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.13683,
+      "gain_db": 6.913,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -19.726,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "87f76f41cce479a48c5bdbbb83e625e452a783cea6042db6a60641aae9b839e4"
+    },
+    {
+      "file": "assets/library/forest_step_sand_7.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.33637,
+      "gain_db": 8.863,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.047,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "c13f03853bce0c1d9978dca37722aae08f46f84701488a6c4be1f66bf8edd4fb"
+    },
+    {
+      "file": "assets/library/forest_step_water_0.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 21.584,
+      "peak_dbfs": -4.032,
+      "rms_dbfs": -26.402,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "56a915af3a063e9a59bbdd4d657533525db15b990da9c2621f7cd1391e9e11b2"
+    },
+    {
+      "file": "assets/library/forest_step_water_1.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 7.307,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -27.986,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "974e31e4951030917eb01fdd8a5e081eb97a75804822c17bf26c7abe83f624f8"
+    },
+    {
+      "file": "assets/library/forest_step_water_2.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 10.631,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -21.613,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "310a9a21fe13a43290336c1a0119c18f80d73405bde04de9390e09d33b51c61f"
+    },
+    {
+      "file": "assets/library/forest_step_water_3.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 16.266,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -25.272,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "893b85a8a815836cf8614ac543bbf6b2115b9f81033f34ff2cc225513ba35e78"
+    },
+    {
+      "file": "assets/library/forest_step_water_4.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 21.584,
+      "peak_dbfs": -9.078,
+      "rms_dbfs": -25.231,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "f2ec72a9490253975e7271a205d2982b5f29c9be15cbd1d94887a1221d629b87"
+    },
+    {
+      "file": "assets/library/forest_step_water_5.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 16.467,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -21.4,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "c1c569b4ba00d87a223d22624cce94740769979a4d0e46bc8461318087f9e5a9"
+    },
+    {
+      "file": "assets/library/forest_step_water_6.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 17.3,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.705,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "c50fe5d850f8ca273173f36f88d3d85d1080d36165ce2f6eb0a541858979fed7"
+    },
+    {
+      "file": "assets/library/forest_step_water_7.wav",
+      "sources": [
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 9.471,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -24.103,
+      "processing": "One isolated footfall; recorded water; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "7df109cdcc6f75111b200e34ad3b2846b478ea5c230b983b300e868d2b278d73"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_0.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.69,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.477,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "bf86518fc3f47711a38a5def8373044ba4058a3de01bc07521cb563d3eede71f"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_1.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": 0.814,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.836,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "43bbf792453b8363c3689abab906ebe9ade8959119e25c3e82250b016c3dd921"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_2.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.652,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.634,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "c41398bc3df4f2e1d97e29b468f478dbbdce80c7776c58e8d54efea45c119ce7"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_3.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -2.2,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.95,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "4d7c21d787c1852a9090bf8e4bf8c3f5db0e9a891af97f56b31c4b257f6f4698"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_4.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -2.448,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -24.021,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "4da5b0d7ea05d8e18c77171bda2ebfdf1f08278180ed0d63a9148ba4897187b0"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_5.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.37,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -21.948,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "bbecb2694497c0e32674e389df3eb3f6cadc1682b14f6aa02a455d6f7bb184b0"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_6.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.44,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.913,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "ec6888ff2de786c61fc420ad38bc9b173e071aa982001eacb74f841866aeae20"
+    },
+    {
+      "file": "assets/library/forest_step_wet_dirt_7.wav",
+      "sources": [
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 01.wav",
+          "sha256": "53d0ac3c926b5a3800e8da3b740606a660ae392de16b424dfa02005a7c04c12e"
+        },
+        {
+          "path": "audio/foley_footsteps/Foley Footsteps/Foley Footstep Work Boots Dirt Debris Walking 02.wav",
+          "sha256": "467e2e413e315781bab2d4dccbaa551442ac28bdcdbc13e862cd41dcc732121d"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.195,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.164,
+      "processing": "One isolated footfall; recorded wet dirt; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "3793317d6b054f7c7ec621f7bbad87a09e3d58c16866fa0b880091e838523863"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_0.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.87,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.863,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "e7a42052026ce820442a48600118462d246d16bd1c62d16e6afb579d7c26f5d8"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_1.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.913,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -21.541,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "824ca49159f52772785f3b0a09471661ef8add16bc0fab05d30cddd00ad2c42f"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_2.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.967,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.731,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "d081b16ccd92b826271f2a01f5f46ccf2e25d35f64b87f5445575dfd84676b03"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_3.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.945,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.925,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "12b988ce823cc39c682934f0f536151a874bb5e8db8163713630b61ce7fd260e"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_4.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.107,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -23.127,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "6f731e394217d62e8ac65a82c7eaac918d92850aca40fdaca1da5a43ce6f79b6"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_5.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.52,
+      "gain_db": -0.862,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -20.344,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "36c63e19043b2d9610d28f5d3a71b11bf659bd1285b263ac512adae9ce9436f7"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_6.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -1.308,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -24.068,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "84290f322641d5261b3c99a048957cb3d66fa015c2c91d8a45b5b142e18ad5ca"
+    },
+    {
+      "file": "assets/library/forest_step_wet_sand_7.wav",
+      "sources": [
+        {
+          "path": "assets/library/gravel0.wav",
+          "sha256": "509ea07a5c2bd2127dc12ab1223508c4291d8f91f9c000e4ea50844fc7a33b73"
+        },
+        {
+          "path": "assets/library/gravel1.wav",
+          "sha256": "85b102fb60b3f8cb401d0f1890a424eae96536358321ae9ee6094ae4ece61c7a"
+        },
+        {
+          "path": "assets/library/gravel2.wav",
+          "sha256": "f4b63ace9f7189942893f3de1cab168df4d175e1e129066806748e5b18a10897"
+        },
+        {
+          "path": "assets/library/gravel3.wav",
+          "sha256": "7ba2390a10e17a50308effa4475d3349618e0a3a8dba89390d389c30bbffcb9b"
+        },
+        {
+          "path": "assets/library/gravel4.wav",
+          "sha256": "ceb9967f7cb92e90f9cb431b5c60b1d718c7b7034480b86bf65bacf72af66b69"
+        },
+        {
+          "path": "assets/library/gravel5.wav",
+          "sha256": "f0d5727c798af8d5ca64e37cc84d2e55c1fc5f08413f2dd59299b63329aa909e"
+        },
+        {
+          "path": "assets/library/gravel6.wav",
+          "sha256": "03751137ca390bce7b47e209b18f56ac7164204274d77c02d808661335e32981"
+        },
+        {
+          "path": "assets/library/gravel7.wav",
+          "sha256": "5d33592a62e813e14e0c06700bafd064aad3a94a50f2d4555eb893d6c17a4383"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 03.wav",
+          "sha256": "c9838435eb0d08bd3c97293e22ec402b6d4c3bd85bccbcb94befda0710e788c6"
+        },
+        {
+          "path": "audio/liquid_water/Liquid-Water/Liquid Water Water Footsteps Walking In Water 04.wav",
+          "sha256": "728304cd5a6fd6d093f25f0d4924725e637ff3e8b8ec8196187c2c518a1e8f60"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": false,
+      "duration_seconds": 0.35,
+      "gain_db": -0.946,
+      "peak_dbfs": -3.742,
+      "rms_dbfs": -22.181,
+      "processing": "One isolated footfall; granular-footstep sand approximation; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "26c8b193f0c01d00a6d25dc1145d61987fae6cf491f22b4fcaee1365cf2d089b"
+    },
+    {
       "file": "assets/library/forest_stream.ogg",
       "sources": [
         {
@@ -574,6 +2594,24 @@
       "peak_dbfs": -15.55,
       "selection": "Nonvocal source filenames; no narration, dialogue, crowds, or human voice assets selected.",
       "asset_sha256": "7c205a520caa15ebabcef674e256d511016b026dead30afe4167e671495bf784"
+    },
+    {
+      "file": "assets/library/forest_stream_detail.ogg",
+      "sources": [
+        {
+          "path": "audio/ambience_2/Ambience Stream 01.wav",
+          "sha256": "26c709afa7b4c43cd5215a815e22b9c0335cd6a896af4efdeb2e2220bec17f20"
+        }
+      ],
+      "sample_rate": 44100,
+      "channels": 1,
+      "loop": true,
+      "duration_seconds": 31.35,
+      "gain_db": 16.778,
+      "peak_dbfs": -4.816,
+      "rms_dbfs": -26.311,
+      "processing": "Mono point-source ambience; 75Hz rumble reduction; 650ms loop wrap; DC removed, natural attack preserved, short edge fades; no chorus, pitch modulation or baked reverb.",
+      "asset_sha256": "7a5555638bfd411528dec81d0a7688179bdc8ecce4ca89aa7f5a0f23296018af"
     },
     {
       "file": "assets/library/forest_wind.ogg",

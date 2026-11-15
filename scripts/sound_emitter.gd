@@ -55,14 +55,14 @@ var _watched_variants: Array[AudioStream] = []
 		reflection_budget = clampi(value,0,4)
 		_changed()
 ## Beyond this distance the source is silent and its acoustic work is suspended.
-@export_range(8,120,.5,"suffix:m") var audible_range := 35.0:
+@export_range(8,600,.5,"suffix:m") var audible_range := 35.0:
 	set(value):
-		audible_range = clampf(value,8,120)
+		audible_range = clampf(value,8,600)
 		_changed()
 ## Near-field distance scale for inverse-distance attenuation.
-@export_range(1,10,.1,"suffix:m") var near_distance := 2.5:
+@export_range(1,40,.1,"suffix:m") var near_distance := 2.5:
 	set(value):
-		near_distance = clampf(value,1,10)
+		near_distance = clampf(value,1,40)
 		_changed()
 
 @export_group("Intermittent Timing")

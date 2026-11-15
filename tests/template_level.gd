@@ -11,6 +11,7 @@ func run() -> void:
 	quit(0 if failures==0 else 1)
 func examine() -> void:
 	var game = load("res://scenes/main.tscn").instantiate()
+	game.native_audio_enabled = false # Exercise the retained portable geometry/mixer regression path.
 	root.add_child(game)
 	await process_frame
 	check(game.main_level!=null and game.main_level.resource_path.begins_with("res://"),"project assigns a saved scene as its main level")
