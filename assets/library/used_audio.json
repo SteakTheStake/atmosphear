@@ -50,15 +50,15 @@
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_North_Oak_bird_3.sound",
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Spruce_Forest_bird_2.sound",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/FountainBird.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1028]",
         "res://scenes/main.tscn:..main_level/_bundled[variants][10]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1168]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][118]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][133]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][164]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1794]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1823]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1938]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1109]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1259]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][125]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][141]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][174]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1933]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1964]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2087]"
       ]
     },
     {
@@ -71,10 +71,10 @@
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Spruce_Forest_bird_1.sound",
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Spruce_Forest_bird_3.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdEast.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][103]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1154]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1924]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1952]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][109]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1244]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2072]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2102]"
       ]
     },
     {
@@ -90,13 +90,13 @@
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_1.sound",
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_3.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdWest.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1070]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1127]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1837]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1866]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1895]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][41]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][88]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1154]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1215]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1979]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2010]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2041]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][43]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][93]"
       ]
     },
     {
@@ -115,14 +115,14 @@
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdBeacon.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdNorth.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/HutOutsideBird.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1042]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1112]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][148]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1808]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1880]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1909]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][25]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][72]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1124]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1199]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][157]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1948]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2025]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2056]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][26]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][76]"
       ]
     },
     {
@@ -135,9 +135,9 @@
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_2.sound",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/TowerBird.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/ClearingBird.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1084]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1851]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][56]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1169]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1994]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][59]"
       ]
     },
     {
@@ -150,9 +150,9 @@
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_South_Oak_bird_2.sound_variants[0]",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/TowerBird.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/ClearingBird.sound_variants[0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1085][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1852][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][57][0]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1170][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1995][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][60][0]"
       ]
     },
     {
@@ -171,14 +171,14 @@
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdBeacon.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/GroveBirdNorth.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/HutOutsideBird.sound_variants[0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1043][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1113][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][149][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1809][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1881][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1910][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][26][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][73][0]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1125][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1200][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][158][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1949][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2026][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2057][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][27][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][77][0]"
       ]
     },
     {
@@ -193,11 +193,11 @@
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Estuary_stilt_2.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/CoveBird.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/WetlandBird.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1689]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][179]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][195]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1966]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1981]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1820]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][190]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][207]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2117]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2133]"
       ]
     },
     {
@@ -212,11 +212,11 @@
         "res://scenes/levels/forest_river.tscn:Sources/TAKEOFF_AUDIO_TRIGGER_Estuary_stilt_2.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/CoveBird.sound_variants[0]",
         "res://scenes/levels/legacy/forest.tscn:Sources/WetlandBird.sound_variants[0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1690][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][180][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1967][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][196][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1982][0]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1821][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][191][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][208][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2118][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][2134][0]"
       ]
     },
     {
@@ -244,22 +244,22 @@
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle00.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle12.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle24.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][247]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][295]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][343]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][391]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][439]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][487]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][535]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][583]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][631]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1043]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][263]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][315]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][367]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][419]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][471]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][523]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][575]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][627]",
         "res://scenes/main.tscn:..main_level/_bundled[variants][679]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][727]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][775]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][823]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][871]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][919]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][967]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][731]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][783]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][835]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][887]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][939]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][991]"
       ]
     },
     {
@@ -288,23 +288,23 @@
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle03.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle15.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle27.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][211]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][259]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][307]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][355]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][403]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][451]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][499]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][547]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][595]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][643]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][691]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][739]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][787]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][835]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][883]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][931]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][979]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1004]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1056]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][224]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][276]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][328]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][380]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][432]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][484]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][536]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][588]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][640]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][692]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][744]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][796]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][848]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][900]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][952]"
       ]
     },
     {
@@ -333,23 +333,23 @@
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle06.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle18.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle30.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][223]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][271]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][319]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][367]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][415]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][463]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][511]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][559]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][607]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][655]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][703]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][751]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][799]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][847]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][895]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][943]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][991]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1017]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1069]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][237]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][289]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][341]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][393]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][445]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][497]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][549]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][601]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][653]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][705]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][757]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][809]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][861]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][913]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][965]"
       ]
     },
     {
@@ -378,23 +378,23 @@
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle21.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/TreeRustle33.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/WetlandTree.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1003]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][235]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][283]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][331]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][379]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][427]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][475]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][523]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][571]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][619]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][667]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][715]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][763]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][811]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][859]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][907]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][955]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1030]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1082]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][250]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][302]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][354]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][406]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][458]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][510]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][562]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][614]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][666]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][718]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][770]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][822]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][874]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][926]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][978]"
       ]
     },
     {
@@ -592,30 +592,30 @@
         "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_22.sound",
         "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_23.sound",
         "res://scenes/levels/forest_river.tscn:Sources/COAST_SURF_24.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1377]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1390]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1403]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1416]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1429]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1442]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1455]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1468]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1481]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1494]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1507]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1520]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1533]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1546]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1559]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1572]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1585]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1598]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1611]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1484]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1498]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1512]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1526]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1540]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1554]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1568]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1582]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1596]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1610]",
         "res://scenes/main.tscn:..main_level/_bundled[variants][1624]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1637]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1650]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1663]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1676]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1638]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1652]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1666]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1680]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1694]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1708]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1722]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1736]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1750]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1764]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1778]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1792]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1806]"
       ]
     },
     {
@@ -633,16 +633,16 @@
         "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_12.sound",
         "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_14.sound",
         "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_15.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1195]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1208]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1234]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1247]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1273]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1286]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1312]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1325]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1351]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1364]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1288]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1302]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1330]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1344]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1372]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1386]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1414]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1428]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1456]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1470]"
       ]
     },
     {
@@ -1199,11 +1199,11 @@
         "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_07.sound",
         "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_10.sound",
         "res://scenes/levels/forest_river.tscn:Sources/RIVER_FLOW_13.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1182]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1221]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1260]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1299]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1338]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1274]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1316]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1358]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1400]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1442]"
       ]
     },
     {
@@ -1348,7 +1348,7 @@
         "res://scenes/levels/forest_river.tscn:Sources/MARSH_insects.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/SpurReeds.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/WetlandInsectBeacon.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1704]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1836]"
       ]
     },
     {
@@ -1410,7 +1410,7 @@
       "references": [
         "res://scenes/levels/forest_river.tscn:Sources/MARSH_gray_tree_frog.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/WetlandFrogBeacon.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1716]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1849]"
       ]
     },
     {
@@ -1899,15 +1899,15 @@
         "res://scenes/levels/forest_river.tscn:Sources/WIND_Spruce_Forest.sound",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/GateSlotWind.sound",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/TowerGustBeacon.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1015]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1057]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1099]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1141]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1729]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1742]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1755]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1768]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1781]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1095]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1140]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1185]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1230]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1863]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1877]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1891]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1905]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1919]"
       ]
     },
     {
@@ -1926,15 +1926,15 @@
         "res://scenes/levels/forest_river.tscn:Sources/WIND_Spruce_Forest.sound_variants[0]",
         "res://scenes/levels/legacy/courtyard.tscn:Sources/StableRoofWind.sound",
         "res://scenes/levels/legacy/forest.tscn:Sources/HutRoofWind.sound",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1016][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1058][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1100][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1142][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1730][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1743][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1756][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1769][0]",
-        "res://scenes/main.tscn:..main_level/_bundled[variants][1782][0]"
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1096][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1141][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1186][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1231][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1864][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1878][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1892][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1906][0]",
+        "res://scenes/main.tscn:..main_level/_bundled[variants][1920][0]"
       ]
     },
     {
